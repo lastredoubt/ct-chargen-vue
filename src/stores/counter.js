@@ -10,6 +10,8 @@ export const useCounterStore = defineStore('counter', () => {
   const stepNamesMap = reactive({
     blankSlate:'blankSlate',
     rollup:'rollup',
+    setHomeworld: 'setHomeworld',
+    chooseCareer: 'chooseCareer'
 
   })
 

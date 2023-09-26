@@ -24,7 +24,10 @@
     -->
     <h2>Character</h2>
     <p><strong>Name: </strong> {{ character.pc.name }}</p>
-    <input type="text" v-model="character.pc.name">
+    <label><strong>Rename the Character:</strong></label><input type="text" v-model="character.pc.name">
+    <p><strong>UPP: </strong> {{ character.pc.generateUPP() }}</p>
+    <p><strong>Homeworld: </strong> {{ character.pc.homeWorld }}</p>
+
     <hr />
     
     <p>{{  character.pc }}</p>
@@ -48,9 +51,11 @@ import { useCharacterStore } from '@/stores/character'
 import {useCounterStore} from '@/stores/counter'
 
 
-//import New Character View
+//import New Character components
 import NewCharacter from '../components/NewCharacter.vue';
 import RollStats from '../components/chargen/ct/ttb/RollStats.vue';
+import SetHomeworld from '../components/chargen/ct/ttb/SetHomeworld.vue';
+import chooseCareer from '../components/chargen/ct/ttb/chooseCareer.vue';
 
 /*------------------------------------------------------------
         Character Start - status, and entry point
@@ -92,9 +97,20 @@ watch(
     console.log( 'SWITCHING WATCHER: rollupset')
 
    }
-    
+   if ( creationStatus.currentStep ===  creationStatus.stepNamesMap.setHomeworld  ) {
+    creationStatus.currentScreen = SetHomeworld
+    console.log( 'SWITCHING WATCHER: setting Homeworld')
+
+   }
+   if ( creationStatus.currentStep ===  creationStatus.stepNamesMap.chooseCareer  ) {
+    creationStatus.currentScreen = chooseCareer
+    console.log( 'SWITCHING WATCHER: setting Homeworld')
+
+   }
+  
   }
 )
+
 
 
 // if we haven't started, we first start a character

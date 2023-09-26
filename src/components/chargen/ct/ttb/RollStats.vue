@@ -13,17 +13,17 @@
         <th>{{character.pc.characteristics.social.longName}}</th>
     </tr>
     <tr>
-        <td>{{ charStats.str }} / {{ strP }}</td>
-        <td>{{ charStats.dex }} / {{ dexP }}</td>
-        <td>{{ charStats.end }} / {{ endP }}</td>
-        <td>{{ charStats.int }} / {{ intP }}</td>
-        <td>{{ charStats.edu }} / {{ eduP }}</td>
-        <td>{{ charStats.soc }} / {{ socP }}</td>
+        <td>{{ charStats.str }} ({{ strP }})</td>
+        <td>{{ charStats.dex }} ({{ dexP }})</td>
+        <td>{{ charStats.end }} ({{ endP }})</td>
+        <td>{{ charStats.int }} ({{ intP }})</td>
+        <td>{{ charStats.edu }} ({{ eduP }})</td>
+        <td>{{ charStats.soc }} ({{ socP }})</td>
     </tr>
 </table>
 
-<button @click.prevent="accept">Accept and continue</button>
-<button @click.prevent="reroll">Cheat and Reroll</button>
+<button @click.prevent="acceptStats">Accept and continue</button>
+<button @click.prevent="rollStats">Cheat and Reroll</button>
 
 </template>
 
@@ -103,6 +103,8 @@ const upp = computed( () => {
 
 /*-------------------------------------
         roll a characteristic
+
+        preserving teh first die roll if I ever get to T5 / genetics
 ----------------------------------------*/
 
 const roll2D6 = () => {
@@ -128,9 +130,9 @@ const roll2D6 = () => {
 /*-------------------------------------
         Roll Basic UPP
 ----------------------------------------*/
-onMounted( () => { 
+const rollStats = () => { 
 
-console.log('onUnmounted -> Rollstats');
+console.log('>>> rolling stats ');
 
 charStats.str = roll2D6().rollTotal
 charStats.dex = roll2D6().rollTotal
@@ -140,7 +142,56 @@ charStats.edu = roll2D6().rollTotal
 charStats.soc = roll2D6().rollTotal
 
 
+}
+
+
+
+/*-------------------------------------
+        onMounted initial roll
+----------------------------------------*/
+onMounted( () => { 
+
+console.log('onUnmounted -> Rollstats');
+
+rollStats()
+
+
 } )
+
+
+
+/*-------------------------------------
+        onMounted initial roll
+----------------------------------------*/
+
+const acceptStats = () => { 
+
+console.log('Accept stats ');
+
+
+character.pc.characteristics.strength.value = charStats.str
+character.pc.characteristics.strength.pHexValue = strP
+
+character.pc.characteristics.dexterity.value = charStats.dex
+character.pc.characteristics.dexterity.pHexValue = dexP
+
+character.pc.characteristics.endurance.value = charStats.end
+character.pc.characteristics.endurance.pHexValue = endP
+
+character.pc.characteristics.intelligence.value = charStats.int
+character.pc.characteristics.intelligence.pHexValue = intP 
+
+character.pc.characteristics.education.value = charStats.edu
+character.pc.characteristics.education.pHexValue = eduP
+
+character.pc.characteristics.social.value = charStats.soc
+character.pc.characteristics.social.pHexValue = socP
+
+character.pc.flags.initialRolls = true
+
+creationStatus.currentStep = creationStatus.stepNamesMap.setHomeworld
+
+}
 
 
 
