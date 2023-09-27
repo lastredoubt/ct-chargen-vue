@@ -54,6 +54,7 @@ export const CharacterDataCT = {
     nobleTitle: '',
     militaryRank: {
         // type is officer vs enlisted - to be standardized in CharGenTables
+        //ct only cares about officer ranks
         type: '',
         level: 0
     },
