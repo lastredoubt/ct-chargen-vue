@@ -82,7 +82,7 @@ Services
     - service modifiers (other than scout 2/turn skills)
     - service-specific skill tables
 
-
+    NOTE - these are entered in draft order / book order
 
 
 
@@ -91,11 +91,12 @@ Services
     or ―Air/Raft‖ (Scouts).
 --------------------------------------------------------------------*/
 
-    services: {
+    services: [
 /*-------------------------------------------------------------------
             Navy
 --------------------------------------------------------------------*/
-        navy: {
+        {
+            displayName: 'Navy',
             shortName: 'navy',
             draft: 1,
             enlistment: {
@@ -366,7 +367,8 @@ Services
 --------------------------------------------------------------------*/
 
     /// MARINES
-        Marines:  {
+        {
+            displayName: 'Marines',
             shortName: 'marines',
             draft: 2,
             enlistment: {
@@ -410,7 +412,7 @@ Services
        
 
 
-    },
+    ],
 
 
 
@@ -717,7 +719,7 @@ Services
 
         },
         {
-            name: 'Ship\s Boat',
+            name: "Ship's Boat",
             cascading: false,
             skillIndex: 51,
 
@@ -1017,53 +1019,6 @@ Services
 
     },
     
-
-    
-
-/*-------------------------------------------------------------------
-            Nobility Mappings
-
---------------------------------------------------------------------*/
-
-
-    // nobility mappings
-    nobilityTitles: {
-        2: 'none',
-        3: 'none',
-        4: 'none',
-        5: 'none',
-        6: 'none',
-        7: 'none',
-        8: 'none',
-        9: 'none',
-        10: 'none',
-        11: {
-            male: 'Knight',
-            female: 'Knightess',
-            female2: 'Dame'
-        },
-        12:  {
-            male: 'Baron',
-            female: 'Baronet',
-            female2: 'Baroness'
-        },
-        13: {
-            male: 'Marquis',
-            female: 'Marquesa',
-            female2: 'Marchioness'
-        },
-        14:  {
-            male: 'Count',
-            female: 'Countess',
-            female2: 'Contessa'
-        },
-        15:  {
-            male: 'Duke',
-            female: 'Duchess',
-            female2: 'Duchess'
-        },
-    },
-
 }
 
 

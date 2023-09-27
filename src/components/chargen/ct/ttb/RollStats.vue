@@ -3,6 +3,7 @@
 <h1>Your starting stats:</h1>
 
 <div><h2>UPP: {{ upp }}</h2></div>
+<div>
 <table>
     <tr>
         <th>{{character.pc.characteristics.strength.longName}}</th>
@@ -21,6 +22,13 @@
         <td>{{ charStats.soc }} ({{ socP }})</td>
     </tr>
 </table>
+</div>
+
+
+
+<div class="titleDisplay">
+    <p><strong>Title:</strong> {{ currentTitle.title }}</p>
+</div>
 
 <button @click.prevent="acceptStats">Accept and continue</button>
 <button @click.prevent="rollStats">Cheat and Reroll</button>
@@ -30,7 +38,7 @@
 <script setup>
 
 // import relevant vue libraries
-import { reactive, provide, ref, computed, onMounted } from 'vue';
+import { reactive, computed, onMounted } from 'vue';
 
 
 
@@ -55,6 +63,14 @@ import { useCounterStore } from '@/stores/counter'
 const creationStatus = useCounterStore()
 
 
+
+/*-------------------------------------
+        get character tables for nobility
+----------------------------------------*/
+
+import { NobilityTables } from '../../../../assets/CharacterData/NobilityTables';
+const nobility = NobilityTables
+let currentTitle = reactive({title: ''})
 
 /*-------------------------------------
         Initialize Local Data including matching computed Phex
@@ -101,6 +117,27 @@ const upp = computed( () => {
 
 
 
+
+
+/*-------------------------------------
+        nobleTitle
+----------------------------------------*/
+
+const setNoble = () => { 
+    if (nobility.nobilityTitles[charStats.soc] === 'none') {
+        currentTitle.title = 'none'
+        return
+    } else {
+
+    console.log('Title is not "none"')
+        const titleString = nobility.nobilityTitles[charStats.soc].t1 + ', ' + nobility.nobilityTitles[charStats.soc].t2 + ', or ' + nobility.nobilityTitles[charStats.soc].t3
+        currentTitle.title = titleString
+    }
+}
+
+
+
+
 /*-------------------------------------
         roll a characteristic
 
@@ -141,8 +178,11 @@ charStats.int = roll2D6().rollTotal
 charStats.edu = roll2D6().rollTotal
 charStats.soc = roll2D6().rollTotal
 
+setNoble()
 
 }
+
+
 
 
 
@@ -160,8 +200,11 @@ rollStats()
 
 
 
+
+
+
 /*-------------------------------------
-        onMounted initial roll
+        Accept Stats
 ----------------------------------------*/
 
 const acceptStats = () => { 
@@ -186,6 +229,8 @@ character.pc.characteristics.education.pHexValue = eduP
 
 character.pc.characteristics.social.value = charStats.soc
 character.pc.characteristics.social.pHexValue = socP
+
+character.pc.nobleTitle = currentTitle.title
 
 character.pc.flags.initialRolls = true
 

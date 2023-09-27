@@ -2,27 +2,59 @@
 
 <h1>Let's pick a career path: </h1>
 
-<!-- 
-<div><h2>UPP: {{ upp }}</h2></div>
-<table>
-    <tr>
-        <th>{{character.pc.characteristics.strength.longName}}</th>
-        <th>{{character.pc.characteristics.dexterity.longName}}</th>
-        <th>{{character.pc.characteristics.endurance.longName}}</th>
-        <th>{{character.pc.characteristics.intelligence.longName}}</th>
-        <th>{{character.pc.characteristics.education.longName}}</th>
-        <th>{{character.pc.characteristics.social.longName}}</th>
-    </tr>
-    <tr>
-        <td>{{ charStats.str }} ({{ strP }})</td>
-        <td>{{ charStats.dex }} ({{ dexP }})</td>
-        <td>{{ charStats.end }} ({{ endP }})</td>
-        <td>{{ charStats.int }} ({{ intP }})</td>
-        <td>{{ charStats.edu }} ({{ eduP }})</td>
-        <td>{{ charStats.soc }} ({{ socP }})</td>
-    </tr>
-</table>
 
+<div><h2>Career Tracks</h2></div>
+<table>
+    
+    <tr>
+        <th class="firstCol">Services</th>
+        <th v-for="(service, index) in careerStart" :key="genServicekey(service, 'tableHeader')" >{{service.displayName}}</th>
+    </tr>
+    
+    <tr>
+        <td class="firstCol">Required enlistment roll</td>
+        <td v-for="(service, index) in careerStart" :key="genServicekey(service, 'enlistRollRow')" >{{service.enlistment.roll}}+</td>
+    </tr>
+
+    <tr>
+        <td class="firstCol">+1 to enlist if:</td>
+        <td v-for="(service, index) in careerStart" :key="genServicekey(service, 'plusone')" >{{service.enlistment.dm1.shortName}} {{ service.enlistment.dm1.value }}+</td>
+    </tr>
+    <tr>
+        <td class="firstCol">+2 to enlist if:</td>
+        <td v-for="(service, index) in careerStart" :key="genServicekey(service, 'plustwo')" >{{service.enlistment.dm2.shortName}} {{ service.enlistment.dm2.value }}+</td>
+    </tr>
+    <tr class="survival">
+        <td class="firstCol">Survival Roll</td>
+        <td v-for="(service, index) in careerStart" :key="genServicekey(service, 'survival')" >{{service.survival.roll}}+</td>
+    </tr>
+    <tr class="survivalDM">
+        <td class="firstCol">Survival DM</td>
+        <td v-for="(service, index) in careerStart" :key="genServicekey(service, 'survdm')" >{{service.survival.dm2.shortName}} {{ service.survival.dm2.value }}+</td>
+    </tr>
+    <tr class="comission">
+        <td class="firstCol">Commission</td>
+        <td v-for="(service, index) in careerStart" :key="genServicekey(service, 'commish')" >{{service.commission.roll}}+</td>
+    </tr>
+    <tr class="commisiondm">
+        <td class="firstCol">Commisioning DM if</td>
+        <td v-for="(service, index) in careerStart" :key="genServicekey(service, 'commishdm')" >{{service.commission.dm1.shortName}} {{ service.commission.dm1.value }}+</td>
+    </tr>
+    <tr class="promote">
+        <td class="firstCol">Promotion Roll</td>
+        <td v-for="(service, index) in careerStart" :key="genServicekey(service, 'promote')" >{{service.promotion.roll}}+</td>
+    </tr>
+    <tr class="promotedm">
+        <td class="firstCol">Promotion DM if</td>
+        <td v-for="(service, index) in careerStart" :key="genServicekey(service, 'promotedm')" >{{service.promotion.dm1.shortName}} {{ service.promotion.dm1.value }}+</td>
+    </tr>
+    <tr class="reup">
+        <td class="firstCol">Re-enlistment roll</td>
+        <td v-for="(service, index) in careerStart" :key="genServicekey(service, 'reup')" >{{service.reenlist.roll}}+</td>
+    </tr>
+
+</table>
+<!--
 <button @click.prevent="acceptStats">Accept and continue</button>
 <button @click.prevent="rollStats">Cheat and Reroll</button>
 -->
@@ -34,13 +66,6 @@
 
 // import relevant vue libraries
 import { reactive, provide, ref, computed, onMounted } from 'vue';
-
-
-
-/*-------------------------------------
-        Iport phex function
-----------------------------------------*/
-import {getPHexValue} from '../../../../assets/General/GetPhex'
 
 
 /*-------------------------------------
@@ -58,6 +83,19 @@ import { useCounterStore } from '@/stores/counter'
 const creationStatus = useCounterStore()
 
 
+/*-------------------------------------
+        import character tables
+----------------------------------------*/
+import { cttbCharGenTables } from '../../../../assets/CharacterData/ChargenTablesCTTB';
+const tables = reactive(cttbCharGenTables)
+
+
+
+
+// /*-------------------------------------
+//         Initialize Local Data including matching computed Phex
+// ----------------------------------------*/
+const careerStart = reactive(tables.services)
 
 
 
@@ -68,11 +106,26 @@ const creationStatus = useCounterStore()
 //         Accept the stats
 // ----------------------------------------*/
 
-const acceptStats = () => { 
+// const acceptStats = () => { 
 
-console.log('Accept Name ');
+// console.log('Accept Name ');
 
-creationStatus.currentStep = creationStatus.stepNamesMap.chooseCareer
+// creationStatus.currentStep = creationStatus.stepNamesMap.chooseCareer
+
+// }
+
+
+
+// /*-------------------------------------
+//         Generate a uniquekey based on service and text
+// ----------------------------------------*/
+
+const genServicekey = (service, header) => {
+
+    const tempKey = service.shortName.toString() + header.toString()
+
+
+    return tempKey
 
 }
 
@@ -170,17 +223,12 @@ creationStatus.currentStep = creationStatus.stepNamesMap.chooseCareer
 
 
 
-// /*-------------------------------------
-//         onMounted initial roll
-// ----------------------------------------*/
-// onMounted( () => { 
+/*-------------------------------------
+        onMounted initial roll - setup service info
+----------------------------------------*/
+onMounted( () => { 
 
-// console.log('onUnmounted -> Rollstats');
-
-// rollStats()
-
-
-// } )
+} )
 
 
 

@@ -45,12 +45,6 @@ import { reactive, provide, ref, computed, onMounted } from 'vue';
 
 
 /*-------------------------------------
-        Iport phex function
-----------------------------------------*/
-import {getPHexValue} from '../../../../assets/General/GetPhex'
-
-
-/*-------------------------------------
         Iport character datastore and setup
 ----------------------------------------*/
 import { useCharacterStore } from '@/stores/character'

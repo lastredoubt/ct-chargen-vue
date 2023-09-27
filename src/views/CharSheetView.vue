@@ -15,9 +15,6 @@
 
     </div>
     <div>
-      <h2>Add title of nobility lookup to basic char data</h2>
-    </div>
-    <div>
       <h2>Add button here for reset/start over</h2>
     </div>
 
@@ -25,11 +22,14 @@
     <!--
       Initial trial of character dump
     -->
+    <div class="realtimeChar" v-if="character.pc.flags.initialRolls">
     <h2>Character</h2>
     <p><strong>Name: </strong> {{ character.pc.name }}</p>
-    <label><strong>Rename the Character:</strong></label><input type="text" v-model="character.pc.name">
+    <p><strong>Title: </strong> {{character.pc.nobleTitle }} </p>
+    
     <p><strong>UPP: </strong> {{ character.pc.generateUPP() }}</p>
     <p><strong>Homeworld: </strong> {{ character.pc.homeWorld }}</p>
+    </div>
 
     <hr />
     
