@@ -15,6 +15,9 @@
 
     </div>
     <div>
+      <h2>Add title of nobility lookup to basic char data</h2>
+    </div>
+    <div>
       <h2>Add button here for reset/start over</h2>
     </div>
 
