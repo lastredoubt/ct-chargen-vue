@@ -31,6 +31,10 @@
     <p><strong>Homeworld: </strong> {{ character.pc.homeWorld }}</p>
     </div>
 
+    <div class="careerLog">
+      <p v-for="(step,index) in creationStatus.careerLog" :key="'careerLog-'+index">{{step}}</p>
+    </div>
+
     <hr />
     
     <p>{{  character.pc }}</p>

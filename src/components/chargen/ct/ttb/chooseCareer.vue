@@ -3,7 +3,7 @@
 <h1>Let's pick a career path: </h1>
 
 
-<div><h2>Career Tracks</h2></div>
+<div><h2>Possible Career Tracks and Odds</h2></div>
 <table>
     
     <tr>
@@ -54,10 +54,25 @@
     </tr>
 
 </table>
-<!--
-<button @click.prevent="acceptStats">Accept and continue</button>
-<button @click.prevent="rollStats">Cheat and Reroll</button>
--->
+
+
+<!--   const careerStart = reactive(tables.services)
+   -->
+<div>
+<select name="careerChoice"  id="careerChoice" v-model="selectedIndex">
+                <option v-for="(career, index) in careerStart" :value="index" :key="genServicekey(career, 'choosecareer')">Try the {{ career.displayName }} </option>
+
+            </select>
+
+            </div>
+            <div>
+                <button @click.prevent="tryCareer(selectedIndex)">Let's See if you get in!</button>
+                </div>
+
+
+<div class="results">
+    <h3>Put results log here.....???</h3>
+</div>
 
 
 </template>
@@ -97,7 +112,7 @@ const tables = reactive(cttbCharGenTables)
 // ----------------------------------------*/
 const careerStart = reactive(tables.services)
 
-
+const selectedIndex = ref(0)
 
 
 
@@ -129,7 +144,13 @@ const genServicekey = (service, header) => {
 
 }
 
+const tryCareer = (selectedService) => {
+// we see if  we get in
+creationStatus.careerLog.push('Try to enslist in the ' + careerStart[selectedService].displayName + ' career path')
+// charStats.str = creationStatus.roll2D6()
 
+
+}
 
 
 

@@ -31,7 +31,7 @@
 </div>
 
 <button @click.prevent="acceptStats">Accept and continue</button>
-<button @click.prevent="rollStats">Cheat and Reroll</button>
+<button @click.prevent="reRollStats">Cheat and Reroll</button>
 
 </template>
 
@@ -169,16 +169,30 @@ const roll2D6 = () => {
 ----------------------------------------*/
 const rollStats = () => { 
 
-console.log('>>> rolling stats ');
+console.log('>>> rolling stats using counter ');
 
-charStats.str = roll2D6().rollTotal
-charStats.dex = roll2D6().rollTotal
-charStats.end = roll2D6().rollTotal
-charStats.int = roll2D6().rollTotal
-charStats.edu = roll2D6().rollTotal
-charStats.soc = roll2D6().rollTotal
+charStats.str = creationStatus.roll2D6()
+charStats.dex = creationStatus.roll2D6()
+charStats.end = creationStatus.roll2D6()
+charStats.int = creationStatus.roll2D6()
+charStats.edu = creationStatus.roll2D6()
+charStats.soc = creationStatus.roll2D6()
+
+creationStatus.careerLog.push("Stats have been rolled")
 
 setNoble()
+
+}
+
+
+/*-------------------------------------
+        Roll Basic UPP
+----------------------------------------*/
+const reRollStats = () => { 
+    
+creationStatus.careerLog.push("We've cheated and are rerolling stats:")
+
+rollStats()
 
 }
 
@@ -201,7 +215,7 @@ rollStats()
 
 
 
-
+ 
 
 /*-------------------------------------
         Accept Stats
@@ -210,6 +224,9 @@ rollStats()
 const acceptStats = () => { 
 
 console.log('Accept stats ');
+
+creationStatus.careerLog.push('Stats are chosen. The UPP is:' + upp.value)
+creationStatus.careerLog.push('The character title is:' + currentTitle.title)
 
 
 character.pc.characteristics.strength.value = charStats.str

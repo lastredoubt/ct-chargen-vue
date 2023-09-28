@@ -3,7 +3,7 @@
         <form action="">
             <label>{{  ruleLabel }} : </label>
             <select name="ruleSet"  id="ruleSet" v-model="selectedShortName">
-                <option v-for="(ruleSet, index) in ruleList" :value="ruleSet.shortName" :key="ruleSet.shortName">{{ ruleSet.longName }} </option>
+                <option v-for="(ruleSet, index) in ruleList" :value="index" :key="ruleSet.shortName">{{ ruleSet.longName }} </option>
 
             </select>
             <div>
@@ -50,7 +50,7 @@ const ruleLabel = ref(charRuleSets.ruleLabel)
 const ruleList = reactive(charRuleSets.availableRules)
 // used to set the default ruleSet (once there is more than one) and manage teh selection
 const defaultIndex = ruleList.findIndex( function(aRuleSet) { return aRuleSet.defaultRules === true }) 
-const selectedShortName = ref(ruleList[defaultIndex].shortName)
+const selectedShortName = ref(defaultIndex)
 
 
 
@@ -59,12 +59,29 @@ const selectedShortName = ref(ruleList[defaultIndex].shortName)
         Character Start - status, and entry point
 -------------------------------------------------------------*/
 
-const startCharacterRolls = (ruleSet) => { 
+const startCharacterRolls = (ruleSet) => {
 
-console.log('trigger Character Rolls with Ruleset: ' + ruleSet);
-character.pc.career.tVersion = ruleSet
+const ruleSetShortName = charRuleSets.availableRules[ruleSet].shortName
+const ruleSetLongtName = charRuleSets.availableRules[ruleSet].longName
+
+creationStatus.careerLog.push("We've started the character creation process using: " +  ruleSetLongtName)
+console.log('trigger Character Rolls with Ruleset: ' + ruleSetShortName);
+character.pc.career.tVersion = ruleSetShortName
 creationStatus.currentStep = creationStatus.stepNamesMap.rollup
+
 }
+
+
+
+
+// CharacterRules = {
+//     ruleLabel: 'Available Traveller-related Rulesets',
+//     availableRules: [
+//         {
+//             defaultRules : true,
+//             shortName: 'ct-ttb',
+//             longName: 'C
+
 
 
 

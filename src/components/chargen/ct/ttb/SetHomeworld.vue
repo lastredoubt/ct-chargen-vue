@@ -73,7 +73,14 @@ const acceptStats = () => {
 
 console.log('Accept Name ');
 
+creationStatus.careerLog.push('The character is named: ' + character.pc.name )
+
+creationStatus.careerLog.push('The homeworld is: ' + character.pc.homeWorld )
+
+
 creationStatus.currentStep = creationStatus.stepNamesMap.chooseCareer
+
+
 
 }
 

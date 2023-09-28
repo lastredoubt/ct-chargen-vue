@@ -58,7 +58,7 @@ export const CharacterDataCT = {
         type: '',
         level: 0
     },
-    homeWorld: '',
+    homeWorld: '(none)',
     skills: [],
 
 
