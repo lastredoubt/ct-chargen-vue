@@ -23,12 +23,14 @@
       Initial trial of character dump
     -->
     <div class="realtimeChar" v-if="character.pc.flags.initialRolls">
-    <h2>Character</h2>
-    <p><strong>Name: </strong> {{ character.pc.name }}</p>
-    <p><strong>Title: </strong> {{character.pc.nobleTitle }} </p>
-    
-    <p><strong>UPP: </strong> {{ character.pc.generateUPP() }}</p>
-    <p><strong>Homeworld: </strong> {{ character.pc.homeWorld }}</p>
+      <h2>Character</h2>
+      <div><p><strong>Name: </strong> {{ character.pc.name }}</p></div>
+      <div><p><strong>Title: </strong> {{character.pc.nobleTitle }} </p></div>
+      
+      <div><p><strong>UPP: </strong> {{ character.pc.generateUPP() }}</p></div>
+      <div><p><strong>Homeworld: </strong> {{ character.pc.homeWorld }}</p></div>
+      <div><p><strong>Career path: </strong> {{ character.pc.homeWorld }}</p></div>
+
     </div>
 
     <div class="careerLog">
@@ -63,6 +65,9 @@ import NewCharacter from '../components/NewCharacter.vue';
 import RollStats from '../components/chargen/ct/ttb/RollStats.vue';
 import SetHomeworld from '../components/chargen/ct/ttb/SetHomeworld.vue';
 import chooseCareer from '../components/chargen/ct/ttb/chooseCareer.vue';
+import doTerm from '../components/chargen/ct/ttb/doTerm.vue'
+
+
 
 /*------------------------------------------------------------
         Character Start - status, and entry point
@@ -114,21 +119,14 @@ watch(
     console.log( 'SWITCHING WATCHER: setting Homeworld')
 
    }
+   if ( creationStatus.currentStep ===  creationStatus.stepNamesMap.doTerm  ) {
+    creationStatus.currentScreen = doTerm
+    console.log( 'SWITCHING WATCHER: starting a term')
+
+   }
   
   }
 )
-
-
-
-// if we haven't started, we first start a character
-
-
-/* 
-const computedUPP = computed(() => {
-  return character.pc.generateUPP();
-})
-*/
-
 
 
 </script>

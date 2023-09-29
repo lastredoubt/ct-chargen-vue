@@ -98,6 +98,8 @@ Services
         {
             displayName: 'Navy',
             shortName: 'navy',
+            congrats: 'Congratulations, sailor. You joined the Navy!',
+            drafted: 'Congratulations, sailor. You were drafted by the Navy',
             draft: 1,
             enlistment: {
                 roll: 8,
@@ -370,6 +372,8 @@ Services
         {
             displayName: 'Marines',
             shortName: 'marines',
+            congrats: 'Congratulations, soldier. You joined the Marines!',
+            drafted: 'Congratulations, soldier. You were drafted by the Marines',
             draft: 2,
             enlistment: {
                 roll: 9,
@@ -409,10 +413,210 @@ Services
             },    
         },
 
+        /*-------------------------------------------------------------------
+                    The Army
+        --------------------------------------------------------------------*/
+        
+                {
+                    displayName: 'Army',
+                    shortName: 'army',
+                    congrats: "Congratulations, soldier. You're in the Army now!",
+                    drafted: 'Congratulations, soldier. You were drafted by the Army',
+                    draft: 3,
+                    enlistment: {
+                        roll: 5,
+                        dm1: {
+                            shortName: 'Dext',
+                            value: 6,
+                        },
+                        dm2: {
+                            shortName: 'Endur',
+                            value: 5,
+                        },
+                    },
+                    survival: {
+                        roll: 5,
+                        dm2: {
+                            shortName: 'Educ',
+                            value: 6,
+                        },
+                    },
+                    commission: {
+                        roll: 5,
+                        dm1: {
+                            shortName: 'Endur',
+                            value: 7,
+                        },
+                    },
+                    //3
+                    promotion: {
+                        roll: 6,
+                        dm1: {
+                            shortName: 'Educ',
+                            value: 7,
+                        },
+                    },
+                    reenlist: {
+                        roll: 7
+                    },    
+                },
+        
+          
+
+        /*-------------------------------------------------------------------
+                    Scout Service
+        --------------------------------------------------------------------*/
+        
+            {
+                displayName: 'Scouts',
+                shortName: 'scouts',
+                congrats: "Congratulations, you're in the Scout Service now!",
+                drafted: 'Pack your bags, you were drafted by the Scout Service',
+                draft: 4,
+                enlistment: {
+                    roll: 7,
+                    dm1: {
+                        shortName: 'Intel',
+                        value: 6,
+                    },
+                    dm2: {
+                        shortName: 'Stren',
+                        value: 8,
+                    },
+                },
+                survival: {
+                    roll: 7,
+                    dm2: {
+                        shortName: 'Endur',
+                        value: 9,
+                    },
+                },
+                commission: {
+                    roll: null,
+                    dm1: {
+                        shortName: '',
+                        value: null,
+                    },
+                },
+                //3
+                promotion: {
+                    roll: null,
+                    dm1: {
+                        shortName: '',
+                        value: null,
+                    },
+                },
+                reenlist: {
+                    roll: 3
+                },    
+            },
+
+            /*-------------------------------------------------------------------
+                        Merchants
+            --------------------------------------------------------------------*/
+            
+                {
+                    displayName: 'Merchant Service',
+                    shortName: 'merchants',
+                    congrats: "Congratulations, you're in the Merchant Service now!",
+                    drafted: 'Come aboard, you were drafted by the Merchant Service',
+                    draft: 5,
+                    enlistment: {
+                        roll: 7,
+                        dm1: {
+                            shortName: 'Stren',
+                            value: 7,
+                        },
+                        dm2: {
+                            shortName: 'Intel',
+                            value: 6,
+                        },
+                    },
+                    survival: {
+                        roll: 5,
+                        dm2: {
+                            shortName: 'Intel',
+                            value: 7,
+                        },
+                    },
+                    commission: {
+                        roll: 4,
+                        dm1: {
+                            shortName: 'Intel',
+                            value: 6,
+                        },
+                    },
+                    //3
+                    promotion: {
+                        roll: 10,
+                        dm1: {
+                            shortName: 'Intel',
+                            value: 9,
+                        },
+                    },
+                    reenlist: {
+                        roll: 4
+                    },    
+                },     
+    
+           
+
+            /*-------------------------------------------------------------------
+                        Other
+            --------------------------------------------------------------------*/
+            
+            {
+                displayName: 'Other',
+                shortName: 'other',
+                congrats: "You've found another career!",
+                drafted: 'You have accepted another job',
+                draft: 6,
+                enlistment: {
+                    roll: 3,
+                    dm1: {
+                        shortName: '',
+                        value: null,
+                    },
+                    dm2: {
+                        shortName: '',
+                        value: null,
+                    },
+                },
+                survival: {
+                    roll: 5,
+                    dm2: {
+                        shortName: 'Intel',
+                        value: 9,
+                    },
+                },
+                commission: {
+                    roll: null,
+                    dm1: {
+                        shortName: '',
+                        value: null,
+                    },
+                },
+                //3
+                promotion: {
+                    roll: null,
+                    dm1: {
+                        shortName: '',
+                        value: null,
+                    },
+                },
+                reenlist: {
+                    roll: 5
+                },    
+            },     
+
+       
+         
+
        
 
 
     ],
+
 
 
 

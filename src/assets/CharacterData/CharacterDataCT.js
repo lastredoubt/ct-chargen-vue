@@ -10,6 +10,8 @@ export const CharacterDataCT = {
         terms: 0,
         yearsCreation: 0,
         termHistory: [],
+        currentService: null,
+        currentServiceName: '',
 
     },
     characteristics: {

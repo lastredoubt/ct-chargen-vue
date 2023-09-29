@@ -138,29 +138,29 @@ const setNoble = () => {
 
 
 
-/*-------------------------------------
-        roll a characteristic
+// /*-------------------------------------
+//         roll a characteristic
 
-        preserving teh first die roll if I ever get to T5 / genetics
-----------------------------------------*/
+//         preserving teh first die roll if I ever get to T5 / genetics
+// ----------------------------------------*/
 
-const roll2D6 = () => {
-    let d1 = Math.floor((Math.random() * 6) + 1);
-    let d2 = Math.floor((Math.random() * 6) + 1);
-    const rollTotal = d1 + d2
+// const roll2D6 = () => {
+//     let d1 = Math.floor((Math.random() * 6) + 1);
+//     let d2 = Math.floor((Math.random() * 6) + 1);
+//     const rollTotal = d1 + d2
 
-    const rollResult = {
-        rollTotal: null,
-        rollFirst: null,
-    }
+//     const rollResult = {
+//         rollTotal: null,
+//         rollFirst: null,
+//     }
 
-    rollResult.rollTotal = rollTotal
-    rollResult.rollFirst = d1
+//     rollResult.rollTotal = rollTotal
+//     rollResult.rollFirst = d1
 
 
-    return rollResult
+//     return rollResult
 
-}
+// }
 
 
 

@@ -1,8 +1,10 @@
 <template>
 
-<h1>Let's pick a career path: </h1>
+<h1>Start Your Term: </h1>
 
 
+
+<!--
 <div><h2>Possible Career Tracks and Odds</h2></div>
 <table>
     
@@ -18,11 +20,11 @@
 
     <tr>
         <td class="firstCol">+1 to enlist if:</td>
-        <td v-for="(service, index) in careerStart" :key="genServicekey(service, 'plusone')" >{{service.enlistment.dm1.shortName}} {{ service.enlistment.dm1.value }}{{ service.enlistment.dm1.value === null ? '' : '+' }}</td>
+        <td v-for="(service, index) in careerStart" :key="genServicekey(service, 'plusone')" >{{service.enlistment.dm1.shortName}} {{ service.enlistment.dm1.value }}+</td>
     </tr>
     <tr>
         <td class="firstCol">+2 to enlist if:</td>
-        <td v-for="(service, index) in careerStart" :key="genServicekey(service, 'plustwo')" >{{service.enlistment.dm2.shortName}} {{ service.enlistment.dm2.value }}{{ service.enlistment.dm2.value === null ? '' : '+' }}</td>
+        <td v-for="(service, index) in careerStart" :key="genServicekey(service, 'plustwo')" >{{service.enlistment.dm2.shortName}} {{ service.enlistment.dm2.value }}+</td>
     </tr>
     <tr class="survival">
         <td class="firstCol">Survival Roll</td>
@@ -34,19 +36,19 @@
     </tr>
     <tr class="comission">
         <td class="firstCol">Commission</td>
-        <td v-for="(service, index) in careerStart" :key="genServicekey(service, 'commish')" >{{service.commission.roll}}{{ service.commission.roll === null ? '' : '+' }}    </td>
+        <td v-for="(service, index) in careerStart" :key="genServicekey(service, 'commish')" >{{service.commission.roll}}+</td>
     </tr>
     <tr class="commisiondm">
         <td class="firstCol">Commisioning DM if</td>
-        <td v-for="(service, index) in careerStart" :key="genServicekey(service, 'commishdm')" >{{service.commission.dm1.shortName}} {{ service.commission.dm1.value }}{{ service.commission.dm1.value === null ? '' : '+' }}</td>
+        <td v-for="(service, index) in careerStart" :key="genServicekey(service, 'commishdm')" >{{service.commission.dm1.shortName}} {{ service.commission.dm1.value }}+</td>
     </tr>
     <tr class="promote">
         <td class="firstCol">Promotion Roll</td>
-        <td v-for="(service, index) in careerStart" :key="genServicekey(service, 'promote')" >{{service.promotion.roll}}{{ service.promotion.roll === null ? '' : '+' }} </td>
+        <td v-for="(service, index) in careerStart" :key="genServicekey(service, 'promote')" >{{service.promotion.roll}}+</td>
     </tr>
     <tr class="promotedm">
         <td class="firstCol">Promotion DM if</td>
-        <td v-for="(service, index) in careerStart" :key="genServicekey(service, 'promotedm')" >{{service.promotion.dm1.shortName}} {{ service.promotion.dm1.value }}{{ service.promotion.dm1.value === null ? '' : '+' }}</td>
+        <td v-for="(service, index) in careerStart" :key="genServicekey(service, 'promotedm')" >{{service.promotion.dm1.shortName}} {{ service.promotion.dm1.value }}+</td>
     </tr>
     <tr class="reup">
         <td class="firstCol">Re-enlistment roll</td>
@@ -54,10 +56,14 @@
     </tr>
 
 </table>
+-->
 
-
-<!--   const careerStart = reactive(tables.services)
+<!--   
+    const careerStart = reactive(tables.services)
    -->
+
+
+<!--
 <div>
 <select name="careerChoice"  id="careerChoice" v-model="selectedIndex">
                 <option v-for="(career, index) in careerStart" :value="index" :key="genServicekey(career, 'choosecareer')">Try the {{ career.displayName }} </option>
@@ -70,12 +76,10 @@
                 </div>
 
 
-<div class="results" v-if="revealResults.reveal">
-    <h2>Enlistment results:</h2>
-    <div class="resultText"><p>{{ resultsText.value }}</p></div>
-    <button @click.prevent="startCareer()">Start your career</button>
+<div class="results">
+    <h3>Put results log here.....???</h3>
 </div>
-
+-->
 
 </template>
 
@@ -115,8 +119,6 @@ const tables = reactive(cttbCharGenTables)
 const careerStart = reactive(tables.services)
 
 const selectedIndex = ref(0)
-const revealResults = reactive({reveal:false})
-const resultsText = reactive({value:''})
 
 
 
@@ -230,32 +232,22 @@ const tryCareer = (selectedService) => {
         assignedService = Math.floor(( Math.random() * careerStart.length ));
         console.log('we got assigned : ' + assignedService)
         console.log('we got (lname)) : ' + careerStart[assignedService].displayName)
-        resultsText.value = careerStart[assignedService].drafted
-        creationStatus.careerLog.push(resultsText.value)
+
+        creationStatus.careerLog.push(careerStart[assignedService].drafted)
     } else {
         console.log('succeeded: assign the correct service  : ' + selectedService)
         assignedService = selectedService
-        resultsText.value = careerStart[assignedService].congrats
-        creationStatus.careerLog.push(resultsText.value)
+        creationStatus.careerLog.push(careerStart[assignedService].congrats)
 
     }
 
 
-     character.pc.career.currentServiceName = careerStart[assignedService].displayName
     character.pc.career.currentService = assignedService
-
-    
-    revealResults.reveal = true
-   
-}
-
-
-
-
-const startCareer = () => {
     creationStatus.currentStep = creationStatus.stepNamesMap.doTerm
-    
+
 }
+
+
 
 </script>
 
