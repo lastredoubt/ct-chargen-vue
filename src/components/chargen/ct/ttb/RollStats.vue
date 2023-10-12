@@ -129,7 +129,7 @@ const setNoble = () => {
         return
     } else {
 
-    console.log('Title is not "none"')
+    // console.log('Title is not "none"')
         const titleString = nobility.nobilityTitles[charStats.soc].t1 + ', ' + nobility.nobilityTitles[charStats.soc].t2 + ', or ' + nobility.nobilityTitles[charStats.soc].t3
         currentTitle.title = titleString
     }
@@ -169,7 +169,7 @@ const setNoble = () => {
 ----------------------------------------*/
 const rollStats = () => { 
 
-console.log('>>> rolling stats using counter ');
+// console.log('>>> rolling stats using counter ');
 
 charStats.str = creationStatus.roll2D6()
 charStats.dex = creationStatus.roll2D6()
@@ -205,7 +205,7 @@ rollStats()
 ----------------------------------------*/
 onMounted( () => { 
 
-console.log('onUnmounted -> Rollstats');
+// console.log('onUnmounted -> Rollstats');
 
 rollStats()
 
@@ -223,7 +223,7 @@ rollStats()
 
 const acceptStats = () => { 
 
-console.log('Accept stats ');
+// console.log('Accept stats ');
 
 creationStatus.careerLog.push('Stats are chosen. The UPP is:' + upp.value)
 creationStatus.careerLog.push('The character title is:' + currentTitle.title)

@@ -168,7 +168,7 @@ const tryCareer = (selectedService) => {
 
     // get an array of characteristic keys
     //  const object1 = { }
-    //   console.log(Object.keys(object1));
+    //   // console.log(Object.keys(object1));
     // create an easier handle
     const pcStats = character.pc.characteristics
     // break out an array to allow iteration
@@ -182,10 +182,10 @@ const tryCareer = (selectedService) => {
     //get character stat value
 
     for (const indStat of statList  ) {
-        console.log(' checking indStat : ' + indStat + ' against ' + rollDM1stat )
-        console.log('---> character ' + pcStats[indStat].longName + ' is: ' +pcStats[indStat].value)
+        // console.log(' checking indStat : ' + indStat + ' against ' + rollDM1stat )
+        // console.log('---> character ' + pcStats[indStat].longName + ' is: ' +pcStats[indStat].value)
         if (pcStats[indStat].shortName === rollDM1stat) {
-            console.log('>>> Right stat - check values')
+            // console.log('>>> Right stat - check values')
             if (pcStats[indStat].value >= rollDM1value) { 
                 totalDMs += 1 
                 creationStatus.careerLog.push('+1 for  ' + pcStats[indStat].longName + ' being ' + rollDM1value + '+')
@@ -198,10 +198,10 @@ const tryCareer = (selectedService) => {
     const rollDM2value = careerStart[selectedService].enlistment.dm2.value
 
     for (const indStat of statList  ) {
-        console.log(' checking indStat : ' + indStat + ' against ' + rollDM2stat + ' for +2 dm' )
-        console.log('---> character ' + pcStats[indStat].longName + ' is: ' +pcStats[indStat].value)
+        // console.log(' checking indStat : ' + indStat + ' against ' + rollDM2stat + ' for +2 dm' )
+        // console.log('---> character ' + pcStats[indStat].longName + ' is: ' +pcStats[indStat].value)
         if (pcStats[indStat].shortName === rollDM2stat) {
-            console.log('>>> Right stat - check values')
+            // console.log('>>> Right stat - check values')
             if (pcStats[indStat].value >= rollDM2value) { 
                 totalDMs += 2
                 creationStatus.careerLog.push('+2 for  ' + pcStats[indStat].longName + ' being ' + rollDM2value + '+')
@@ -210,7 +210,7 @@ const tryCareer = (selectedService) => {
         }
     }
 
-    console.log(' Our total DM is : ' +   totalDMs )
+    // console.log(' Our total DM is : ' +   totalDMs )
 
     const dRoll = creationStatus.roll2D6()
     const enlistResult = dRoll + totalDMs
@@ -225,24 +225,28 @@ const tryCareer = (selectedService) => {
     creationStatus.careerLog.push('You rolled ' + dRoll + ' for a total of ' + enlistResult)
 
     if (!enlistSuccess) {
-        console.log('Did not successfully enlist - randomly pick one')
+        // console.log('Did not successfully enlist - randomly pick one')
         // no plus one because index zero
         assignedService = Math.floor(( Math.random() * careerStart.length ));
-        console.log('we got assigned : ' + assignedService)
-        console.log('we got (lname)) : ' + careerStart[assignedService].displayName)
+        // console.log('we got assigned : ' + assignedService)
+        // console.log('we got (lname)) : ' + careerStart[assignedService].displayName)
         resultsText.value = careerStart[assignedService].drafted
+        character.pc.flags.draftee = true
         creationStatus.careerLog.push(resultsText.value)
     } else {
-        console.log('succeeded: assign the correct service  : ' + selectedService)
+        // console.log('succeeded: assign the correct service  : ' + selectedService)
         assignedService = selectedService
         resultsText.value = careerStart[assignedService].congrats
         creationStatus.careerLog.push(resultsText.value)
 
     }
 
+    if (careerStart[assignedService].shortName === 'scouts' || careerStart[assignedService].shortName === 'other') {
+        character.pc.flags.promotions = false
+    }
 
      character.pc.career.currentServiceName = careerStart[assignedService].displayName
-    character.pc.career.currentService = assignedService
+     character.pc.career.currentService = assignedService
 
     
     revealResults.reveal = true
@@ -253,8 +257,11 @@ const tryCareer = (selectedService) => {
 
 
 const startCareer = () => {
+    character.pc.flags.newCycle = true
+
+
+    // has to be last
     creationStatus.currentStep = creationStatus.stepNamesMap.doTerm
-    
 }
 
 </script>

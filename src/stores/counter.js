@@ -7,6 +7,8 @@ export const useCounterStore = defineStore('counter', () => {
   const currentScreen = shallowRef(null)
   const currentStep = ref('blankSlate')
   const careerLog = reactive([])
+  const skillsToChoose = ref(0)
+  const skillQueue = reactive([])
 
   const stepNamesMap = reactive({
     blankSlate:'blankSlate',
@@ -52,9 +54,9 @@ const roll2D6Gen = () => {
 }
 
 
+//currentTermLog
 
-
-  return {rollD6, roll2D6, roll2D6Gen, careerLog, currentScreen, currentStep, stepNamesMap }
+  return { skillsToChoose, skillQueue, rollD6, roll2D6, roll2D6Gen, careerLog, currentScreen, currentStep, stepNamesMap }
 })
 
 

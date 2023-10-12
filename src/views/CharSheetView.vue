@@ -38,6 +38,9 @@
     </div>
 
     <hr />
+    <h2>skills</h2>
+    <p>{{  character.pc.skills }}</p>
+    <hr />
     
     <p>{{  character.pc }}</p>
     

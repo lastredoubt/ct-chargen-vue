@@ -5,7 +5,7 @@ Flag Key
     - addBenefit
     - bumpStat
     - addSkill
-
+    - addCasSkill
 
 
 --------------------------------------------------------------------*/
@@ -43,19 +43,85 @@ Benefits and Skills
                 },
 
 
-    Straight Skill: 
+    Skills:  Straight Specific Skill
                 { 
                         name: 'Vacc Suit',      // Name of skill for table
                         skillIndex: 52,         // skill reference to allow stacking
                         flags: 'addSkill'       // add flag to set
                 },
 
+    Cascade and Subtype Skills
+            GEENRAL type - weapon example - cascading true means subtyoes
+                            -- cascade type used for grouping / searches
+                {
+                    name: 'Blade',
+                    skillIndex: 1001,
+                    cascading: true,
+                    cascadeType: 'blade',
+                    flags: 'addCasSkill'        //because there is further selection to be done
+
+                },
+            
+            Specific Weapon/cascade item:   -- cascade type used for grouping / searches
+
+                {
+                    name: 'Dagger',
+                    plusDM: 8,                  // this info is for the beenfit of choosing
+                    minusDM: 3,
+                    wounds: 2,                  //wounds in d6
+                    skillIndex: 1,
+                    cascadeType: 'blade',
+                    flags: 'addSkill'       // because it is a specific one with no further cascades
+
+                },  
+
+
+
+            General vehicle class of cascade
+
+                {
+                    name: 'Tracked vehicle',
+                    hasSubtype: false,          //no more specific subtypes
+                    skillIndex: 31,
+                    cascadeType: 'vehicle',     //for search grouping
+                    flags: 'addSkill'       // because it is a specific one with no further cascades
+                },
+
+
+
+            General vehicle class with subtypes
+
+                {
+                    name: 'Aircraft',
+                    hasSubtype: true,
+                    relatedType: 'aircraft'
+                    skillIndex: 1004,
+                    cascadeType: 'vehicle',
+                    flags: 'addCasSkill'        //because there is further selection to be done
+
+                },
+
+
+            Specific vehicle subtype
+
+                {
+                    name: 'Submersible',
+                    hasSubtype: false,          //no further subtypes
+                    relatedType: 'watercraft'
+                    skillIndex: 28,
+                    cascadeType: 'vehicle',
+                    flags: 'addSkill'       // because it is a specific one with no further cascades
+
+                },
+
+
+
     Cascade Skill: 
                 { 
                     name: 'Blade',
                     reference: 'blade',         // matches the reference in skillIndex:[]
                                                 //also used to find the further cascades
-                    flags: 'addSkill'
+                    flags: 'addCasSkill'
                 },
 
 
@@ -137,19 +203,14 @@ Services
             reenlist: {
                 roll: 6
             },
-
-
-
-
-
-
-
-
-
-            //further data
-            //
-            //
-            //
+            ranks: {
+                1: 'Ensign',
+                2: 'Lieutenant',
+                3: 'Lt Commander',
+                4: 'Commander',
+                5: 'Captain',
+                6: 'Admiral'
+            }, 
             serviceSkills: {
                 // note - the key/index here is the rank. Zero is enlisted
                 5: {
@@ -165,14 +226,19 @@ Services
                     flags: 'bumpStat'
                 },
             },
-            ranks: {
-                1: 'Ensign',
-                2: 'Lieutenant',
-                3: 'Lt Commander',
-                4: 'Commander',
-                5: 'Captain',
-                6: 'Admiral'
-            }, 
+
+
+
+
+
+
+
+
+
+            //further data
+            //
+            //
+            //
             musterOut: {
                 1: { 
                     name: 'Low Passage',
@@ -190,10 +256,12 @@ Services
                     bonus: 2,
                     flags: 'bumpStat'
                 },
-                4: { 
+                4:  {
                     name: 'Blade',
-                    reference: 'blade',
-                    flags: 'addSkill'
+                    skillIndex: 1001,
+                    cascading: true,
+                    cascadeType: 'blade',
+        
                 },
                 5: { 
                     name: 'Travellers Aid Society Membership',
@@ -280,15 +348,19 @@ Services
                         skillIndex: 54,
                         flags: 'addSkill'
                     },
-                    5: { 
-                        name: 'Blade Combat',
-                        reference: 'blade',
-                        flags: 'addSkill'
-                        },
-                    6: { 
-                        name: 'Gun Combat',
-                        reference: 'guns',
-                        flags: 'addSkill'
+                    5:  {
+                        name: 'Blade',
+                        skillIndex: 1001,
+                        cascading: true,
+                        cascadeType: 'blade',
+            
+                    },
+                    6: {
+                        name: 'Gun',
+                        skillIndex: 1002,
+                        cascading: true,
+                        cascadeType: 'gun',
+            
                     },
                 },
                 advanced: {
@@ -410,7 +482,32 @@ Services
             },
             reenlist: {
                 roll: 6
-            },    
+            },  
+            
+            ranks: {
+                1: 'Lieutenant',
+                2: 'Captain',
+                3: 'Force Commander',
+                4: 'Lt Colonel',
+                5: 'Colonel',
+                6: 'Brigadier'
+            }, 
+            serviceSkills: {
+                // note - the key/index here is the rank. Zero is enlisted
+                0: {
+                    name: 'Cutlass',
+                    skillIndex: 5,
+                    cascadeType: 'blade',
+                    flags: 'addSkill'  
+                    },
+                1:
+                {
+                    name: 'Revolver',
+                    skillIndex: 14,
+                    cascadeType: 'gun',
+                    flags: 'addSkill'  
+                },
+            },  
         },
 
         /*-------------------------------------------------------------------
@@ -458,7 +555,32 @@ Services
                     },
                     reenlist: {
                         roll: 7
-                    },    
+                    }, 
+                    
+                    
+                    ranks: {
+                        1: 'Lieutenant',
+                        2: 'Captain',
+                        3: 'Major',
+                        4: 'Lt Colonel',
+                        5: 'Colonel',
+                        6: 'Brigadier'
+                    }, 
+                    serviceSkills: {
+                        // note - the key/index here is the rank. Zero is enlisted
+                        0:  {
+                            name: 'Rifle',
+                            skillIndex: 16,
+                            cascadeType: 'gun',
+                            flags: 'addSkill'  
+                        },
+                        1: {
+                            name: 'SMG',
+                            skillIndex: 19,
+                            cascadeType: 'gun',
+                            flags: 'addSkill'  
+                        },
+                    },     
                 },
         
           
@@ -508,14 +630,35 @@ Services
                 },
                 reenlist: {
                     roll: 3
-                },    
+                },   
+                    
+                    
+                ranks: {
+                    1: 'none',
+                    2: 'none',
+                    3: 'none',
+                    4: 'none',
+                    5: 'none',
+                    6: 'none'
+                }, 
+                serviceSkills: {
+                    // note - the key/index here is the rank. Zero is enlisted
+                    0:  {
+                        name: 'Pilot',
+                        cascading: false,
+                        skillIndex: 62,
+                        flags: 'addSkill' 
+                        
+            
+                    },
+                },      
             },
 
             /*-------------------------------------------------------------------
                         Merchants
             --------------------------------------------------------------------*/
             
-                {
+            {
                     displayName: 'Merchant Service',
                     shortName: 'merchants',
                     congrats: "Congratulations, you're in the Merchant Service now!",
@@ -556,9 +699,28 @@ Services
                     },
                     reenlist: {
                         roll: 4
-                    },    
+                    },  
+                    
+                    
+                    ranks: {
+                        1: '4th Officer',
+                        2: '3rd Officer',
+                        3: '2nd Officer',
+                        4: '1st Officer',
+                        5: 'Captain',
+                        6: 'Captain'
+                    }, 
+                    serviceSkills: {
+                        // note - the key/index here is the rank. Zero is enlisted
+                        4:  {
+                            name: 'Pilot',
+                            cascading: false,
+                            skillIndex: 62,
+                            flags: 'addSkill',  
+                
+                        },  
                 },     
-    
+            },
            
 
             /*-------------------------------------------------------------------
@@ -606,8 +768,29 @@ Services
                 },
                 reenlist: {
                     roll: 5
-                },    
+                },            
+                    
+                ranks: {
+                    1: 'none',
+                    2: 'none',
+                    3: 'none',
+                    4: 'none',
+                    5: 'none',
+                    6: 'none'
+                },  
+
+                serviceSkills: {
+                    // note - the key/index here is the rank. Zero is enlisted
+                    // 4:  {
+                    //     name: 'Pilot',
+                    //     cascading: false,
+                    //     skillIndex: 62,
+                    //     flags: 'addSkill',  
+            
+                    // },  
             },     
+            }, 
+               
 
        
          
@@ -902,26 +1085,402 @@ Services
 --------------------------------------------------------------------*/
 
 
+    cascadeTypes: [
+        "blade",
+        'gun',
+        'vehicle',
+    ],
+
     skillIndex: [
-        // start at 51 for non-cascading
-        //cascading skills indexed further down starting from 1
+
+/*-------------------------------------------------------------------
+            Cascading Skills - general types
+
+--------------------------------------------------------------------*/
+
         {
             name: 'Blade',
-            reference: 'blade',
+            skillIndex: 1001,
             cascading: true,
+            cascadeType: 'blade',
+
+        },
+
+        {
+            name: 'Gun',
+            skillIndex: 1002,
+            cascading: true,
+            cascadeType: 'gun',
+
+        },
+
+
+
+        {
+            name: 'Vehicle',
+            cascading: true,
+            skillIndex: 1003,
+            cascadeType: 'vehicle',
+
+        },
+
+
+/*-------------------------------------------------------------------
+            Cascading Skills with subtypes
+
+--------------------------------------------------------------------*/
+
+
+
+        {
+            name: 'Aircraft',
+            hasSubtype: true,
+            relatedType: 'aircraft',
+            skillIndex: 1004,
+            cascadeType: 'vehicle',
 
         },
         {
-            name: 'Guns',
-            reference: 'guns',
-            cascading: true,
+            name: 'Watercraft',
+            hasSubtype: true,
+            relatedType: 'watercraft',
+            skillIndex: 1005,
+            cascadeType: 'vehicle',
+
+        },
+
+/*-------------------------------------------------------------------
+            Cascading Skills - Melee
+
+--------------------------------------------------------------------*/
+
+
+
+        {
+            name: 'Dagger',
+            plusDM: 8,
+            minusDM: 3,
+            wounds: 2,
+            skillIndex: 1,
+            cascadeType: 'blade',
+
+        },  
+        {
+            name: 'Blade',
+            plusDM: 9,
+            minusDM: 4,
+            wounds: 2,
+            skillIndex: 2,
+            cascadeType: 'blade',
 
         },
         {
-            name: 'vehicle',
-            cascading: true,
+            name: 'Foil',
+            plusDM: 10,
+            minusDM: 4,
+            wounds: 1,
+            skillIndex: 3,
+            cascadeType: 'blade',
 
         },
+        {
+            name: 'Sword',
+            plusDM: 10,
+            minusDM: 5,
+            wounds: 2,
+            skillIndex: 4,
+            cascadeType: 'blade',
+        },
+
+        {
+        name: 'Cutlass',
+        plusDM: 11,
+        minusDM: 6,
+        wounds: 3,
+        skillIndex: 5,
+        cascadeType: 'blade',
+        },
+
+
+        {
+        name: 'Broadsword',
+        plusDM: 12,
+        minusDM: 7,
+        wounds: 4,
+        skillIndex: 6,
+
+        cascadeType: 'blade',
+        },
+
+        {
+        name: 'Bayonet',
+        plusDM: 9,
+        minusDM: 4,
+        wounds: 3,
+        skillIndex: 7,
+
+        cascadeType: 'blade',
+        },
+
+        {
+        name: 'Spear',
+        plusDM: 9,
+        minusDM: 4,
+        wounds: 2,
+        skillIndex: 8,
+
+        cascadeType: 'blade',
+        },
+
+
+        {
+        name: 'Halberd',
+        plusDM: 10,
+        minusDM: 5,
+        wounds: 3,
+        skillIndex: 9,
+
+        cascadeType: 'blade',
+        },
+
+        {
+        name: 'Pike',
+        plusDM: 10,
+        minusDM: 6,
+        wounds: 3,
+        skillIndex: 10,
+
+        cascadeType: 'blade',
+        },
+
+
+        {
+        name: 'Cudgel',
+        plusDM: 8,
+        minusDM: 4,
+        wounds: 2,
+        skillIndex: 11,
+
+        cascadeType: 'blade',
+        },
+
+/*-------------------------------------------------------------------
+            Cascading Skills - firearms
+
+--------------------------------------------------------------------*/
+
+
+
+        {
+            name: 'Body Pistol',
+            plusDM: 11,
+            minusDM: 7,
+            wounds: 2,
+            skillIndex: 12,
+            cascadeType: 'gun',
+        },
+
+        {
+            name: 'Auto Pistol',
+            plusDM: 10,
+            minusDM: 6,
+            wounds: 3,
+            skillIndex: 13,
+            cascadeType: 'gun',
+        },
+
+
+
+        {
+            name: 'Revolver',
+            plusDM: 9,
+            minusDM: 6,
+            wounds: 3,
+            skillIndex: 14,
+            cascadeType: 'gun',
+        },
+
+
+
+
+        {
+            name: 'Carbine',
+            plusDM: 9,
+            minusDM: 4,
+            wounds: 3,
+            skillIndex: 15,
+            cascadeType: 'gun',
+        },
+
+
+
+
+        {
+            name: 'Rifle',
+            plusDM: 8,
+            minusDM: 5,
+            wounds: 3,
+            skillIndex: 16,
+            cascadeType: 'gun',
+        },
+
+
+
+
+
+        {
+            name: 'Auto Rifle',
+            plusDM: 10,
+            minusDM: 6,
+            wounds: 3,
+            skillIndex: 17,
+            cascadeType: 'gun',
+        },
+
+
+
+
+        {
+            name: 'Shotgun',
+            plusDM: 9,
+            minusDM: 3,
+            wounds: 4,
+            skillIndex: 18,
+            cascadeType: 'gun',
+        },
+
+
+
+
+
+
+        {
+            name: 'SMG',
+            plusDM: 9,
+            minusDM: 5,
+            wounds: 3,
+            skillIndex: 19,
+            cascadeType: 'gun',
+        },
+
+        {
+            name: 'Laser Carbine',
+            plusDM: 10,
+            minusDM: 5,
+            wounds: 5,
+            skillIndex: 20,
+            cascadeType: 'gun',
+        },
+        {
+            name: 'Laser Rifle',
+            plusDM: 11,
+            minusDM: 6,
+            wounds: 5,
+            skillIndex: 21,
+            cascadeType: 'gun',
+        },
+
+
+/*-------------------------------------------------------------------
+            Cascading Skills - specific vehicles
+
+--------------------------------------------------------------------*/
+
+
+        {
+            name: 'Prop-driven Fixed Wing',
+            hasSubtype: false,
+            relatedType: 'aircraft',
+            skillIndex: 22,
+            cascadeType: 'vehicle',
+
+        },
+        {
+            name: 'Jet-driven Fixed Wing',
+            hasSubtype: false,
+            relatedType: 'aircraft',
+            skillIndex: 23,
+            cascadeType: 'vehicle',
+
+        },
+        {
+            name: 'Helicopter',
+            hasSubtype: false,
+            relatedType: 'aircraft',
+            skillIndex: 24,
+            cascadeType: 'vehicle',
+
+        },
+        {
+            name: 'Large watercraft',
+            hasSubtype: false,
+            relatedType: 'watercraft',
+            skillIndex: 25,
+            cascadeType: 'vehicle',
+
+        },
+        {
+            name: 'Small watercraft',
+            hasSubtype: false,
+            relatedType: 'watercraft',
+            skillIndex: 26,
+            cascadeType: 'vehicle',
+
+        },
+        {
+            name: 'Hovercraft',
+            hasSubtype: false,
+            relatedType: 'watercraft',
+            skillIndex: 27,
+            cascadeType: 'vehicle',
+
+        },
+        {
+            name: 'Submersible',
+            hasSubtype: false,
+            relatedType: 'watercraft',
+            skillIndex: 28,
+            cascadeType: 'vehicle',
+
+        },
+
+  
+
+        {
+            name: 'Grav Vehicle (Air/Raft)',
+            hasSubtype: false,
+            skillIndex: 29,
+            cascadeType: 'vehicle',
+
+        },
+        {
+            name: 'Wheeled vehicle',
+            hasSubtype: false,
+            skillIndex: 30,
+            cascadeType: 'vehicle',
+
+        },
+        {
+            name: 'Tracked vehicle',
+            hasSubtype: false,
+            skillIndex: 31,
+            cascadeType: 'vehicle',
+
+        },
+
+     
+
+/*-------------------------------------------------------------------
+-------------------------------------------------------------------
+
+            SKILLS
+
+--------------------------------------------------------------------
+--------------------------------------------------------------------*/
+
+
+
+
         {
             name: "Ship's Boat",
             cascading: false,
@@ -1003,226 +1562,6 @@ Services
     ],
     
 
-/*-------------------------------------------------------------------
-            Cascading Skills
-
---------------------------------------------------------------------*/
-
-    cascade: {
-        blades: {
-            cascadeType: 'blade',
-            //wounds for weapons are in d6
-            dagger: {
-                name: 'Dagger',
-                plusDM: 8,
-                minusDM: 3,
-                wounds: 2,
-                skillIndex: 1,
-            },
-            blade:  {
-                name: 'Blade',
-                plusDM: 9,
-                minusDM: 4,
-                wounds: 2,
-                skillIndex: 2,
-            },
-            foil:  {
-                name: 'Foil',
-                plusDM: 10,
-                minusDM: 4,
-                wounds: 1,
-                skillIndex: 3,
-            },
-            sword:  {
-                name: 'Sword',
-                plusDM: 10,
-                minusDM: 5,
-                wounds: 2,
-                skillIndex: 4,
-            },
-            cutlass:  {
-                name: 'Cutlass',
-                plusDM: 11,
-                minusDM: 6,
-                wounds: 3,
-                skillIndex: 5,
-            },
-            broadsword:  {
-                name: 'Broadsword',
-                plusDM: 12,
-                minusDM: 7,
-                wounds: 4,
-                skillIndex: 6,
-            },
-            bayonet:  {
-                name: 'Bayonet',
-                plusDM: 9,
-                minusDM: 4,
-                wounds: 3,
-                skillIndex: 7,
-            },
-            spear:  {
-                name: 'Spear',
-                plusDM: 9,
-                minusDM: 4,
-                wounds: 2,
-                skillIndex: 8,
-            },
-            halberd:  {
-                name: 'Halberd',
-                plusDM: 10,
-                minusDM: 5,
-                wounds: 3,
-                skillIndex: 9,
-            },
-            pike:  {
-                name: 'Pike',
-                plusDM: 10,
-                minusDM: 6,
-                wounds: 3,
-                skillIndex: 10,
-            },
-            cudgel:  {
-                name: 'Cudgel',
-                plusDM: 8,
-                minusDM: 4,
-                wounds: 2,
-                skillIndex: 11,
-            },
-        },
-        guns: {
-            cascadeType: 'guns',
-            //wounds for weapons are in d6
-            bpistol: {
-                name: 'Body Pistol',
-                plusDM: 11,
-                minusDM: 7,
-                wounds: 2,
-                skillIndex: 12,
-            },
-            apistol:  {
-                name: 'Auto Pistol',
-                plusDM: 10,
-                minusDM: 6,
-                wounds: 3,
-                skillIndex: 13,
-            },
-            revolver:  {
-                name: 'Revolver',
-                plusDM: 9,
-                minusDM: 6,
-                wounds: 3,
-                skillIndex: 14,
-            },
-            carbine:  {
-                name: 'Carbine',
-                plusDM: 9,
-                minusDM: 4,
-                wounds: 3,
-                skillIndex: 15,
-            },
-            rifle:  {
-                name: 'Rifle',
-                plusDM: 8,
-                minusDM: 5,
-                wounds: 3,
-                skillIndex: 16,
-            },
-            arifle:  {
-                name: 'Auto Rifle',
-                plusDM: 10,
-                minusDM: 6,
-                wounds: 3,
-                skillIndex: 17,
-            },
-            shotgun:  {
-                name: 'Shotgun',
-                plusDM: 9,
-                minusDM: 3,
-                wounds: 4,
-                skillIndex: 18,
-            },
-            smg:  {
-                name: 'SMG',
-                plusDM: 9,
-                minusDM: 5,
-                wounds: 3,
-                skillIndex: 19,
-            },
-            lcarbine:  {
-                name: 'Laser Carbine',
-                plusDM: 10,
-                minusDM: 5,
-                wounds: 5,
-                skillIndex: 20,
-            },
-            lrifle:  {
-                name: 'Laser Rifle',
-                plusDM: 11,
-                minusDM: 6,
-                wounds: 5,
-                skillIndex: 21,
-            },
-        },
-        vehicle: {
-            cascadeType: 'vehicle',
-            aircraft: {
-                pick: true,
-                title: 'aircraft',
-                type: {
-                    prop: {
-                        name: 'Prop-driven Fixed Wing',
-                        skillIndex: 22,
-                    },
-                        
-                    jet: {
-                        name: 'Jet-driven Fixed Wing',
-                        skillIndex: 23,
-                    },
-                    helicopter:  {
-                        name: 'Helicopter',
-                        skillIndex: 24,
-                    },
-                },
-            },
-            watercraft: {
-                pick: true,
-                title: 'watercraft',
-                type: {
-                    large:   {
-                        name: 'Large watercraft',
-                        skillIndex: 25,
-                    },
-                    small:   {
-                        name: 'Small watercraft',
-                        skillIndex: 26,
-                    }, 
-                    hover:   {
-                        name: 'Hovercraft',
-                        skillIndex: 27,
-                    }, 
-                    sub:    {
-                        name: 'Submersible',
-                        skillIndex: 28,
-                    },
-                },
-            },
-            grav:     {
-                name: 'Grav Vehicle (Air/Raft)',
-                skillIndex: 29,
-            },
-            wheeled:    {
-                name:  'Wheeled',
-                skillIndex: 30,
-            },
-            tracked:    {
-                name:'Tracked',
-                skillIndex: 31,
-            }, 
-        },
-
-    },
-    
 }
 
 
