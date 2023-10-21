@@ -15,7 +15,8 @@ export const useCounterStore = defineStore('counter', () => {
     rollup:'rollup',
     setHomeworld: 'setHomeworld',
     chooseCareer: 'chooseCareer',
-    doTerm: 'doTerm'
+    doTerm: 'doTerm',
+    chooseSkills: 'chooseSkills',
 
   })
 

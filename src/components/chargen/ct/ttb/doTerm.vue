@@ -21,6 +21,10 @@
     <div class="skillCount" v-if="skillLearnCount.termSkillsCounted">
         <p><strong>Skills to pick:</strong> {{ skillLearnCount.count }}</p>
     </div>
+    <div class="chooseSkills">
+        <button @click.prevent="chooseSkills">Choose Skills</button>
+
+    </div>
 </div>
 
 <!--
@@ -558,6 +562,18 @@ const getDMs = (dmStat,minvalue) => {
     creationStatus.skillsToChoose= skillLearnCount.count
  }
 
+
+
+ const chooseSkills = () => { 
+
+// console.log('Accept stats ');
+
+creationStatus.careerLog.push('We\'ve survived the termCheck, time to get skills')
+
+
+creationStatus.currentStep = creationStatus.stepNamesMap.chooseSkills
+
+}
 
 
 </script>

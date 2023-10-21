@@ -68,8 +68,8 @@ import NewCharacter from '../components/NewCharacter.vue';
 import RollStats from '../components/chargen/ct/ttb/RollStats.vue';
 import SetHomeworld from '../components/chargen/ct/ttb/SetHomeworld.vue';
 import chooseCareer from '../components/chargen/ct/ttb/chooseCareer.vue';
-import doTerm from '../components/chargen/ct/ttb/doTerm.vue'
-
+import doTerm from '../components/chargen/ct/ttb/doTerm.vue';
+import chooseSkills from '../components/chargen/ct/ttb/chooseSkills.vue';
 
 
 /*------------------------------------------------------------
@@ -125,6 +125,11 @@ watch(
    if ( creationStatus.currentStep ===  creationStatus.stepNamesMap.doTerm  ) {
     creationStatus.currentScreen = doTerm
     console.log( 'SWITCHING WATCHER: starting a term')
+
+   }
+   if ( creationStatus.currentStep ===  creationStatus.stepNamesMap.chooseSkills  ) {
+    creationStatus.currentScreen = chooseSkills
+    console.log( 'SWITCHING WATCHER: chooseing skills')
 
    }
   
