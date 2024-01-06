@@ -5,7 +5,7 @@
 Integrated mappings for pHex to convert numerical values for characteristics to pseudohex
 
 */
-export function getPHex(characteristic) {
+export function getPHexValue(characteristic) {
     // console.log('Value to be converted to pseudoHex: --->' + characteristic)
     // console.log(characteristic.value)
 

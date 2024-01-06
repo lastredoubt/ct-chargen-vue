@@ -6,12 +6,12 @@
 <div>
 <table>
     <tr>
-        <th>{{character.pcData.characteristics.strength.longName}}</th>
-        <th>{{character.pcData.characteristics.dexterity.longName}}</th>
-        <th>{{character.pcData.characteristics.endurance.longName}}</th>
-        <th>{{character.pcData.characteristics.intelligence.longName}}</th>
-        <th>{{character.pcData.characteristics.education.longName}}</th>
-        <th>{{character.pcData.characteristics.social.longName}}</th>
+        <th>{{character.pc.characteristics.strength.longName}}</th>
+        <th>{{character.pc.characteristics.dexterity.longName}}</th>
+        <th>{{character.pc.characteristics.endurance.longName}}</th>
+        <th>{{character.pc.characteristics.intelligence.longName}}</th>
+        <th>{{character.pc.characteristics.education.longName}}</th>
+        <th>{{character.pc.characteristics.social.longName}}</th>
     </tr>
     <tr>
         <td>{{ charStats.str }} ({{ strP }})</td>
@@ -43,18 +43,15 @@ import { reactive, computed, onMounted } from 'vue';
 
 
 /*-------------------------------------
-        Iport phex function and dice
+        Iport phex function
 ----------------------------------------*/
-import {getPHex} from '../../../../assets/General/GetPhex.js'
-import{roll2D6} from '../../../../assets/General/RollDice';
- 
+import {getPHexValue} from '../../../../assets/General/GetPhex'
 
 
 /*-------------------------------------
         Iport character datastore and setup
 ----------------------------------------*/
-
-import { useCharacterStore } from '@/stores/character2'
+import { useCharacterStore } from '@/stores/character'
 // creates the stub character by assiciating with the datastore
 const character = useCharacterStore()
 
@@ -90,27 +87,27 @@ const charStats = reactive({
 
 
 const strP = computed( () => {
-    const pHex = getPHex(charStats.str)
+    const pHex = getPHexValue(charStats.str)
     return pHex
 })
 const dexP = computed( () => {
-    const pHex = getPHex(charStats.dex)
+    const pHex = getPHexValue(charStats.dex)
     return pHex
 })
 const endP = computed( () => {
-    const pHex = getPHex(charStats.end)
+    const pHex = getPHexValue(charStats.end)
     return pHex
 })
 const intP = computed( () => {
-    const pHex = getPHex(charStats.int)
+    const pHex = getPHexValue(charStats.int)
     return pHex
 })
 const eduP = computed( () => {
-    const pHex = getPHex(charStats.edu)
+    const pHex = getPHexValue(charStats.edu)
     return pHex
 })
 const socP = computed( () => {
-    const pHex = getPHex(charStats.soc)
+    const pHex = getPHexValue(charStats.soc)
     return pHex
 })
 const upp = computed( () => {
@@ -140,6 +137,33 @@ const setNoble = () => {
 
 
 
+
+// /*-------------------------------------
+//         roll a characteristic
+
+//         preserving teh first die roll if I ever get to T5 / genetics
+// ----------------------------------------*/
+
+// const roll2D6 = () => {
+//     let d1 = Math.floor((Math.random() * 6) + 1);
+//     let d2 = Math.floor((Math.random() * 6) + 1);
+//     const rollTotal = d1 + d2
+
+//     const rollResult = {
+//         rollTotal: null,
+//         rollFirst: null,
+//     }
+
+//     rollResult.rollTotal = rollTotal
+//     rollResult.rollFirst = d1
+
+
+//     return rollResult
+
+// }
+
+
+
 /*-------------------------------------
         Roll Basic UPP
 ----------------------------------------*/
@@ -147,12 +171,12 @@ const rollStats = () => {
 
 // console.log('>>> rolling stats using counter ');
 
-charStats.str = roll2D6()
-charStats.dex = roll2D6()
-charStats.end = roll2D6()
-charStats.int = roll2D6()
-charStats.edu = roll2D6()
-charStats.soc = roll2D6()
+charStats.str = creationStatus.roll2D6()
+charStats.dex = creationStatus.roll2D6()
+charStats.end = creationStatus.roll2D6()
+charStats.int = creationStatus.roll2D6()
+charStats.edu = creationStatus.roll2D6()
+charStats.soc = creationStatus.roll2D6()
 
 creationStatus.careerLog.push("Stats have been rolled")
 
@@ -205,27 +229,27 @@ creationStatus.careerLog.push('Stats are chosen. The UPP is:' + upp.value)
 creationStatus.careerLog.push('The character title is:' + currentTitle.title)
 
 
-character.pcData.characteristics.strength.value = charStats.str
-character.pcData.characteristics.strength.pHexValue = strP
+character.pc.characteristics.strength.value = charStats.str
+character.pc.characteristics.strength.pHexValue = strP
 
-character.pcData.characteristics.dexterity.value = charStats.dex
-character.pcData.characteristics.dexterity.pHexValue = dexP
+character.pc.characteristics.dexterity.value = charStats.dex
+character.pc.characteristics.dexterity.pHexValue = dexP
 
-character.pcData.characteristics.endurance.value = charStats.end
-character.pcData.characteristics.endurance.pHexValue = endP
+character.pc.characteristics.endurance.value = charStats.end
+character.pc.characteristics.endurance.pHexValue = endP
 
-character.pcData.characteristics.intelligence.value = charStats.int
-character.pcData.characteristics.intelligence.pHexValue = intP 
+character.pc.characteristics.intelligence.value = charStats.int
+character.pc.characteristics.intelligence.pHexValue = intP 
 
-character.pcData.characteristics.education.value = charStats.edu
-character.pcData.characteristics.education.pHexValue = eduP
+character.pc.characteristics.education.value = charStats.edu
+character.pc.characteristics.education.pHexValue = eduP
 
-character.pcData.characteristics.social.value = charStats.soc
-character.pcData.characteristics.social.pHexValue = socP
+character.pc.characteristics.social.value = charStats.soc
+character.pc.characteristics.social.pHexValue = socP
 
-character.pcData.nobleTitle = currentTitle.title
+character.pc.nobleTitle = currentTitle.title
 
-character.pcData.flags.initialRolls = true
+character.pc.flags.initialRolls = true
 
 creationStatus.currentStep = creationStatus.stepNamesMap.setHomeworld
 

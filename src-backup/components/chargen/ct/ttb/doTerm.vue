@@ -8,11 +8,11 @@
 
 
 
-    <div class="characterDead" v-if="!character.pcData.flags.alive">
-        <p>{{ character.pcData.name }} died. Sorry. Try again.</p>
+    <div class="characterDead" v-if="!character.pc.flags.alive">
+        <p>{{ character.pc.name }} died. Sorry. Try again.</p>
     </div>
 
-    <div class="characterLives" v-if="character.pcData.flags.alive">
+    <div class="characterLives" v-if="character.pc.flags.alive">
         <ul class="resultsList">
             <li v-for="(repStatus, index) in displayStatus" :key="repStatus.keyID">{{ repStatus.statMsg }}</li>
         </ul>
@@ -31,7 +31,7 @@
 
     displayStatus.push({ 
                     keyID: genKey(1, 'drtlsrv') ,
-                    statMsg: character.pcData.name + ' is not promoted.',
+                    statMsg: character.pc.name + ' is not promoted.',
                     })
 -->
 
@@ -47,7 +47,7 @@ import { reactive, provide, ref, computed, onMounted , onActivated, onUpdated, w
 /*-------------------------------------
         Import character datastore and setup
 ----------------------------------------*/
-import { useCharacterStore } from '@/stores/character2'
+import { useCharacterStore } from '@/stores/character'
 // creates the stub character by assiciating with the datastore
 const character = useCharacterStore()
 
@@ -71,18 +71,16 @@ const creationStatus = useCounterStore()
 ----------------------------------------*/
 import { cttbCharGenTables } from '../../../../assets/CharacterData/ChargenTablesCTTB';
 // const tables = reactive(cttbCharGenTables)
-const currentService = cttbCharGenTables.services[character.pcData.career.currentService]
+const currentService = cttbCharGenTables.services[character.pc.career.currentService]
 console.log( currentService.displayName)
 
 
 
 // /*-------------------------------------
-//         Import other utilities
+//         Import skill adders
 // ----------------------------------------*/
 // import {addSkills} from '../../../../assets/General/AddBenefits.js'
 // const skillFunc = addSkills
-import{rollD6, roll2D6} from '../../../../assets/General/RollDice';
-
 
 
 
@@ -90,7 +88,7 @@ import{rollD6, roll2D6} from '../../../../assets/General/RollDice';
 //         Initialize Local Data including matching computed Phex
 // ----------------------------------------*/
 const firstTerm = 1
-const currentTerm = character.pcData.career.terms +1
+const currentTerm = character.pc.career.terms +1
 const earnedServiceSkills = reactive([])
 const displayStatus = reactive([])
 const skillLearnCount = reactive({
@@ -98,18 +96,18 @@ const skillLearnCount = reactive({
     termSkillsCounted: false
 })
 
-// if (character.pcData.flags.newCycle) {startCareerCycle()}
+// if (character.pc.flags.newCycle) {startCareerCycle()}
 
 
 
 
 // watch(
-//   () => character.pcData.flags.alive,
+//   () => character.pc.flags.alive,
 //   (isHeAlive) => {
 //     if (isHeAlive) {
-//         survivalText.msg = character.pcData.name + ' survives the term.'
+//         survivalText.msg = character.pc.name + ' survives the term.'
 //     } else {
-//         survivalText.msg = character.pcData.name + ' died.'
+//         survivalText.msg = character.pc.name + ' died.'
 
 //     }
 
@@ -160,9 +158,9 @@ const genKey = (id, role) => {
  onMounted( () => { 
     console.log('+++doTerm mounted')
     // startCareerCycle()
-    if (character.pcData.flags.newCycle) {startCareerCycle()}
+    if (character.pc.flags.newCycle) {startCareerCycle()}
     //clear the cycle
-    character.pcData.flags.newCycle = false
+    character.pc.flags.newCycle = false
 
 } )
 
@@ -217,9 +215,9 @@ const getDMs = (dmStat,minvalue) => {
     let getsBonus = false
 
     // make an easier handle for the loop
-    const pcStats = character.pcData.characteristics
+    const pcStats = character.pc.characteristics
     // break out an array to allow iteration
-    const statList = Object.keys(character.pcData.characteristics)
+    const statList = Object.keys(character.pc.characteristics)
 
     //get character stat value
     for (const indStat of statList  ) {
@@ -249,7 +247,7 @@ const getDMs = (dmStat,minvalue) => {
  ----------------------------------------*/
  const termCheck = (target, characteristic, minvalue, bonus) => {
 // roll against target
-    const dieRoll = roll2D6()
+    const dieRoll = creationStatus.roll2D6()
     let tempBonus = 0
 
     const plusDM = getDMs(characteristic,minvalue )
@@ -297,24 +295,24 @@ const getDMs = (dmStat,minvalue) => {
  /*--------------------------------------------------------------
          Survival check
  -----------------------------------------------------------------*/
-    creationStatus.careerLog.push('Does ' + character.pcData.name + ' survive the ' + numOrder[ currentTerm ] + ' term?')
+    creationStatus.careerLog.push('Does ' + character.pc.name + ' survive the ' + numOrder[ currentTerm ] + ' term?')
     
     
     if ( !(termCheck(survTarget, survChar, survCVal , SurvBonus)) ) {
         // failed to survive
-        creationStatus.careerLog.push(character.pcData.name + ' dies. Please try again.')
-        character.pcData.flags.alive = false
+        creationStatus.careerLog.push(character.pc.name + ' dies. Please try again.')
+        character.pc.flags.alive = false
         return
     }
-    creationStatus.careerLog.push(character.pcData.name + ' survives the term.')
+    creationStatus.careerLog.push(character.pc.name + ' survives the term.')
 
     
     displayStatus.push({ 
         keyID: genKey(1, 'drtlsrv') ,
-        statMsg: character.pcData.name + ' survives the term.',
+        statMsg: character.pc.name + ' survives the term.',
         })
     // deprecated????
-    // survivalText.mesg = character.pcData.name + ' survives the term.'
+    // survivalText.mesg = character.pc.name + ' survives the term.'
 
 
 
@@ -338,23 +336,23 @@ const getDMs = (dmStat,minvalue) => {
     // check if rank is zero and if draftee is false
     // don't forget to set draftee to fasle if it's true
 
-    if (character.pcData.militaryRank.level === 0 ){
-        creationStatus.careerLog.push(character.pcData.name + ' is not an officer - checking for promotions.')
+    if (character.pc.militaryRank.level === 0 ){
+        creationStatus.careerLog.push(character.pc.name + ' is not an officer - checking for promotions.')
         console.log('not an officer - start commissioning check')
 
 
     
         // if he ain't zero, he's already an officer
-        if (!character.pcData.flags.promotions) {
+        if (!character.pc.flags.promotions) {
             console.log('no promotions in service')
 
-            creationStatus.careerLog.push(character.pcData.name + ' No promotions while working in the ' + character.pcData.career.currentServiceName  + ' service.')
+            creationStatus.careerLog.push(character.pc.name + ' No promotions while working in the ' + character.pc.career.currentServiceName  + ' service.')
 
-        } else if (character.pcData.flags.draftee) {
+        } else if (character.pc.flags.draftee) {
             console.log('promotions available, but draftee')
 
-            character.pcData.flags.draftee = false
-            creationStatus.careerLog.push(character.pcData.name + ' cannot receive a commission his first term as a draftee.')
+            character.pc.flags.draftee = false
+            creationStatus.careerLog.push(character.pc.name + ' cannot receive a commission his first term as a draftee.')
 
         } else {
             console.log('commissioning check')
@@ -367,21 +365,21 @@ const getDMs = (dmStat,minvalue) => {
             if ( (termCheck(commTargert, comChar, comVal , comBonus)) ) {
                 // made office
                 termLog.commission = true
-                character.pcData.militaryRank.level = 1
-                earnedServiceSkills.push(character.pcData.militaryRank.level)
+                character.pc.militaryRank.level = 1
+                earnedServiceSkills.push(character.pc.militaryRank.level)
 
-                creationStatus.careerLog.push(character.pcData.name + ' becomes an officer, and is now ' + currentService.ranks[character.pcData.militaryRank.level] + ' ' + character.pcData.name + ' .')
+                creationStatus.careerLog.push(character.pc.name + ' becomes an officer, and is now ' + currentService.ranks[character.pc.militaryRank.level] + ' ' + character.pc.name + ' .')
                 displayStatus.push({ 
                     keyID: genKey(1, 'drtlcom') ,
-                    statMsg: character.pcData.name + ' is commissioned.',
+                    statMsg: character.pc.name + ' is commissioned.',
                 })
 
             } else {
-                creationStatus.careerLog.push(character.pcData.name + ' remains enlisted.')
+                creationStatus.careerLog.push(character.pc.name + ' remains enlisted.')
 
                 displayStatus.push({ 
                     keyID: genKey(1, 'drtlsrv') ,
-                    statMsg: character.pcData.name + ' stays enlisted.',
+                    statMsg: character.pc.name + ' stays enlisted.',
                     })
 
             }
@@ -395,7 +393,7 @@ const getDMs = (dmStat,minvalue) => {
  /*--------------------------------------------------------------
          Promotion check - requires rank 1
  -----------------------------------------------------------------*/
-    if ( (character.pcData.flags.promotions) && (character.pcData.militaryRank.level >= 1 ) && ( character.pcData.militaryRank.level  <= 6  ) ) {
+    if ( (character.pc.flags.promotions) && (character.pc.militaryRank.level >= 1 ) && ( character.pc.militaryRank.level  <= 6  ) ) {
         // only enter the loop once you  get a commission
         // can't promote above 6/admiral ?
         // requires promotable flag (i.e. not scouts) and rank of 1 (commissioned) and less than 6
@@ -412,22 +410,22 @@ const getDMs = (dmStat,minvalue) => {
             if ( (termCheck(proTarget, proChar, proVal , proBonus)) ) {
                 // made office
                 termLog.promotion = true
-                character.pcData.militaryRank.level += 1
-                earnedServiceSkills.push(character.pcData.militaryRank.level)
+                character.pc.militaryRank.level += 1
+                earnedServiceSkills.push(character.pc.militaryRank.level)
 
-                creationStatus.careerLog.push(character.pcData.name + ' is now ' + currentService.ranks[character.pcData.militaryRank.level] + ' ' + character.pcData.name + ' .')
+                creationStatus.careerLog.push(character.pc.name + ' is now ' + currentService.ranks[character.pc.militaryRank.level] + ' ' + character.pc.name + ' .')
                 displayStatus.push({ 
                     keyID: genKey(1, 'drtlsrv') ,
-                    statMsg: character.pcData.name + ' is promoted.',
+                    statMsg: character.pc.name + ' is promoted.',
                     })
 
 
             } else {
-                creationStatus.careerLog.push(character.pcData.name + ' is not promoted.')
+                creationStatus.careerLog.push(character.pc.name + ' is not promoted.')
 
                 displayStatus.push({ 
                     keyID: genKey(1, 'drtlsrv') ,
-                    statMsg: character.pcData.name + ' is not promoted.',
+                    statMsg: character.pc.name + ' is not promoted.',
                     })
 
 
@@ -492,7 +490,7 @@ const getDMs = (dmStat,minvalue) => {
                 /*
                     add to tail log
                 */
-                creationStatus.careerLog.push(character.pcData.name + ' gains service skill: ' + skillObject.name )
+                creationStatus.careerLog.push(character.pc.name + ' gains service skill: ' + skillObject.name )
                 console.log('added skill to  the career log')
                 
                 /*
@@ -509,8 +507,8 @@ const getDMs = (dmStat,minvalue) => {
                     add to actual skills list - check for existence, etc. - ////   skillFunc.addSkillSwitcher()
                 */
                // debugger
-                // console.log('--- calling character.pcData.addSkillSwitcher')
-                // character.pcData.addSkillSwitcher( skillObject)
+                // console.log('--- calling character.pc.addSkillSwitcher')
+                // character.pc.addSkillSwitcher( skillObject)
                 // skillFunc.addSkillSwitcher( skillObject )
 
 
@@ -539,7 +537,7 @@ const getDMs = (dmStat,minvalue) => {
 
     //     currentTerm
 
-    if (character.pcData.career.currentServiceName === 'Scouts' ) {
+    if (character.pc.career.currentServiceName === 'Scouts' ) {
         //         scoutPerTerm: 2,
         skillLearnCount.count = 2
     } else {

@@ -80,11 +80,7 @@
 </template>
 
 <script setup>
-/*---------------------------------------------------------------------------------------------------------
 
-                SCRIPTING
-
----------------------------------------------------------------------------------------------------------*/                
 // import relevant vue libraries
 import { reactive, provide, ref, computed, onMounted } from 'vue';
 
@@ -92,14 +88,14 @@ import { reactive, provide, ref, computed, onMounted } from 'vue';
 /*-------------------------------------
         Import character datastore and setup
 ----------------------------------------*/
-import { useCharacterStore } from '@/stores/character2'
+import { useCharacterStore } from '@/stores/character'
 // creates the stub character by assiciating with the datastore
 const character = useCharacterStore()
 
 
 /*-------------------------------------
         import global status datastore
- ----------------------------------------*/
+----------------------------------------*/
 import { useCounterStore } from '@/stores/counter'
 const creationStatus = useCounterStore()
 
@@ -110,12 +106,6 @@ const creationStatus = useCounterStore()
 import { cttbCharGenTables } from '../../../../assets/CharacterData/ChargenTablesCTTB';
 const tables = reactive(cttbCharGenTables)
 
-
-
-/*-------------------------------------
-        import tools
-----------------------------------------*/
-import{rollD6, roll2D6} from '../../../../assets/General/RollDice';
 
 
 
@@ -180,7 +170,7 @@ const tryCareer = (selectedService) => {
     //  const object1 = { }
     //   // console.log(Object.keys(object1));
     // create an easier handle
-    const pcStats = character.pcData.characteristics
+    const pcStats = character.pc.characteristics
     // break out an array to allow iteration
     const statList = Object.keys(pcStats)
 
@@ -221,7 +211,8 @@ const tryCareer = (selectedService) => {
     }
 
     // console.log(' Our total DM is : ' +   totalDMs )
-    const dRoll = roll2D6()
+
+    const dRoll = creationStatus.roll2D6()
     const enlistResult = dRoll + totalDMs
     let assignedService = null
     let enlistSuccess = false
@@ -240,7 +231,7 @@ const tryCareer = (selectedService) => {
         // console.log('we got assigned : ' + assignedService)
         // console.log('we got (lname)) : ' + careerStart[assignedService].displayName)
         resultsText.value = careerStart[assignedService].drafted
-        character.pcData.flags.draftee = true
+        character.pc.flags.draftee = true
         creationStatus.careerLog.push(resultsText.value)
     } else {
         // console.log('succeeded: assign the correct service  : ' + selectedService)
@@ -251,13 +242,13 @@ const tryCareer = (selectedService) => {
     }
 
     if (careerStart[assignedService].shortName === 'scouts' || careerStart[assignedService].shortName === 'other') {
-        character.pcData.flags.promotions = false
+        character.pc.flags.promotions = false
     }
 
-     character.pcData.career.currentServiceName = careerStart[assignedService].displayName
-     character.pcData.career.currentService = assignedService
+     character.pc.career.currentServiceName = careerStart[assignedService].displayName
+     character.pc.career.currentService = assignedService
 
-    character.pcData.career.termHistory.push(resultsText.value)
+    
     revealResults.reveal = true
    
 }
@@ -266,7 +257,7 @@ const tryCareer = (selectedService) => {
 
 
 const startCareer = () => {
-    character.pcData.flags.newCycle = true
+    character.pc.flags.newCycle = true
 
 
     // has to be last

@@ -1,38 +1,16 @@
 <template>
 
 <h1>What is your character's name and homeworld?:</h1>
+<h2> Style this for better spacing of label vs input</h2>
 <div>
-<label><strong>Name the Character:</strong></label><input type="text" v-model="character.pc.name">
+<label><strong>Name the Character:</strong></label><input type="text" v-model="character.pcData.name">
 </div>
 <div>
-<label><strong>Enter the homeworld if known:</strong></label><input type="text" v-model="character.pc.homeWorld">
+<label><strong>Enter the homeworld if known:</strong></label><input type="text" v-model="character.pcData.homeWorld">
 </div>
 <button @click.prevent="acceptStats">Accept and continue</button>
 
-<!-- 
-<div><h2>UPP: {{ upp }}</h2></div>
-<table>
-    <tr>
-        <th>{{character.pc.characteristics.strength.longName}}</th>
-        <th>{{character.pc.characteristics.dexterity.longName}}</th>
-        <th>{{character.pc.characteristics.endurance.longName}}</th>
-        <th>{{character.pc.characteristics.intelligence.longName}}</th>
-        <th>{{character.pc.characteristics.education.longName}}</th>
-        <th>{{character.pc.characteristics.social.longName}}</th>
-    </tr>
-    <tr>
-        <td>{{ charStats.str }} ({{ strP }})</td>
-        <td>{{ charStats.dex }} ({{ dexP }})</td>
-        <td>{{ charStats.end }} ({{ endP }})</td>
-        <td>{{ charStats.int }} ({{ intP }})</td>
-        <td>{{ charStats.edu }} ({{ eduP }})</td>
-        <td>{{ charStats.soc }} ({{ socP }})</td>
-    </tr>
-</table>
 
-<button @click.prevent="acceptStats">Accept and continue</button>
-<button @click.prevent="rollStats">Cheat and Reroll</button>
--->
 
 
 </template>
@@ -47,7 +25,7 @@ import { reactive, provide, ref, computed, onMounted } from 'vue';
 /*-------------------------------------
         Iport character datastore and setup
 ----------------------------------------*/
-import { useCharacterStore } from '@/stores/character'
+import { useCharacterStore } from '@/stores/character2'
 // creates the stub character by assiciating with the datastore
 const character = useCharacterStore()
 
@@ -72,11 +50,6 @@ const creationStatus = useCounterStore()
 const acceptStats = () => { 
 
 console.log('Accept Name ');
-
-creationStatus.careerLog.push('The character is named: ' + character.pc.name )
-
-creationStatus.careerLog.push('The homeworld is: ' + character.pc.homeWorld )
-
 
 creationStatus.currentStep = creationStatus.stepNamesMap.chooseCareer
 
