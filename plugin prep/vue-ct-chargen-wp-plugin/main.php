@@ -64,8 +64,8 @@ add_shortcode('lt-ct-chargen', 'lt_ct_chargen_render_frontend');
 
 function front_enqueue_vue_scripts() 
 {
-wp_enqueue_script('app-script', plugins_url('/dist/assets/index-625f6b4e.js', __FILE__), array(), null, true);
-wp_enqueue_style('app-style', plugins_url('/dist/assets/index-4a90bfd9.css', __FILE__));
+wp_enqueue_script('app-script', plugins_url('/dist/assets/index-2f59b29e.js', __FILE__), array(), null, true);
+wp_enqueue_style('app-style', plugins_url('/dist/assets/index-c61c31c0.css', __FILE__));
 }
 add_action('wp_enqueue_scripts', 'front_enqueue_vue_scripts');
 

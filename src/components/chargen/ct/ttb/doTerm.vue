@@ -71,7 +71,10 @@ const creationStatus = useCounterStore()
 ----------------------------------------*/
 import { cttbCharGenTables } from '../../../../assets/CharacterData/ChargenTablesCTTB';
 // const tables = reactive(cttbCharGenTables)
-const currentService = cttbCharGenTables.services[character.pcData.career.currentService]
+
+const tables = reactive(cttbCharGenTables)
+const currentService = reactive(cttbCharGenTables.services[character.pcData.career.currentService])
+
 console.log( currentService.displayName)
 
 
