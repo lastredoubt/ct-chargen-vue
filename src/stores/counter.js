@@ -7,8 +7,15 @@ export const useCounterStore = defineStore('counter', () => {
   const currentScreen = shallowRef(null)
   const currentStep = ref('blankSlate')
   const careerLog = reactive([])
+
+  // Skills to choose is used for manual choices after other
+  // automatic assignment of service or other skills
   const skillsToChoose = ref(0)
-  const skillQueue = reactive([])
+
+  //note - skillQ is for skills, stat boosts, benefits, 
+  // and so on
+  const skillQ = reactive([])
+
 
   const stepNamesMap = reactive({
     blankSlate:'blankSlate',
@@ -20,9 +27,11 @@ export const useCounterStore = defineStore('counter', () => {
 
   })
 
+  const idCounter = ref(1)
+
 
 //currentTermLog
 
-  return { currentScreen, currentStep, careerLog, skillsToChoose, skillQueue, stepNamesMap }
+  return { currentScreen, currentStep, careerLog, skillsToChoose, skillQ, stepNamesMap, idCounter }
 })
 

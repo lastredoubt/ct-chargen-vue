@@ -54,7 +54,7 @@ export const useCharacterStore = defineStore('character', () => {
             newCycle: false,
             retired: false,
             // uppNeedsUpdate: false,
-        },
+        }, 
         career: {
             // allows later choice of traveller / cepheus versions
             terms: 0,                           //--------

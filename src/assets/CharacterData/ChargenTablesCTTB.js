@@ -4,11 +4,9 @@ export const cttbCharGenTables = {
 Flag Key
     - addBenefit
     - bumpStat
-    - addSkill
-    - addCasSkill
+    - addSkill - cascade skill self-determined
+------------------*/
 
-
---------------------------------------------------------------------*/
 
 /*-------------------------------------------------------------------
 Benefits and Skills
@@ -43,86 +41,39 @@ Benefits and Skills
                 },
 
 
-    Skills:  Straight Specific Skill
+
+
+
+    Skills:  
                 { 
                         name: 'Vacc Suit',      // Name of skill for table
-                        skillIndex: 52,         // skill reference to allow stacking
+                        skillIndex: 52,         // skill reference to object key
                         flags: 'addSkill'       // add flag to set
                 },
 
-    Cascade and Subtype Skills
-            GEENRAL type - weapon example - cascading true means subtyoes
-                            -- cascade type used for grouping / searches
-                {
-                    name: 'Blade',
-                    skillIndex: 1001,
-                    cascading: true,
-                    cascadeType: 'blade',
-                    flags: 'addCasSkill'        //because there is further selection to be done
-
-                },
-            
-            Specific Weapon/cascade item:   -- cascade type used for grouping / searches
-
-                {
-                    name: 'Dagger',
-                    plusDM: 8,                  // this info is for the beenfit of choosing
-                    minusDM: 3,
-                    wounds: 2,                  //wounds in d6
-                    skillIndex: 1,
-                    cascadeType: 'blade',
-                    flags: 'addSkill'       // because it is a specific one with no further cascades
-
-                },  
 
 
 
-            General vehicle class of cascade
 
-                {
-                    name: 'Tracked vehicle',
-                    hasSubtype: false,          //no more specific subtypes
-                    skillIndex: 31,
-                    cascadeType: 'vehicle',     //for search grouping
-                    flags: 'addSkill'       // because it is a specific one with no further cascades
-                },
+**********  Skills
 
+Note - that vehicles as a cascade skill has two groups of specific skills plus a number of 
+individual vehicle types
 
+    
+'vehicles':{
+    name: 'Vehicle',              //required
+    cascadeParent: false,         //required: true if it has a parent group or general category
+    parentGroup: ,                // - only if is a child. Key/ID of containing group or general category
+    
+    cascadeGroup: true,           //required - true if it has a child group of further cascade skills
+    cascadeGID: ['aircraft'],     // - only if there is a child group of further specific skills . array of object key names
 
-            General vehicle class with subtypes
+    cascadeSpecific: true,        //required - true if it has specific child cascade skills
+    cascadeSID: [],               // - only if there are specific child skills. array of object key names
 
-                {
-                    name: 'Aircraft',
-                    hasSubtype: true,
-                    relatedType: 'aircraft'
-                    skillIndex: 1004,
-                    cascadeType: 'vehicle',
-                    flags: 'addCasSkill'        //because there is further selection to be done
+},
 
-                },
-
-
-            Specific vehicle subtype
-
-                {
-                    name: 'Submersible',
-                    hasSubtype: false,          //no further subtypes
-                    relatedType: 'watercraft'
-                    skillIndex: 28,
-                    cascadeType: 'vehicle',
-                    flags: 'addSkill'       // because it is a specific one with no further cascades
-
-                },
-
-
-
-    Cascade Skill: 
-                { 
-                    name: 'Blade',
-                    reference: 'blade',         // matches the reference in skillIndex:[]
-                                                //also used to find the further cascades
-                    flags: 'addCasSkill'
-                },
 
 
     
@@ -166,6 +117,7 @@ Services
             shortName: 'navy',
             congrats: 'Congratulations, sailor. You joined the Navy!',
             drafted: 'Congratulations, sailor. You were drafted by the Navy',
+            serviceLog: 'Joined the Navy',
             draft: 1,
             enlistment: {
                 roll: 8,
@@ -231,10 +183,6 @@ Services
 
 
 
-
-
-
-
             //further data
             //
             //
@@ -258,10 +206,8 @@ Services
                 },
                 4:  {
                     name: 'Blade',
-                    skillIndex: 1001,
-                    cascading: true,
-                    cascadeType: 'blade',
-        
+                    skillIndex: 'blades',
+                    flags: 'addSkill',       
                 },
                 5: { 
                     name: 'Travellers Aid Society Membership',
@@ -330,69 +276,67 @@ Services
 
                     1: { 
                         name: 'Ship\'s Boat',
-                        skillIndex: 51,
+                        skillIndex: 'shipsboat',
                         flags: 'addSkill'
                     },
                     2: { 
                         name: 'Vacc Suit',
-                        skillIndex: 52,
+                        skillIndex: 'vaccsuit',
                         flags: 'addSkill'
                     },
                     3: { 
                         name: 'Forward Observer',
-                        skillIndex: 53,
+                        skillIndex: 'forwardobs',
                         flags: 'addSkill'
                     },
                     4: { 
                         name: 'Gunnery',
-                        skillIndex: 54,
+                        skillIndex: 'gunnery',
                         flags: 'addSkill'
                     },
                     5:  {
                         name: 'Blade',
-                        skillIndex: 1001,
-                        cascading: true,
-                        cascadeType: 'blade',
+                        skillIndex: 'blades',
+                        flags: 'addSkill',
             
                     },
                     6: {
                         name: 'Gun',
-                        skillIndex: 1002,
-                        cascading: true,
-                        cascadeType: 'gun',
-            
+                        skillIndex: 'guns',
+                        flags: 'addSkill',
+             
                     },
                 },
                 advanced: {
 
                     1: { 
                         name: 'Vacc Suit',
-                        skillIndex: 52,
+                        skillIndex: 'vaccsuit',
                         flags: 'addSkill'
                     },
                     2: { 
                         name: 'Mechanical',
-                        skillIndex: 55,
+                        skillIndex: 'mechanical',
                         flags: 'addSkill'
                     },
                     3: { 
                         name: 'Electronic',
-                        skillIndex: 56,
+                        skillIndex: 'electronic',
                         flags: 'addSkill'
                     },
                     4: { 
                         name: 'Engineering',
-                        skillIndex: 57,
+                        skillIndex: 'engineering',
                         flags: 'addSkill'
                     },
                     5: { 
                         name: 'Gunnery',
-                        skillIndex: 54,
+                        skillIndex: 'gunnery',
                         flags: 'addSkill'
                         },
                     6: { 
                         name: 'Jack-of-all-trades',
-                        skillIndex: 58,
+                        skillIndex: 'jot',
                         flags: 'addSkill'
                     },
 
@@ -402,32 +346,32 @@ Services
 
                     1: { 
                         name: 'Medical',
-                        skillIndex: 59,
+                        skillIndex: 'medical',
                         flags: 'addSkill'
                     },
                     2: { 
                         name: 'Navigation',
-                        skillIndex: 60,
+                        skillIndex: 'navigation',
                         flags: 'addSkill'
                     },
                     3: { 
                         name: 'Engineering',
-                        skillIndex: 57,
+                        skillIndex: 'engineering',
                         flags: 'addSkill'
                     },
                     4: { 
                         name: 'Computer',
-                        skillIndex: 61,
+                        skillIndex: 'computer',
                         flags: 'addSkill'
                     },
                     5: { 
                         name: 'Pilot',
-                        skillIndex: 62,
+                        skillIndex: 'pilot',
                         flags: 'addSkill'
                         },
                     6: { 
                         name: 'Administration',
-                        skillIndex: 63,
+                        skillIndex: 'administration',
                         flags: 'addSkill'
                     },
 
@@ -446,6 +390,7 @@ Services
             shortName: 'marines',
             congrats: 'Congratulations, soldier. You joined the Marines!',
             drafted: 'Congratulations, soldier. You were drafted by the Marines',
+            serviceLog: 'Joined the Marines',
             draft: 2,
             enlistment: {
                 roll: 9,
@@ -496,15 +441,13 @@ Services
                 // note - the key/index here is the rank. Zero is enlisted
                 0: {
                     name: 'Cutlass',
-                    skillIndex: 5,
-                    cascadeType: 'blade',
+                    skillIndex: 'cutlass',
                     flags: 'addSkill'  
                     },
                 1:
                 {
                     name: 'Revolver',
-                    skillIndex: 14,
-                    cascadeType: 'gun',
+                    skillIndex: 'revolver',
                     flags: 'addSkill'  
                 },
             },  
@@ -519,6 +462,7 @@ Services
                     shortName: 'army',
                     congrats: "Congratulations, soldier. You're in the Army now!",
                     drafted: 'Congratulations, soldier. You were drafted by the Army',
+                    serviceLog: 'Joined the Army',
                     draft: 3,
                     enlistment: {
                         roll: 5,
@@ -570,14 +514,12 @@ Services
                         // note - the key/index here is the rank. Zero is enlisted
                         0:  {
                             name: 'Rifle',
-                            skillIndex: 16,
-                            cascadeType: 'gun',
+                            skillIndex: 'rifle',
                             flags: 'addSkill'  
                         },
                         1: {
                             name: 'SMG',
-                            skillIndex: 19,
-                            cascadeType: 'gun',
+                            skillIndex: 'smg',
                             flags: 'addSkill'  
                         },
                     },     
@@ -594,6 +536,7 @@ Services
                 shortName: 'scouts',
                 congrats: "Congratulations, you're in the Scout Service now!",
                 drafted: 'Pack your bags, you were drafted by the Scout Service',
+                serviceLog: 'Joined the Scouts',
                 draft: 4,
                 enlistment: {
                     roll: 7,
@@ -645,8 +588,7 @@ Services
                     // note - the key/index here is the rank. Zero is enlisted
                     0:  {
                         name: 'Pilot',
-                        cascading: false,
-                        skillIndex: 62,
+                        skillIndex: 'pilot',
                         flags: 'addSkill' 
                         
             
@@ -663,6 +605,7 @@ Services
                     shortName: 'merchants',
                     congrats: "Congratulations, you're in the Merchant Service now!",
                     drafted: 'Come aboard, you were drafted by the Merchant Service',
+                    serviceLog: 'Joined the Merchant Services',
                     draft: 5,
                     enlistment: {
                         roll: 7,
@@ -714,8 +657,7 @@ Services
                         // note - the key/index here is the rank. Zero is enlisted
                         4:  {
                             name: 'Pilot',
-                            cascading: false,
-                            skillIndex: 62,
+                            skillIndex: 'pilot',
                             flags: 'addSkill',  
                 
                         },  
@@ -732,6 +674,7 @@ Services
                 shortName: 'other',
                 congrats: "You've found another career!",
                 drafted: 'You have accepted another job',
+                serviceLog: 'Found other employment',
                 draft: 6,
                 enlistment: {
                     roll: 3,
@@ -1091,476 +1034,537 @@ Services
         'vehicle',
     ],
 
-    skillIndex: [
-
-/*-------------------------------------------------------------------
-            Cascading Skills - general types
-
---------------------------------------------------------------------*/
-
-        {
-            name: 'Blade',
-            skillIndex: 1001,
-            cascading: true,
-            cascadeType: 'blade',
-
-        },
-
-        {
-            name: 'Gun',
-            skillIndex: 1002,
-            cascading: true,
-            cascadeType: 'gun',
-
-        },
 
 
 
-        {
-            name: 'Vehicle',
-            cascading: true,
-            skillIndex: 1003,
-            cascadeType: 'vehicle',
-
-        },
 
 
-/*-------------------------------------------------------------------
-            Cascading Skills with subtypes
-
---------------------------------------------------------------------*/
+skillIndex: {
 
 
+// -------------------------------------------------------------------
 
-        {
-            name: 'Aircraft',
-            hasSubtype: true,
-            relatedType: 'aircraft',
-            skillIndex: 1004,
-            cascadeType: 'vehicle',
+//             SKILLS - no cascades
 
-        },
-        {
-            name: 'Watercraft',
-            hasSubtype: true,
-            relatedType: 'watercraft',
-            skillIndex: 1005,
-            cascadeType: 'vehicle',
+// --------------------------------------------------------------------
 
-        },
+'shipsboat': {
+    name: "Ship's Boat",
+    cascadeParent: false,
+    cascadeGroup: false,
+    cascadeSpecific: false,
+},    
+'vaccsuit':{
+    name: 'Vacc Suit',
+    cascadeParent: false,
+    cascadeGroup: false,
+    cascadeSpecific: false,
+},
+'forwardobs':{
+    name: 'Forward Observer',
+    cascadeParent: false,
+    cascadeGroup: false,
+    cascadeSpecific: false,
+},
+'gunnery':{
+    name: 'Gunnery',
+    cascadeParent: false,
+    cascadeGroup: false,
+    cascadeSpecific: false,
+},
+'mechanical':{
+    name: 'Mechanical',
+    cascadeParent: false,
+    cascadeGroup: false,
+    cascadeSpecific: false,
+},
+'electronic':{
+    name: 'Electronics',
+    cascadeParent: false,
+    cascadeGroup: false,
+    cascadeSpecific: false,
+},
+'engineering':{
+    name: 'Engineering',
+    cascadeParent: false,
+    cascadeGroup: false,
+    cascadeSpecific: false,
+},
+'jot':{
+    name: 'Jack-of-all-trades',
+    cascadeParent: false,
+    cascadeGroup: false,
+    cascadeSpecific: false,
+},
+'medical':{
+    name: 'Medical',
+    cascadeParent: false,
+    cascadeGroup: false,
+    cascadeSpecific: false,
+},
+'navigation':{
+    name: 'Navigation',
+    cascadeParent: false,
+    cascadeGroup: false,
+    cascadeSpecific: false,
+},
+'computer':{
+    name: 'Computer',
+    cascadeParent: false,
+    cascadeGroup: false,
+    cascadeSpecific: false,
+},
+'pilot':{
+    name: 'Pilot',
+    cascadeParent: false,
+    cascadeGroup: false,
+    cascadeSpecific: false,
+},
+'administration':{
+    name: 'Administration',
+    cascadeParent: false,
+    cascadeGroup: false,
+    cascadeSpecific: false,
+},
 
-/*-------------------------------------------------------------------
-            Cascading Skills - Melee
-
---------------------------------------------------------------------*/
 
 
+// -------------------------------------------------------------------
+//             Cascading Skills - general types
 
-        {
+// ---------------------------------------------------------------
+
+'blades': {
+    name: 'Blades and Polearms',
+    cascadeParent: false,
+    cascadeGroup: false,
+    cascadeSpecific: true,
+    cascadeSID: ['dagger','blade','foil','sword','cutlass','broadsword','bayonet','spear','halberd','pike','cudgel'],
+    cascadeGID: [],
+},
+
+'guns':{
+    name: 'Guns',
+    cascadeParent: false,
+    cascadeGroup: false,
+    cascadeSpecific: true,
+    cascadeSID: ['lasrifle','lascarbine','smg','shotgun','arifle','rifle','carbine','revolver','apistol','bpistol'],
+    cascadeGID: [],
+},
+
+
+'vehicles':{
+    name: 'Vehicle',
+    cascadeParent: false,
+    cascadeGroup: true,
+    cascadeSpecific: true,
+    cascadeSID: [],
+    cascadeGID: ['aircraft','watercraft'],
+
+},
+
+
+
+
+// -------------------------------------------------------------------
+//             Cascading Skills with subtypes
+
+// ---------------------------------------------------------------
+
+
+
+'aircraft':{
+    name: 'Aircraft',
+    cascadeParent: true,
+    parentGroup: 'vehicles',
+    cascadeGroup: false,
+    cascadeSpecific: true,
+    cascadeSID: [],
+
+},
+'watercraft':{
+    name: 'Watercraft',
+    cascadeParent: true,
+    parentGroup: 'vehicles',
+    cascadeGroup: false,
+    cascadeSpecific: true,
+    cascadeSID: [],
+
+},
+
+
+// -------------------------------------------------------------------
+
+//             Cascading Skills - Melee / Blade
+
+// ---------------------------------------------------------------
+
+
+
+        'dagger': {
             name: 'Dagger',
             plusDM: 8,
             minusDM: 3,
             wounds: 2,
-            skillIndex: 1,
-            cascadeType: 'blade',
-
+            cascadeParent: true,
+            parentGroup: 'blades',
+            cascadeGroup: false,
+            cascadeSpecific: false,
+        
         },  
-        {
+        'blade':{
             name: 'Blade',
             plusDM: 9,
             minusDM: 4,
             wounds: 2,
-            skillIndex: 2,
-            cascadeType: 'blade',
+            cascadeParent: true,
+            parentGroup: 'blades',
+            cascadeGroup: false,
+            cascadeSpecific: false,
+        
 
         },
-        {
+        'foil':{
             name: 'Foil',
             plusDM: 10,
             minusDM: 4,
             wounds: 1,
-            skillIndex: 3,
-            cascadeType: 'blade',
+            cascadeParent: true,
+            parentGroup: 'blades',
+            cascadeGroup: false,
+            cascadeSpecific: false,
+        
 
         },
-        {
+        'sword':{
             name: 'Sword',
             plusDM: 10,
             minusDM: 5,
             wounds: 2,
-            skillIndex: 4,
-            cascadeType: 'blade',
+            cascadeParent: true,
+            parentGroup: 'blades',
+            cascadeGroup: false,
+            cascadeSpecific: false,
+        
         },
 
-        {
+        'cutlass':{
         name: 'Cutlass',
         plusDM: 11,
         minusDM: 6,
         wounds: 3,
-        skillIndex: 5,
-        cascadeType: 'blade',
-        },
+        cascadeParent: true,
+        parentGroup: 'blades',
+        cascadeGroup: false,
+        cascadeSpecific: false,
+    
+    },
 
 
-        {
+       'broadsword': {
         name: 'Broadsword',
         plusDM: 12,
         minusDM: 7,
         wounds: 4,
-        skillIndex: 6,
+        cascadeParent: true,
+        parentGroup: 'blades',
+        cascadeGroup: false,
+        cascadeSpecific: false,
+    
+    },
 
-        cascadeType: 'blade',
-        },
-
-        {
+        'bayonet':{
         name: 'Bayonet',
         plusDM: 9,
         minusDM: 4,
         wounds: 3,
-        skillIndex: 7,
+        cascadeParent: true,
+        parentGroup: 'blades',
+        cascadeGroup: false,
+        cascadeSpecific: false,
+    
+    },
 
-        cascadeType: 'blade',
-        },
-
-        {
+        'spear':{
         name: 'Spear',
         plusDM: 9,
         minusDM: 4,
         wounds: 2,
-        skillIndex: 8,
+        cascadeParent: true,
+        parentGroup: 'blades',
+        cascadeGroup: false,
+        cascadeSpecific: false,
+    
+    },
 
-        cascadeType: 'blade',
-        },
 
-
-        {
+        'halberd':{
         name: 'Halberd',
         plusDM: 10,
         minusDM: 5,
         wounds: 3,
-        skillIndex: 9,
+        cascadeParent: true,
+        parentGroup: 'blades',
+        cascadeGroup: false,
+        cascadeSpecific: false,
+    
+    },
 
-        cascadeType: 'blade',
-        },
-
-        {
+        'pike':{
         name: 'Pike',
         plusDM: 10,
         minusDM: 6,
         wounds: 3,
-        skillIndex: 10,
+        cascadeParent: true,
+        parentGroup: 'blades',
+        cascadeGroup: false,
+        cascadeSpecific: false,
+    
+    },
 
-        cascadeType: 'blade',
-        },
 
-
-        {
+        'cudgel':{
         name: 'Cudgel',
         plusDM: 8,
         minusDM: 4,
         wounds: 2,
-        skillIndex: 11,
-
-        cascadeType: 'blade',
-        },
-
-/*-------------------------------------------------------------------
-            Cascading Skills - firearms
-
---------------------------------------------------------------------*/
-
-
-
-        {
-            name: 'Body Pistol',
-            plusDM: 11,
-            minusDM: 7,
-            wounds: 2,
-            skillIndex: 12,
-            cascadeType: 'gun',
-        },
-
-        {
-            name: 'Auto Pistol',
-            plusDM: 10,
-            minusDM: 6,
-            wounds: 3,
-            skillIndex: 13,
-            cascadeType: 'gun',
-        },
-
-
-
-        {
-            name: 'Revolver',
-            plusDM: 9,
-            minusDM: 6,
-            wounds: 3,
-            skillIndex: 14,
-            cascadeType: 'gun',
-        },
-
-
-
-
-        {
-            name: 'Carbine',
-            plusDM: 9,
-            minusDM: 4,
-            wounds: 3,
-            skillIndex: 15,
-            cascadeType: 'gun',
-        },
-
-
-
-
-        {
-            name: 'Rifle',
-            plusDM: 8,
-            minusDM: 5,
-            wounds: 3,
-            skillIndex: 16,
-            cascadeType: 'gun',
-        },
-
-
-
-
-
-        {
-            name: 'Auto Rifle',
-            plusDM: 10,
-            minusDM: 6,
-            wounds: 3,
-            skillIndex: 17,
-            cascadeType: 'gun',
-        },
-
-
-
-
-        {
-            name: 'Shotgun',
-            plusDM: 9,
-            minusDM: 3,
-            wounds: 4,
-            skillIndex: 18,
-            cascadeType: 'gun',
-        },
-
-
-
-
-
-
-        {
-            name: 'SMG',
-            plusDM: 9,
-            minusDM: 5,
-            wounds: 3,
-            skillIndex: 19,
-            cascadeType: 'gun',
-        },
-
-        {
-            name: 'Laser Carbine',
-            plusDM: 10,
-            minusDM: 5,
-            wounds: 5,
-            skillIndex: 20,
-            cascadeType: 'gun',
-        },
-        {
-            name: 'Laser Rifle',
-            plusDM: 11,
-            minusDM: 6,
-            wounds: 5,
-            skillIndex: 21,
-            cascadeType: 'gun',
-        },
-
-
-/*-------------------------------------------------------------------
-            Cascading Skills - specific vehicles
-
---------------------------------------------------------------------*/
-
-
-        {
-            name: 'Prop-driven Fixed Wing',
-            hasSubtype: false,
-            relatedType: 'aircraft',
-            skillIndex: 22,
-            cascadeType: 'vehicle',
-
-        },
-        {
-            name: 'Jet-driven Fixed Wing',
-            hasSubtype: false,
-            relatedType: 'aircraft',
-            skillIndex: 23,
-            cascadeType: 'vehicle',
-
-        },
-        {
-            name: 'Helicopter',
-            hasSubtype: false,
-            relatedType: 'aircraft',
-            skillIndex: 24,
-            cascadeType: 'vehicle',
-
-        },
-        {
-            name: 'Large watercraft',
-            hasSubtype: false,
-            relatedType: 'watercraft',
-            skillIndex: 25,
-            cascadeType: 'vehicle',
-
-        },
-        {
-            name: 'Small watercraft',
-            hasSubtype: false,
-            relatedType: 'watercraft',
-            skillIndex: 26,
-            cascadeType: 'vehicle',
-
-        },
-        {
-            name: 'Hovercraft',
-            hasSubtype: false,
-            relatedType: 'watercraft',
-            skillIndex: 27,
-            cascadeType: 'vehicle',
-
-        },
-        {
-            name: 'Submersible',
-            hasSubtype: false,
-            relatedType: 'watercraft',
-            skillIndex: 28,
-            cascadeType: 'vehicle',
-
-        },
-
-  
-
-        {
-            name: 'Grav Vehicle (Air/Raft)',
-            hasSubtype: false,
-            skillIndex: 29,
-            cascadeType: 'vehicle',
-
-        },
-        {
-            name: 'Wheeled vehicle',
-            hasSubtype: false,
-            skillIndex: 30,
-            cascadeType: 'vehicle',
-
-        },
-        {
-            name: 'Tracked vehicle',
-            hasSubtype: false,
-            skillIndex: 31,
-            cascadeType: 'vehicle',
-
-        },
-
-     
-
-/*-------------------------------------------------------------------
--------------------------------------------------------------------
-
-            SKILLS
-
---------------------------------------------------------------------
---------------------------------------------------------------------*/
-
-
-
-
-        {
-            name: "Ship's Boat",
-            cascading: false,
-            skillIndex: 51,
-
-        },
-        {
-            name: 'Vacc Suit',
-            cascading: false,
-            skillIndex: 52,
-
-        },
-        {
-            name: 'Forward Observer',
-            cascading: false,
-            skillIndex: 53,
-
-        },
-        {
-            name: 'Gunnery',
-            cascading: false,
-            skillIndex: 54,
-
-        },
-        {
-            name: 'Mechanical',
-            cascading: false,
-            skillIndex: 55,
-
-        },
-        {
-            name: 'Electronic',
-            cascading: false,
-            skillIndex: 56,
-
-        },
-        {
-            name: 'Engineering',
-            cascading: false,
-            skillIndex: 57,
-
-        },
-        {
-            name: 'Jack-of-all-trades',
-            cascading: false,
-            skillIndex: 58,
-
-        },
-        {
-            name: 'Medical',
-            cascading: false,
-            skillIndex: 59,
-
-        },
-        {
-            name: 'Navigation',
-            cascading: false,
-            skillIndex: 60,
-
-        },
-        {
-            name: 'Computer',
-            cascading: false,
-            skillIndex: 61,
-
-        },
-        {
-            name: 'Pilot',
-            cascading: false,
-            skillIndex: 62,
-
-        },
-        {
-            name: 'Administration',
-            cascading: false,
-            skillIndex: 63,
-
-        },
-    ],
+        cascadeParent: true,
+        parentGroup: 'blades',
+        cascadeGroup: false,
+        cascadeSpecific: false,
     
+    },
+
+//         -------------------------------------------------------------------
+//         Cascading Skills - firearms
+
+// ---------------------------------------------------------------
+
+
+
+    'bpistol': {
+        name: 'Body Pistol',
+        plusDM: 11,
+        minusDM: 7,
+        wounds: 2,
+        cascadeParent: true,
+        parentGroup: 'guns',
+        cascadeGroup: false,
+        cascadeSpecific: false,
+    
+},
+
+    'apistol':{
+        name: 'Auto Pistol',
+        plusDM: 10,
+        minusDM: 6,
+        wounds: 3,
+        cascadeParent: true,
+        parentGroup: 'guns',
+        cascadeGroup: false,
+        cascadeSpecific: false,
+    
+},
+
+
+
+    'revolver':{
+        name: 'Revolver',
+        plusDM: 9,
+        minusDM: 6,
+        wounds: 3,
+        cascadeParent: true,
+        parentGroup: 'guns',
+        cascadeGroup: false,
+        cascadeSpecific: false,
+    
+},
+
+
+
+
+    'carbine':{
+        name: 'Carbine',
+        plusDM: 9,
+        minusDM: 4,
+        wounds: 3,
+        cascadeParent: true,
+        parentGroup: 'guns',
+        cascadeGroup: false,
+        cascadeSpecific: false,
+    
+},
+
+
+
+
+    'rifle':{
+        name: 'Rifle',
+        plusDM: 8,
+        minusDM: 5,
+        wounds: 3,
+        cascadeParent: true,
+        parentGroup: 'guns',
+        cascadeGroup: false,
+        cascadeSpecific: false,
+    
+},
+
+
+
+
+
+    'arifle':{
+        name: 'Auto Rifle',
+        plusDM: 10,
+        minusDM: 6,
+        wounds: 3,
+        cascadeParent: true,
+        parentGroup: 'guns',
+        cascadeGroup: false,
+        cascadeSpecific: false,
+    
+},
+
+
+
+
+    'shotgun':{
+        name: 'Shotgun',
+        plusDM: 9,
+        minusDM: 3,
+        wounds: 4,
+        cascadeParent: true,
+        parentGroup: 'guns',
+        cascadeGroup: false,
+        cascadeSpecific: false,
+    
+},
+
+    'smg':{
+        name: 'SMG',
+        plusDM: 9,
+        minusDM: 5,
+        wounds: 3,
+        cascadeParent: true,
+        parentGroup: 'guns',
+        cascadeGroup: false,
+        cascadeSpecific: false,
+    
+},
+
+    'lascarbine':{
+        name: 'Laser Carbine',
+        plusDM: 10,
+        minusDM: 5,
+        wounds: 5,
+        cascadeParent: true,
+        parentGroup: 'guns',
+        cascadeGroup: false,
+        cascadeSpecific: false,
+    
+},
+    'lasrifle':{
+        name: 'Laser Rifle',
+        plusDM: 11,
+        minusDM: 6,
+        wounds: 5,
+        cascadeParent: true,
+        parentGroup: 'guns',
+        cascadeGroup: false,
+        cascadeSpecific: false,
+    
+},
+
+
+
+
+
+
+// -------------------------------------------------------------------
+// Cascading Skills - specific vehicles
+
+// ---------------------------------------------------------------
+
+
+'prop-fw':{
+name: 'Prop-driven Fixed Wing',
+cascadeParent: true,
+parentGroup: 'aircraft',
+cascadeGroup: false,
+cascadeSpecific: false,
+
+},
+
+'jet-fw':{
+name: 'Jet-driven Fixed Wing',
+cascadeParent: true,
+parentGroup: 'aircraft',
+cascadeGroup: false,
+cascadeSpecific: false,
+
+},
+'helicopter':{
+name: 'Helicopter',
+cascadeParent: true,
+parentGroup: 'aircraft',
+cascadeGroup: false,
+cascadeSpecific: false,
+},
+'large-water':{
+name: 'Large watercraft',
+cascadeParent: true,
+parentGroup: 'watercraft',
+cascadeGroup: false,
+cascadeSpecific: false,
+},
+'small-water':{
+name: 'Small watercraft',
+cascadeParent: true,
+parentGroup: 'watercraft',
+cascadeGroup: false,
+cascadeSpecific: false,
+},
+'hovercraft':{
+name: 'Hovercraft',
+cascadeParent: true,
+parentGroup: 'watercraft',
+cascadeGroup: false,
+cascadeSpecific: false,
+},
+'submersible':{
+name: 'Submersible',
+cascadeParent: true,
+parentGroup: 'watercraft',
+cascadeGroup: false,
+cascadeSpecific: false,
+},
+
+'air-raft':{
+name: 'Grav Vehicle (Air/Raft)',
+cascadeParent: true,
+parentGroup: 'vehicle',
+cascadeGroup: false,
+cascadeSpecific: false,
+},
+'wheeled-vehicle':{
+name: 'Wheeled vehicle',
+cascadeParent: true,
+parentGroup: 'vehicle',
+cascadeGroup: false,
+cascadeSpecific: false,
+},
+'tracked-vehicle':{
+name: 'Tracked vehicle',
+cascadeParent: true,
+parentGroup: 'vehicle',
+cascadeGroup: false,
+cascadeSpecific: false,
+},
+
+
+
+
 
 }
 
@@ -1594,5 +1598,4 @@ Services
     //     return upp;
     // },
 
-
-
+}

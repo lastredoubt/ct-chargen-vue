@@ -57,17 +57,20 @@
 
 
 <!--   const careerStart = reactive(tables.services)
+
+
    -->
-<div>
-<select name="careerChoice"  id="careerChoice" v-model="selectedIndex">
+
+    <div class="careerSelect" v-if="!revealResults.reveal">
+        <div class="careerSelectDrop">
+            <select name="careerChoice"  id="careerChoice" v-model="selectedIndex">
                 <option v-for="(career, index) in careerStart" :value="index" :key="genServicekey(career, 'choosecareer')">Try the {{ career.displayName }} </option>
-
             </select>
-
-            </div>
-            <div>
-                <button @click.prevent="tryCareer(selectedIndex)">Let's See if you get in!</button>
-                </div>
+        </div>
+        <div class="careerSelectButton">
+            <button @click.prevent="tryCareer(selectedIndex)">Let's See if you get in!</button>
+        </div>
+    </div>
 
 
 <div class="results" v-if="revealResults.reveal">
@@ -240,6 +243,9 @@ const tryCareer = (selectedService) => {
         // console.log('we got assigned : ' + assignedService)
         // console.log('we got (lname)) : ' + careerStart[assignedService].displayName)
         resultsText.value = careerStart[assignedService].drafted
+        character.pcData.career.termHistory.push(careerStart[assignedService].serviceLog)
+
+        
         character.pcData.flags.draftee = true
         creationStatus.careerLog.push(resultsText.value)
     } else {
@@ -247,9 +253,13 @@ const tryCareer = (selectedService) => {
         assignedService = selectedService
         resultsText.value = careerStart[assignedService].congrats
         creationStatus.careerLog.push(resultsText.value)
+        character.pcData.career.termHistory.push(careerStart[assignedService].serviceLog)
+
 
     }
 
+    
+    //these careers do not have officer ranks and need to be flagged
     if (careerStart[assignedService].shortName === 'scouts' || careerStart[assignedService].shortName === 'other') {
         character.pcData.flags.promotions = false
     }
@@ -257,7 +267,6 @@ const tryCareer = (selectedService) => {
      character.pcData.career.currentServiceName = careerStart[assignedService].displayName
      character.pcData.career.currentService = assignedService
 
-    character.pcData.career.termHistory.push(resultsText.value)
     revealResults.reveal = true
    
 }

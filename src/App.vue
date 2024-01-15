@@ -139,14 +139,6 @@
 
       <tr>
         <td colspan="6">
-          <div class="celllabel">Unclaimed Skills:</div>
-          <p> 0</p>
-        </td>
-      </tr>
-
-
-      <tr>
-        <td colspan="6">
           <div class="celllabel">Learned Skills:</div>
           <p> v-for through pcData.skills</p>
           <p>{{  }}</p>
