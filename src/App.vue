@@ -140,7 +140,12 @@
       <tr>
         <td colspan="6">
           <div class="celllabel">Learned Skills:</div>
-          <p> v-for through pcData.skills</p>
+          <div v-for="(individualSkill, key) in pcData.skills" :key="key + '-skillsList'">
+            {{ individualSkill.name }} - {{ individualSkill.level }}
+          </div>
+
+
+
           <p>{{  }}</p>
         </td>
       </tr>
@@ -224,7 +229,7 @@ import RollStats from './components/chargen/ct/ttb/RollStats.vue';
 import SetHomeworld from './components/chargen/ct/ttb/SetHomeworld.vue';
 import chooseCareer from './components/chargen/ct/ttb/chooseCareer.vue';
 import doTerm from './components/chargen/ct/ttb/doTerm.vue';
-// import chooseSkills from '../components/chargen/ct/ttb/chooseSkills.vue';
+import chooseSkills from './components/chargen/ct/ttb/chooseSkills.vue';
 
 
 
@@ -325,11 +330,11 @@ watch(
     console.log( 'SWITCHING WATCHER: starting a term')
 
    }
-//    if ( creationStatus.currentStep ===  creationStatus.stepNamesMap.chooseSkills  ) {
-//     creationStatus.currentScreen = chooseSkills
-//     console.log( 'SWITCHING WATCHER: chooseing skills')
+   if ( creationStatus.currentStep ===  creationStatus.stepNamesMap.chooseSkills  ) {
+    creationStatus.currentScreen = chooseSkills
+    console.log( 'SWITCHING WATCHER: chooseing skills')
 
-//    }
+   }
   
   }
 )

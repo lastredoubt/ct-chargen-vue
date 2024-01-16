@@ -4,15 +4,11 @@
 <h1>Let's Choose Skills: </h1>
 </div>
 
-<div><h2>Existing Skills</h2>
-<p>This will be character.pc.skills[]</p>
-</div>
-
 <div><h2>Skills Earned This Term</h2>
         <p>This will be creationStatus.skillQueue</p>
         <ul>
-                <li v-for="(skillItem, index) in creationStatus.skillQueue" 
-                :key="'skillqueue' + index">{{ skillItem.name }}</li>
+                <li v-for="(skillItem, index) in creationStatus.skillQ" 
+                :key="'skillqueue' + index">{{ skillItem.skill.name }}</li>
 
         </ul>
 
@@ -91,6 +87,14 @@
 </template>
 
 <script setup>
+/*--------------------------------------------------------------------------
+
+NOTE:: This block is used to handle any and all disbursements of skills and 
+benefits, whether muster-out or mid-career
+
+
+--------------------------------------------------------------------------*/
+
 
 // import relevant vue libraries
 import { reactive, provide, ref, computed, onMounted } from 'vue';
@@ -99,7 +103,7 @@ import { reactive, provide, ref, computed, onMounted } from 'vue';
 /*-------------------------------------
         Import character datastore and setup
 ----------------------------------------*/
-import { useCharacterStore } from '@/stores/character'
+import { useCharacterStore } from '@/stores/character2'
 // creates the stub character by assiciating with the datastore
 const character = useCharacterStore()
 
@@ -137,16 +141,155 @@ const tables = reactive(cttbCharGenTables)
 
 
 
+ /*-------------------------------------
+
+ 
+         On Mount - we've gotten the term up - 
+
+
+ ----------------------------------------*/
+
+ onMounted( () => { 
+    console.log('+++chooseSkills mounted - applying and choosing skills')
+    
+    skillAssignLoop()
+    // if (character.pcData.flags.newCycle) {startCareerCycle()}
+    // //clear the cycle
+    // character.pcData.flags.newCycle = false
+
+} )
+
+
 
  /*-------------------------------------
 
  
-         try to enlist in desired career
-
-            Pick a random career if that fails
+         Start teh skill loop
 
 
  ----------------------------------------*/
+
+// check if there are skills in the queue
+const skillAssignLoop = () => {
+
+    // 1) Determine if there are skills/benefits in the queue
+    if (creationStatus.skillQ.length != 0) {
+
+        // Loop through
+        console.log('vvvvvvvvvvvvvvvvvvvvvvvvvvv')
+        console.log(' Loop skills')
+
+        for (const singleSkill of creationStatus.skillQ) {
+            const currentSkillIndex = singleSkill.skill.skillIndex
+
+         /*-------------------------------------
+        PENDING
+        1a) Check if they are skills or benefits******
+        -------------------------------------*/
+         /*-------------------------------------
+        PENDING
+        2) If skill, then check if they need to be cascaded
+        -------------------------------------*/
+
+        // 3) If NOT, then check the skill list and add/uprate the skill as applicable
+
+
+
+            // if the level is undefined or null, then it hasn't been created yet
+            if(typeof character.pcData.skills[currentSkillIndex] === 'undefined') {
+                // console.log('character skill at key: '+ currentSkillIndex + ' is undefined.');
+                // console.log('----------=================--------')
+
+                const tempSkill = {}
+                tempSkill.level = 1
+                tempSkill.name = singleSkill.skill.name
+                // console.log('currentSkillIndex (in if): ' + currentSkillIndex)
+
+                character.pcData.skills[currentSkillIndex] = tempSkill
+                // console.log('tempSkill: ')
+                // console.log( tempSkill)
+                // console.log('character.pcData.skills: ')
+
+                // console.log(character.pcData.skills)
+                // console.log('^^^^^^^^^^^^--=================^^^^^^^^^^^^')
+
+                // character.pcData.skills[singleSkill.skill.skillindex].level = 1
+                // character.pcData.skills[singleSkill.skill.skillindex].name += singleSkill.skill.name
+
+            } else if(character.pcData.skills[singleSkill.skill.skillindex] === null){
+                alert('Variable "comment" is null.');
+                // character.pcData.skills[singleSkill.skill.skillindex].level = 1
+                // character.pcData.skills[singleSkill.skill.skillindex].name += singleSkill.skill.name
+
+            } else {
+                character.pcData.skills[currentSkillIndex].level += 1
+            }
+            
+
+
+
+        }
+
+
+
+
+
+
+
+
+        // const currentSkillQueue = pop(creationStatus.skillQ)
+        // console.log(currentSkillQueue)
+    }
+ 
+ /*-------------------------------------
+
+    4) If YES, then present the cascade options
+    - note - in this case I'll present subcascades together with singletons. 
+        applicable when getting vehicle, and can choose grav or "watercraft",
+        where watercraft has further cascades. We'll just present all of the 
+        available options
+    5) Once chosen, andd/uprate as applicable
+6) If benefits, add as appropriate - note possibility of getting a muster-
+    out weapon
+7) if skill queue is empty, check for pending rolled skills
+
+---SET A FLAG on muster out status!!!! affects return button!!!
+
+ ----------------------------------------*/
+
+
+
+
+
+}
+//creationStatus
+        
+        // if (creationStatus.skillQ.length <> 0) {
+        //     const currentSkillQueue = pop(creationStatus.skillQ)
+        //     console.log(currentSkillQueue)
+        //     // check skills
+        //     if (currentSkillQueue.flags == 'addSkill') {
+        //         console.log('it is a skill')
+
+        //     } else if (currentSkillQueue.flags == 'bumpStat') {
+        //         console.log('it is a stat improvement')
+
+        //     } else if (currentSkillQueue.flags == 'addBenefit') {
+        //         console.log('it is a new benefit')
+
+        //     }
+
+
+        //     // stats
+
+
+
+        //     //benefit
+
+
+
+
+        // }
 
 
 

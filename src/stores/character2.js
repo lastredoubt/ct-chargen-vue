@@ -119,8 +119,8 @@ export const useCharacterStore = defineStore('character', () => {
         //          name: 'Vacc Suit',      // Name of skill for table
         //          skillIndex: 52, 
         //          skillVal: integer
-        skills: [],                          //--------
-        benefits: [], 
+        skills: {},                          //--------
+        benefits: {}, 
         wealth:0,                         //--------
     
     })

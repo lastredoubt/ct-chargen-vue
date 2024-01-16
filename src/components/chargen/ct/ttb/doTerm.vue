@@ -63,13 +63,13 @@
         <p><strong>Skills to pick:</strong> {{ skillLearnCount.count }}</p>
     </div>
 
-
+ -->
     <div class="chooseSkills">
         <button @click.prevent="chooseSkills">Choose Skills (NOT ENABLED YET)</button>
 
     </div>
 
- -->
+
  
  <!-- close results block -->
 </div>
@@ -744,40 +744,7 @@ TODO LIST
         console.log('Skill Queue of known standard/cascade skills: \n //--------------->')
         console.log(creationStatus.skillQ)
         
-//creationStatus
-       if (creationStatus.skillQ.length != 0) {
-            // const currentSkillQueue = pop(creationStatus.skillQ)
-            // console.log(currentSkillQueue)
-       }
- 
 
-        
-        // if (creationStatus.skillQ.length <> 0) {
-        //     const currentSkillQueue = pop(creationStatus.skillQ)
-        //     console.log(currentSkillQueue)
-        //     // check skills
-        //     if (currentSkillQueue.flags == 'addSkill') {
-        //         console.log('it is a skill')
-
-        //     } else if (currentSkillQueue.flags == 'bumpStat') {
-        //         console.log('it is a stat improvement')
-
-        //     } else if (currentSkillQueue.flags == 'addBenefit') {
-        //         console.log('it is a new benefit')
-
-        //     }
-
-
-        //     // stats
-
-
-
-        //     //benefit
-
-
-
-
-        // }
 
 
 

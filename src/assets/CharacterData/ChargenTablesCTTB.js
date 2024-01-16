@@ -295,13 +295,13 @@ Services
                         flags: 'addSkill'
                     },
                     5:  {
-                        name: 'Blade',
+                        name: 'Blades',
                         skillIndex: 'blades',
                         flags: 'addSkill',
             
                     },
                     6: {
-                        name: 'Gun',
+                        name: 'Guns',
                         skillIndex: 'guns',
                         flags: 'addSkill',
              
@@ -451,6 +451,202 @@ Services
                     flags: 'addSkill'  
                 },
             },  
+ 
+
+
+            //further data
+            //
+            //
+            //
+            musterOut: {
+                1: { 
+                    name: 'Low Passage',
+                    flags: 'addBenefit'
+                },
+                2: { 
+                    name: '+2 Intel',
+                    affects: 'Intel',
+                    bonus: 2,
+                    flags: 'bumpStat'
+                },
+                3: { 
+                    name: '+1 Educ',
+                    affects: 'Educ',
+                    bonus: 1,
+                    flags: 'bumpStat'
+                },
+                4:  {
+                    name: 'Blade',
+                    skillIndex: 'blades',
+                    flags: 'addSkill',       
+                },
+                5: { 
+                    name: 'Travellers Aid Society Membership',
+                    flags: 'addBenefit'
+                },
+                6: { 
+                    name: 'High Passage',
+                    flags: 'addBenefit'
+                },
+                7:  { 
+                    name: '+2 Social',
+                    affects: 'Soc',
+                    bonus: 2,
+                    flags: 'bumpStat'
+                },
+            } , 
+            cashTable: {
+                1: 2000,
+                2: 5000,
+                3: 5000,
+                4: 10000,
+                5: 20000,
+                6: 30000,
+                7: 40000
+            },
+ 
+            skills: {
+                personal: {
+                    1: { 
+                        name: '+1 Strength',
+                        affects: 'Stren',
+                        bonus: 1,
+                        flags: 'bumpStat'
+                    },
+                    2: { 
+                        name: '+1 Dexterity',
+                        affects: 'Dext',
+                        bonus: 1,
+                        flags: 'bumpStat'
+                    },
+                    3: { 
+                        name: '+1 Endurance',
+                        affects: 'Endur',
+                        bonus: 1,
+                        flags: 'bumpStat'
+                    },
+                    4: { 
+                        name: 'Gambling',
+                        skillIndex: 'gambling',
+                        flags: 'addSkill'
+                    },
+                    5: { 
+                        name: 'Brawling',
+                        skillIndex: 'brawling',
+                        flags: 'addSkill'
+                    },
+                    6: { 
+                        name: 'Blades',
+                        skillIndex: 'blades',
+                        flags: 'addSkill'
+                    },
+                },
+                service: {
+
+                    1: { 
+                        name: 'Vehicle',
+                        skillIndex: 'vehicles',
+                        flags: 'addSkill'
+                    },
+                    2: { 
+                        name: 'Vacc Suit',
+                        skillIndex: 'vaccsuit',
+                        flags: 'addSkill'
+                    },
+                    3: { 
+                        me: 'Blades',
+                        skillIndex: 'blades',
+                        flags: 'addSkill'
+                    },
+                    4: { 
+                        name: 'Gun',
+                        skillIndex: 'guns',
+                        flags: 'addSkill',
+                    },
+                    5:  {
+                        name: 'Blade',
+                        skillIndex: 'blades',
+                        flags: 'addSkill',
+            
+                    },
+                    6: {
+                        name: 'Gun',
+                        skillIndex: 'guns',
+                        flags: 'addSkill',
+             
+                    },
+                },
+                advanced: {
+
+                    1: { 
+                        name: 'Vehicle',
+                        skillIndex: 'vehicles',
+                        flags: 'addSkill'
+                    },
+                    2: { 
+                        name: 'Mechanical',
+                        skillIndex: 'mechanical',
+                        flags: 'addSkill'
+                    },
+                    3: { 
+                        name: 'Electronic',
+                        skillIndex: 'electronic',
+                        flags: 'addSkill'
+                    },
+                    4: { 
+                        name: 'Tactics',
+                        skillIndex: 'tactics',
+                        flags: 'addSkill',
+                    },
+                    5: { 
+                        name: 'Blade',
+                        skillIndex: 'blades',
+                        flags: 'addSkill',
+                        },
+                    6: { 
+                        name: 'Gun',
+                        skillIndex: 'guns',
+                        flags: 'addSkill',
+                    },
+
+                },
+                advanced2: {
+                    requiredEdu: 8,
+
+                    1: { 
+                        name: 'Medical',
+                        skillIndex: 'medical',
+                        flags: 'addSkill'
+                    },
+                    2: { 
+                        name: 'Tactics',
+                        skillIndex: 'tactics',
+                        flags: 'addSkill',
+                    },
+                    3: { 
+                        name: 'Tactics',
+                        skillIndex: 'tactics',
+                        flags: 'addSkill',
+                    },
+                    4: { 
+                        name: 'Computer',
+                        skillIndex: 'computer',
+                        flags: 'addSkill'
+                    },
+                    5: { 
+                        name: 'Leader',
+                        skillIndex: 'leader',
+                        flags: 'addSkill'
+                        },
+                    6: { 
+                        name: 'Administration',
+                        skillIndex: 'administration',
+                        flags: 'addSkill'
+                    },
+
+                },
+            },
+
         },
 
         /*-------------------------------------------------------------------
@@ -522,7 +718,202 @@ Services
                             skillIndex: 'smg',
                             flags: 'addSkill'  
                         },
-                    },     
+                    },    
+                    
+
+            //further data
+            //
+            //
+            //
+            musterOut: {
+                1: { 
+                    name: 'Low Passage',
+                    flags: 'addBenefit'
+                },
+                2: { 
+                    name: '+1 Intel',
+                    affects: 'Intel',
+                    bonus: 1,
+                    flags: 'bumpStat'
+                },
+                3: { 
+                    name: '+2 Educ',
+                    affects: 'Educ',
+                    bonus: 2,
+                    flags: 'bumpStat'
+                },
+                4:  {
+                    name: 'Gun',
+                    skillIndex: 'guns',
+                    flags: 'addSkill',       
+                },
+                5: { 
+                    name: 'High Passage',
+                    flags: 'addBenefit'
+                },
+                6: { 
+                    name: 'Middle Passage',
+                    flags: 'addBenefit'
+                },
+                7:  { 
+                    name: '+1 Social',
+                    affects: 'Soc',
+                    bonus: 1,
+                    flags: 'bumpStat'
+                },
+            } , 
+            cashTable: {
+                1: 2000,
+                2: 5000,
+                3: 10000,
+                4: 10000,
+                5: 10000,
+                6: 20000,
+                7: 30000
+            },
+ 
+            skills: {
+                personal: {
+                    1: { 
+                        name: '+1 Strength',
+                        affects: 'Stren',
+                        bonus: 1,
+                        flags: 'bumpStat'
+                    },
+                    2: { 
+                        name: '+1 Dexterity',
+                        affects: 'Dext',
+                        bonus: 1,
+                        flags: 'bumpStat'
+                    },
+                    3: { 
+                        name: '+1 Endurance',
+                        affects: 'Endur',
+                        bonus: 1,
+                        flags: 'bumpStat'
+                    },
+                    4: { 
+                        name: 'Gambling',
+                        skillIndex: 'gambling',
+                        flags: 'addSkill'
+                    },
+                    5: { 
+                        name: '+1 Education',
+                        affects: 'Educ',
+                        bonus: 1,
+                        flags: 'bumpStat'
+                    },
+                    6: { 
+                        name: 'Brawling',
+                        skillIndex: 'brawling',
+                        flags: 'addSkill'
+                    },
+                },
+                service: {
+
+                    1: { 
+                        name: 'Vehicle',
+                        skillIndex: 'vehicles',
+                        flags: 'addSkill'
+                    },
+                    2: { 
+                        name: 'Vehicle',
+                        skillIndex: 'vehicles',
+                        flags: 'addSkill'
+                    },
+                    3: { 
+                        name: 'Gun',
+                        skillIndex: 'guns',
+                        flags: 'addSkill',
+                    },
+                    4: { 
+                        name: 'Forward Observer',
+                        skillIndex: 'forwardobs',
+                        flags: 'addSkill',
+                    },
+                    5:  {
+                        name: 'Blade',
+                        skillIndex: 'blades',
+                        flags: 'addSkill',
+            
+                    },
+                    6: {
+                        name: 'Gun',
+                        skillIndex: 'guns',
+                        flags: 'addSkill',
+             
+                    },
+                },
+                advanced: {
+
+                    1: { 
+                        name: 'Vehicle',
+                        skillIndex: 'vehicles',
+                        flags: 'addSkill'
+                    },
+                    2: { 
+                        name: 'Mechanical',
+                        skillIndex: 'mechanical',
+                        flags: 'addSkill'
+                    },
+                    3: { 
+                        name: 'Electronic',
+                        skillIndex: 'electronic',
+                        flags: 'addSkill'
+                    },
+                    4: { 
+                        name: 'Tactics',
+                        skillIndex: 'tactics',
+                        flags: 'addSkill',
+                    },
+                    5: { 
+                        name: 'Blade',
+                        skillIndex: 'blades',
+                        flags: 'addSkill',
+                        },
+                    6: { 
+                        name: 'Gun',
+                        skillIndex: 'guns',
+                        flags: 'addSkill',
+                    },
+
+                },
+                advanced2: {
+                    requiredEdu: 8,
+
+                    1: { 
+                        name: 'Medical',
+                        skillIndex: 'medical',
+                        flags: 'addSkill'
+                    },
+                    2: { 
+                        name: 'Tactics',
+                        skillIndex: 'tactics',
+                        flags: 'addSkill',
+                    },
+                    3: { 
+                        name: 'Tactics',
+                        skillIndex: 'tactics',
+                        flags: 'addSkill',
+                    },
+                    4: { 
+                        name: 'Computer',
+                        skillIndex: 'computer',
+                        flags: 'addSkill'
+                    },
+                    5: { 
+                        name: 'Leader',
+                        skillIndex: 'leader',
+                        flags: 'addSkill'
+                        },
+                    6: { 
+                        name: 'Administration',
+                        skillIndex: 'administration',
+                        flags: 'addSkill'
+                    },
+
+                },
+            }, 
                 },
         
           
@@ -1028,15 +1419,6 @@ Services
 --------------------------------------------------------------------*/
 
 
-    cascadeTypes: [
-        "blade",
-        'gun',
-        'vehicle',
-    ],
-
-
-
-
 
 
 skillIndex: {
@@ -1048,80 +1430,104 @@ skillIndex: {
 
 // --------------------------------------------------------------------
 
-'shipsboat': {
+shipsboat: {
     name: "Ship's Boat",
     cascadeParent: false,
     cascadeGroup: false,
     cascadeSpecific: false,
 },    
-'vaccsuit':{
+vaccsuit:{
     name: 'Vacc Suit',
     cascadeParent: false,
     cascadeGroup: false,
     cascadeSpecific: false,
 },
-'forwardobs':{
+forwardobs:{
     name: 'Forward Observer',
     cascadeParent: false,
     cascadeGroup: false,
     cascadeSpecific: false,
 },
-'gunnery':{
+gambling:{
+    name: 'Gambling',
+    cascadeParent: false,
+    cascadeGroup: false,
+    cascadeSpecific: false,
+},
+gunnery:{
     name: 'Gunnery',
     cascadeParent: false,
     cascadeGroup: false,
     cascadeSpecific: false,
 },
-'mechanical':{
+mechanical:{
     name: 'Mechanical',
     cascadeParent: false,
     cascadeGroup: false,
     cascadeSpecific: false,
 },
-'electronic':{
+electronic:{
     name: 'Electronics',
     cascadeParent: false,
     cascadeGroup: false,
     cascadeSpecific: false,
 },
-'engineering':{
+engineering:{
     name: 'Engineering',
     cascadeParent: false,
     cascadeGroup: false,
     cascadeSpecific: false,
 },
-'jot':{
+jot:{
     name: 'Jack-of-all-trades',
     cascadeParent: false,
     cascadeGroup: false,
     cascadeSpecific: false,
 },
-'medical':{
+leader:{
+    name: 'Leader',
+    cascadeParent: false,
+    cascadeGroup: false,
+    cascadeSpecific: false,
+},
+medical:{
     name: 'Medical',
     cascadeParent: false,
     cascadeGroup: false,
     cascadeSpecific: false,
 },
-'navigation':{
+navigation:{
     name: 'Navigation',
     cascadeParent: false,
     cascadeGroup: false,
     cascadeSpecific: false,
 },
-'computer':{
+computer:{
     name: 'Computer',
     cascadeParent: false,
     cascadeGroup: false,
     cascadeSpecific: false,
 },
-'pilot':{
+pilot:{
     name: 'Pilot',
     cascadeParent: false,
     cascadeGroup: false,
     cascadeSpecific: false,
 },
-'administration':{
+tactics:{
+    name: 'Tactics',
+    cascadeParent: false,
+    cascadeGroup: false,
+    cascadeSpecific: false,
+},
+administration:{
     name: 'Administration',
+    cascadeParent: false,
+    cascadeGroup: false,
+    cascadeSpecific: false,
+},
+brawling:{
+    name: 'Brawling',
     cascadeParent: false,
     cascadeGroup: false,
     cascadeSpecific: false,
@@ -1134,7 +1540,7 @@ skillIndex: {
 
 // ---------------------------------------------------------------
 
-'blades': {
+blades: {
     name: 'Blades and Polearms',
     cascadeParent: false,
     cascadeGroup: false,
@@ -1143,7 +1549,7 @@ skillIndex: {
     cascadeGID: [],
 },
 
-'guns':{
+guns:{
     name: 'Guns',
     cascadeParent: false,
     cascadeGroup: false,
@@ -1153,7 +1559,7 @@ skillIndex: {
 },
 
 
-'vehicles':{
+vehicles:{
     name: 'Vehicle',
     cascadeParent: false,
     cascadeGroup: true,
@@ -1173,7 +1579,7 @@ skillIndex: {
 
 
 
-'aircraft':{
+aircraft:{
     name: 'Aircraft',
     cascadeParent: true,
     parentGroup: 'vehicles',
@@ -1182,7 +1588,7 @@ skillIndex: {
     cascadeSID: [],
 
 },
-'watercraft':{
+watercraft:{
     name: 'Watercraft',
     cascadeParent: true,
     parentGroup: 'vehicles',
@@ -1201,7 +1607,7 @@ skillIndex: {
 
 
 
-        'dagger': {
+        dagger: {
             name: 'Dagger',
             plusDM: 8,
             minusDM: 3,
@@ -1212,7 +1618,7 @@ skillIndex: {
             cascadeSpecific: false,
         
         },  
-        'blade':{
+        blade:{
             name: 'Blade',
             plusDM: 9,
             minusDM: 4,
@@ -1224,7 +1630,7 @@ skillIndex: {
         
 
         },
-        'foil':{
+        foil:{
             name: 'Foil',
             plusDM: 10,
             minusDM: 4,
@@ -1236,7 +1642,7 @@ skillIndex: {
         
 
         },
-        'sword':{
+        sword:{
             name: 'Sword',
             plusDM: 10,
             minusDM: 5,
@@ -1248,20 +1654,20 @@ skillIndex: {
         
         },
 
-        'cutlass':{
-        name: 'Cutlass',
-        plusDM: 11,
-        minusDM: 6,
-        wounds: 3,
-        cascadeParent: true,
-        parentGroup: 'blades',
-        cascadeGroup: false,
-        cascadeSpecific: false,
+        cutlass:{
+            name: 'Cutlass',
+            plusDM: 11,
+            minusDM: 6,
+            wounds: 3,
+            cascadeParent: true,
+            parentGroup: 'blades',
+            cascadeGroup: false,
+            cascadeSpecific: false,
     
     },
 
 
-       'broadsword': {
+       broadsword: {
         name: 'Broadsword',
         plusDM: 12,
         minusDM: 7,
@@ -1273,7 +1679,7 @@ skillIndex: {
     
     },
 
-        'bayonet':{
+        bayonet:{
         name: 'Bayonet',
         plusDM: 9,
         minusDM: 4,
@@ -1285,7 +1691,7 @@ skillIndex: {
     
     },
 
-        'spear':{
+        spear:{
         name: 'Spear',
         plusDM: 9,
         minusDM: 4,
@@ -1298,32 +1704,32 @@ skillIndex: {
     },
 
 
-        'halberd':{
-        name: 'Halberd',
-        plusDM: 10,
-        minusDM: 5,
-        wounds: 3,
-        cascadeParent: true,
-        parentGroup: 'blades',
-        cascadeGroup: false,
-        cascadeSpecific: false,
-    
+        halberd:{
+            name: 'Halberd',
+            plusDM: 10,
+            minusDM: 5,
+            wounds: 3,
+            cascadeParent: true,
+            parentGroup: 'blades',
+            cascadeGroup: false,
+            cascadeSpecific: false,
+        
     },
 
-        'pike':{
-        name: 'Pike',
-        plusDM: 10,
-        minusDM: 6,
-        wounds: 3,
-        cascadeParent: true,
-        parentGroup: 'blades',
-        cascadeGroup: false,
-        cascadeSpecific: false,
-    
-    },
+        pike:{
+                name: 'Pike',
+                plusDM: 10,
+                minusDM: 6,
+                wounds: 3,
+                cascadeParent: true,
+                parentGroup: 'blades',
+                cascadeGroup: false,
+                cascadeSpecific: false,
+            
+            },
 
 
-        'cudgel':{
+        cudgel:{
         name: 'Cudgel',
         plusDM: 8,
         minusDM: 4,
@@ -1335,232 +1741,230 @@ skillIndex: {
     
     },
 
-//         -------------------------------------------------------------------
+//-------------------------------------------------------------------
 //         Cascading Skills - firearms
 
 // ---------------------------------------------------------------
 
 
 
-    'bpistol': {
-        name: 'Body Pistol',
-        plusDM: 11,
-        minusDM: 7,
-        wounds: 2,
+        bpistol: {
+            name: 'Body Pistol',
+            plusDM: 11,
+            minusDM: 7,
+            wounds: 2,
+            cascadeParent: true,
+            parentGroup: 'guns',
+            cascadeGroup: false,
+            cascadeSpecific: false,
+        
+    },
+
+        apistol:{
+            name: 'Auto Pistol',
+            plusDM: 10,
+            minusDM: 6,
+            wounds: 3,
+            cascadeParent: true,
+            parentGroup: 'guns',
+            cascadeGroup: false,
+            cascadeSpecific: false,
+        
+    },
+
+
+
+        revolver:{
+            name: 'Revolver',
+            plusDM: 9,
+            minusDM: 6,
+            wounds: 3,
+            cascadeParent: true,
+            parentGroup: 'guns',
+            cascadeGroup: false,
+            cascadeSpecific: false,
+        
+    },
+
+
+
+
+        carbine:{
+            name: 'Carbine',
+            plusDM: 9,
+            minusDM: 4,
+            wounds: 3,
+            cascadeParent: true,
+            parentGroup: 'guns',
+            cascadeGroup: false,
+            cascadeSpecific: false,
+        
+    },
+
+
+
+
+        rifle:{
+            name: 'Rifle',
+            plusDM: 8,
+            minusDM: 5,
+            wounds: 3,
+            cascadeParent: true,
+            parentGroup: 'guns',
+            cascadeGroup: false,
+            cascadeSpecific: false,
+        
+    },
+
+
+
+
+
+        arifle:{
+            name: 'Auto Rifle',
+            plusDM: 10,
+            minusDM: 6,
+            wounds: 3,
+            cascadeParent: true,
+            parentGroup: 'guns',
+            cascadeGroup: false,
+            cascadeSpecific: false,
+        
+    },
+
+
+
+
+        shotgun:{
+            name: 'Shotgun',
+            plusDM: 9,
+            minusDM: 3,
+            wounds: 4,
+            cascadeParent: true,
+            parentGroup: 'guns',
+            cascadeGroup: false,
+            cascadeSpecific: false,
+        
+    },
+
+        smg:{
+            name: 'SMG',
+            plusDM: 9,
+            minusDM: 5,
+            wounds: 3,
+            cascadeParent: true,
+            parentGroup: 'guns',
+            cascadeGroup: false,
+            cascadeSpecific: false,
+        
+    },
+
+        lascarbine:{
+            name: 'Laser Carbine',
+            plusDM: 10,
+            minusDM: 5,
+            wounds: 5,
+            cascadeParent: true,
+            parentGroup: 'guns',
+            cascadeGroup: false,
+            cascadeSpecific: false,
+        
+    },
+        lasrifle:{
+            name: 'Laser Rifle',
+            plusDM: 11,
+            minusDM: 6,
+            wounds: 5,
+            cascadeParent: true,
+            parentGroup: 'guns',
+            cascadeGroup: false,
+            cascadeSpecific: false,
+        
+    },
+
+
+
+
+
+
+    // -------------------------------------------------------------------
+    // Cascading Skills - specific vehicles
+    // ---------------------------------------------------------------
+
+
+    propfw:{
+        name: 'Prop-driven Fixed Wing',
         cascadeParent: true,
-        parentGroup: 'guns',
+        parentGroup: 'aircraft',
         cascadeGroup: false,
         cascadeSpecific: false,
-    
-},
+    },
 
-    'apistol':{
-        name: 'Auto Pistol',
-        plusDM: 10,
-        minusDM: 6,
-        wounds: 3,
+    jetfw:{
+        name: 'Jet-driven Fixed Wing',
         cascadeParent: true,
-        parentGroup: 'guns',
+        parentGroup: 'aircraft',
         cascadeGroup: false,
         cascadeSpecific: false,
-    
-},
 
-
-
-    'revolver':{
-        name: 'Revolver',
-        plusDM: 9,
-        minusDM: 6,
-        wounds: 3,
+    },
+    helicopter:{
+        name: 'Helicopter',
         cascadeParent: true,
-        parentGroup: 'guns',
+        parentGroup: 'aircraft',
         cascadeGroup: false,
         cascadeSpecific: false,
-    
-},
-
-
-
-
-    'carbine':{
-        name: 'Carbine',
-        plusDM: 9,
-        minusDM: 4,
-        wounds: 3,
+    },
+    largewater:{
+        name: 'Large watercraft',
         cascadeParent: true,
-        parentGroup: 'guns',
+        parentGroup: 'watercraft',
         cascadeGroup: false,
         cascadeSpecific: false,
-    
-},
-
-
-
-
-    'rifle':{
-        name: 'Rifle',
-        plusDM: 8,
-        minusDM: 5,
-        wounds: 3,
+    },
+    smallwater:{
+        name: 'Small watercraft',
         cascadeParent: true,
-        parentGroup: 'guns',
+        parentGroup: 'watercraft',
         cascadeGroup: false,
         cascadeSpecific: false,
-    
-},
-
-
-
-
-
-    'arifle':{
-        name: 'Auto Rifle',
-        plusDM: 10,
-        minusDM: 6,
-        wounds: 3,
+    },
+    hovercraft:{
+        name: 'Hovercraft',
         cascadeParent: true,
-        parentGroup: 'guns',
+        parentGroup: 'watercraft',
         cascadeGroup: false,
         cascadeSpecific: false,
-    
-},
-
-
-
-
-    'shotgun':{
-        name: 'Shotgun',
-        plusDM: 9,
-        minusDM: 3,
-        wounds: 4,
+    },
+    submersible:{
+        name: 'Submersible',
         cascadeParent: true,
-        parentGroup: 'guns',
+        parentGroup: 'watercraft',
         cascadeGroup: false,
         cascadeSpecific: false,
-    
-},
+    },
 
-    'smg':{
-        name: 'SMG',
-        plusDM: 9,
-        minusDM: 5,
-        wounds: 3,
+    airraft:{
+        name: 'Grav Vehicle (Air/Raft)',
         cascadeParent: true,
-        parentGroup: 'guns',
+        parentGroup: 'vehicle',
         cascadeGroup: false,
         cascadeSpecific: false,
-    
-},
-
-    'lascarbine':{
-        name: 'Laser Carbine',
-        plusDM: 10,
-        minusDM: 5,
-        wounds: 5,
+    },
+    wheeledvehicle:{
+        name: 'Wheeled vehicle',
         cascadeParent: true,
-        parentGroup: 'guns',
+        parentGroup: 'vehicle',
         cascadeGroup: false,
         cascadeSpecific: false,
-    
-},
-    'lasrifle':{
-        name: 'Laser Rifle',
-        plusDM: 11,
-        minusDM: 6,
-        wounds: 5,
+    },
+    trackedvehicle:{
+        name: 'Tracked vehicle',
         cascadeParent: true,
-        parentGroup: 'guns',
+        parentGroup: 'vehicle',
         cascadeGroup: false,
         cascadeSpecific: false,
-    
-},
-
-
-
-
-
-
-// -------------------------------------------------------------------
-// Cascading Skills - specific vehicles
-
-// ---------------------------------------------------------------
-
-
-'prop-fw':{
-name: 'Prop-driven Fixed Wing',
-cascadeParent: true,
-parentGroup: 'aircraft',
-cascadeGroup: false,
-cascadeSpecific: false,
-
-},
-
-'jet-fw':{
-name: 'Jet-driven Fixed Wing',
-cascadeParent: true,
-parentGroup: 'aircraft',
-cascadeGroup: false,
-cascadeSpecific: false,
-
-},
-'helicopter':{
-name: 'Helicopter',
-cascadeParent: true,
-parentGroup: 'aircraft',
-cascadeGroup: false,
-cascadeSpecific: false,
-},
-'large-water':{
-name: 'Large watercraft',
-cascadeParent: true,
-parentGroup: 'watercraft',
-cascadeGroup: false,
-cascadeSpecific: false,
-},
-'small-water':{
-name: 'Small watercraft',
-cascadeParent: true,
-parentGroup: 'watercraft',
-cascadeGroup: false,
-cascadeSpecific: false,
-},
-'hovercraft':{
-name: 'Hovercraft',
-cascadeParent: true,
-parentGroup: 'watercraft',
-cascadeGroup: false,
-cascadeSpecific: false,
-},
-'submersible':{
-name: 'Submersible',
-cascadeParent: true,
-parentGroup: 'watercraft',
-cascadeGroup: false,
-cascadeSpecific: false,
-},
-
-'air-raft':{
-name: 'Grav Vehicle (Air/Raft)',
-cascadeParent: true,
-parentGroup: 'vehicle',
-cascadeGroup: false,
-cascadeSpecific: false,
-},
-'wheeled-vehicle':{
-name: 'Wheeled vehicle',
-cascadeParent: true,
-parentGroup: 'vehicle',
-cascadeGroup: false,
-cascadeSpecific: false,
-},
-'tracked-vehicle':{
-name: 'Tracked vehicle',
-cascadeParent: true,
-parentGroup: 'vehicle',
-cascadeGroup: false,
-cascadeSpecific: false,
-},
+    },
 
 
 
