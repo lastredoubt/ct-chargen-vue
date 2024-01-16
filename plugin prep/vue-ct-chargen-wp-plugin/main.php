@@ -66,6 +66,8 @@ function front_enqueue_vue_scripts()
 {
 wp_enqueue_script('app-script', plugins_url('/dist/assets/index-7ed95b4d.js', __FILE__), array(), null, true);
 wp_enqueue_style('app-style', plugins_url('/dist/assets/index-c61c31c0.css', __FILE__));
+}
+
 add_action('wp_enqueue_scripts', 'front_enqueue_vue_scripts');
 
 
