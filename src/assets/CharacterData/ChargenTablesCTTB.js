@@ -984,7 +984,198 @@ Services
                         
             
                     },
-                },      
+                },  
+                 
+                    
+
+            //further data
+            //
+            //
+            //
+            musterOut: {
+                1: { 
+                    name: 'Low Passage',
+                    flags: 'addBenefit'
+                },
+                2: { 
+                    name: '+2 Intel',
+                    affects: 'Intel',
+                    bonus: 2,
+                    flags: 'bumpStat'
+                },
+                3: { 
+                    name: '+2 Educ',
+                    affects: 'Educ',
+                    bonus: 2,
+                    flags: 'bumpStat'
+                },
+                4:  {
+                    name: 'Blade',
+                    skillIndex: 'blades',
+                    flags: 'addSkill',       
+                },
+                5:   {
+                    name: 'Gun',
+                    skillIndex: 'guns',
+                    flags: 'addSkill',       
+                },
+                6: { 
+                    name: 'Scout Ship',
+                    flags: 'addBenefit'
+                },
+            } , 
+            cashTable: {
+                1: 20000,
+                2: 20000,
+                3: 30000,
+                4: 30000,
+                5: 50000,
+                6: 50000,
+                7: 50000
+            },
+ 
+            skills: {
+                personal: {
+                    1: { 
+                        name: '+1 Strength',
+                        affects: 'Stren',
+                        bonus: 1,
+                        flags: 'bumpStat'
+                    },
+                    2: { 
+                        name: '+1 Dexterity',
+                        affects: 'Dext',
+                        bonus: 1,
+                        flags: 'bumpStat'
+                    },
+                    3: { 
+                        name: '+1 Endurance',
+                        affects: 'Endur',
+                        bonus: 1,
+                        flags: 'bumpStat'
+                    },
+                    4: { 
+                        name: '+1 Intelligence',
+                        affects: 'Intel',
+                        bonus: 1,
+                        flags: 'bumpStat'
+                    },
+                    5: { 
+                        name: '+1 Education',
+                        affects: 'Educ',
+                        bonus: 1,
+                        flags: 'bumpStat'
+                    },
+                    6: {
+                        name: 'Gun',
+                        skillIndex: 'guns',
+                        flags: 'addSkill',
+             
+                    },
+                },
+                service: {
+
+                    1: { 
+                        name: 'Vehicle',
+                        skillIndex: 'vehicles',
+                        flags: 'addSkill'
+                    },
+                    2: { 
+                        name: 'Vacc Suit',
+                        skillIndex: 'vaccsuit',
+                        flags: 'addSkill'
+                    },
+                    3: { 
+                        name: 'Mechanical',
+                        skillIndex: 'mechanical',
+                        flags: 'addSkill'
+                    },
+                    4: { 
+                        name: 'Navigation',
+                        skillIndex: 'navigation',
+                        flags: 'addSkill'
+                    },
+                    5:  { 
+                        name: 'Electronic',
+                        skillIndex: 'electronic',
+                        flags: 'addSkill'
+                    },
+                    6: { 
+                        name: 'Jack-of-all-trades',
+                        skillIndex: 'jot',
+                        flags: 'addSkill'
+                    },
+                },
+                advanced: {
+
+                    1: { 
+                        name: 'Vehicle',
+                        skillIndex: 'vehicles',
+                        flags: 'addSkill'
+                    },
+                    2: { 
+                        name: 'Mechanical',
+                        skillIndex: 'mechanical',
+                        flags: 'addSkill'
+                    },
+                    3: { 
+                        name: 'Electronic',
+                        skillIndex: 'electronic',
+                        flags: 'addSkill'
+                    },
+                    4: { 
+                        name: 'Jack-of-all-trades',
+                        skillIndex: 'jot',
+                        flags: 'addSkill'
+                    },
+                    5: { 
+                        name: 'Gunnery',
+                        skillIndex: 'gunnery',
+                        flags: 'addSkill'
+                    },
+                    6: { 
+                        name: 'Medical',
+                        skillIndex: 'medical',
+                        flags: 'addSkill'
+                    },
+
+                },
+                advanced2: {
+                    requiredEdu: 8,
+
+                    1: { 
+                        name: 'Medical',
+                        skillIndex: 'medical',
+                        flags: 'addSkill'
+                    },
+                    2: { 
+                        name: 'Navigation',
+                        skillIndex: 'navigation',
+                        flags: 'addSkill'
+                    },
+                    3: { 
+                        name: 'Engineering',
+                        skillIndex: 'engineering',
+                        flags: 'addSkill'
+                    },
+                    4: { 
+                        name: 'Computer',
+                        skillIndex: 'computer',
+                        flags: 'addSkill'
+                    },
+                    5: { 
+                        name: 'Pilot',
+                        skillIndex: 'pilot',
+                        flags: 'addSkill'
+                        },
+                    6: { 
+                        name: 'Jack-of-all-trades',
+                        skillIndex: 'jot',
+                        flags: 'addSkill'
+                    },
+
+                },
+            },     
             },
 
             /*-------------------------------------------------------------------
@@ -1052,7 +1243,203 @@ Services
                             flags: 'addSkill',  
                 
                         },  
-                },     
+                },   
+                
+                 
+                    
+
+            //further data
+            //
+            //
+            //
+            musterOut: {
+                1: { 
+                    name: 'Low Passage',
+                    flags: 'addBenefit'
+                },
+                2: { 
+                    name: '+1 Intel',
+                    affects: 'Intel',
+                    bonus: 1,
+                    flags: 'bumpStat'
+                },
+                3: { 
+                    name: '+1 Educ',
+                    affects: 'Educ',
+                    bonus: 1,
+                    flags: 'bumpStat'
+                },
+                4:   {
+                    name: 'Gun',
+                    skillIndex: 'guns',
+                    flags: 'addSkill',       
+                },
+                5:  {
+                    name: 'Blade',
+                    skillIndex: 'blades',
+                    flags: 'addSkill',       
+                },
+                6: { 
+                    name: 'Low Passage',
+                    flags: 'addBenefit'
+                },
+                7: { 
+                    name: 'Free Trader',
+                    flags: 'addBenefit'
+                },
+            } , 
+            cashTable: {
+                1: 2000,
+                2: 5000,
+                3: 10000,
+                4: 20000,
+                5: 20000,
+                6: 40000,
+                7: 40000
+            },
+ 
+            skills: {
+                personal: {
+                    1: { 
+                        name: '+1 Strength',
+                        affects: 'Stren',
+                        bonus: 1,
+                        flags: 'bumpStat'
+                    },
+                    2: { 
+                        name: '+1 Dexterity',
+                        affects: 'Dext',
+                        bonus: 1,
+                        flags: 'bumpStat'
+                    },
+                    3: { 
+                        name: '+1 Endurance',
+                        affects: 'Endur',
+                        bonus: 1,
+                        flags: 'bumpStat'
+                    },
+                    4: { 
+                        name: '+1 Strength',
+                        affects: 'Stren',
+                        bonus: 1,
+                        flags: 'bumpStat'
+                    },
+                    5: {
+                        name: 'Blades',
+                        skillIndex: 'blades',
+                        flags: 'addSkill',
+            
+                    },
+                    6: {
+                        name: 'Bribery',
+                        skillIndex: 'bribery',
+                        flags: 'addSkill',
+             
+                    },
+                },
+                service: {
+
+                    1: { 
+                        name: 'Vehicle',
+                        skillIndex: 'vehicles',
+                        flags: 'addSkill'
+                    },
+                    2: { 
+                        name: 'Vacc Suit',
+                        skillIndex: 'vaccsuit',
+                        flags: 'addSkill'
+                    },
+                    3: { 
+                        name: 'Jack-of-all-trades',
+                        skillIndex: 'jot',
+                        flags: 'addSkill'
+                    },
+                    4: { 
+                        name: 'Steward',
+                        skillIndex: 'steward',
+                        flags: 'addSkill'
+                    },
+                    5:  { 
+                        name: 'Electronic',
+                        skillIndex: 'electronic',
+                        flags: 'addSkill'
+                    },
+                    6: {
+                        name: 'Gun',
+                        skillIndex: 'guns',
+                        flags: 'addSkill',           
+                    },
+                },
+                advanced: {
+
+                    1: { 
+                        name: 'Streetwise',
+                        skillIndex: 'streetwise',
+                        flags: 'addSkill'
+                    },
+                    2: { 
+                        name: 'Mechanical',
+                        skillIndex: 'mechanical',
+                        flags: 'addSkill'
+                    },
+                    3: { 
+                        name: 'Electronic',
+                        skillIndex: 'electronic',
+                        flags: 'addSkill'
+                    },
+                    4: { 
+                        name: 'Navigation',
+                        skillIndex: 'navigation',
+                        flags: 'addSkill'
+                    },
+                    5: { 
+                        name: 'Gunnery',
+                        skillIndex: 'gunnery',
+                        flags: 'addSkill'
+                    },
+                    6: { 
+                        name: 'Medical',
+                        skillIndex: 'medical',
+                        flags: 'addSkill'
+                    },
+
+                },
+                advanced2: {
+                    requiredEdu: 8,
+
+                    1: { 
+                        name: 'Medical',
+                        skillIndex: 'medical',
+                        flags: 'addSkill'
+                    },
+                    2: { 
+                        name: 'Navigation',
+                        skillIndex: 'navigation',
+                        flags: 'addSkill'
+                    },
+                    3: { 
+                        name: 'Engineering',
+                        skillIndex: 'engineering',
+                        flags: 'addSkill'
+                    },
+                    4: { 
+                        name: 'Computer',
+                        skillIndex: 'computer',
+                        flags: 'addSkill'
+                    },
+                    5: { 
+                        name: 'Pilot',
+                        skillIndex: 'pilot',
+                        flags: 'addSkill'
+                        },
+                    6: { 
+                        name: 'Administration',
+                        skillIndex: 'administration',
+                        flags: 'addSkill'
+                    },
+
+                },
+            },       
             },
            
 
@@ -1122,7 +1509,200 @@ Services
                     //     flags: 'addSkill',  
             
                     // },  
-            },     
+            },   
+                    
+
+            //further data
+            //
+            //
+            //
+            musterOut: {
+                1: { 
+                    name: 'Low Passage',
+                    flags: 'addBenefit'
+                },
+                2: { 
+                    name: '+1 Intel',
+                    affects: 'Intel',
+                    bonus: 1,
+                    flags: 'bumpStat'
+                },
+                3: { 
+                    name: '+1 Educ',
+                    affects: 'Educ',
+                    bonus: 1,
+                    flags: 'bumpStat'
+                },
+                4:   {
+                    name: 'Gun',
+                    skillIndex: 'guns',
+                    flags: 'addSkill',       
+                },
+                5:  { 
+                    name: 'High Passage',
+                    flags: 'addBenefit'
+                },
+                6: { 
+                    name: 'None',
+                    flags: 'addBenefit'
+                },
+            } , 
+            cashTable: {
+                1: 1000,
+                2: 5000,
+                3: 10000,
+                4: 10000,
+                5: 10000,
+                6: 50000,
+                7: 100000
+            },
+ 
+            skills: {
+                personal: {
+                    1: { 
+                        name: '+1 Strength',
+                        affects: 'Stren',
+                        bonus: 1,
+                        flags: 'bumpStat'
+                    },
+                    2: { 
+                        name: '+1 Dexterity',
+                        affects: 'Dext',
+                        bonus: 1,
+                        flags: 'bumpStat'
+                    },
+                    3: { 
+                        name: '+1 Endurance',
+                        affects: 'Endur',
+                        bonus: 1,
+                        flags: 'bumpStat'
+                    },
+                    4: {
+                        name: 'Blades',
+                        skillIndex: 'blades',
+                        flags: 'addSkill',
+            
+                    },
+                    5: {
+                        name: 'Brawling',
+                        skillIndex: 'brawling',
+                        flags: 'addSkill',
+            
+                    },
+                    6: { 
+                        name: '-1 Social',
+                        affects: 'Soc',
+                        bonus: -1,
+                        flags: 'bumpStat'
+                    },
+                },
+                service: {
+
+                    1: { 
+                        name: 'Vehicle',
+                        skillIndex: 'vehicles',
+                        flags: 'addSkill'
+                    },
+                    2: { 
+                        name: 'Gambling',
+                        skillIndex: 'gambling',
+                        flags: 'addSkill'
+                    },
+                    3: {
+                        name: 'Brawling',
+                        skillIndex: 'brawling',
+                        flags: 'addSkill',
+            
+                    },
+                    4: {
+                        name: 'Bribery',
+                        skillIndex: 'bribery',
+                        flags: 'addSkill',
+             
+                    },
+                    5:  {
+                        name: 'Blade',
+                        skillIndex: 'blades',
+                        flags: 'addSkill',
+            
+                    },
+                    6: {
+                        name: 'Gun',
+                        skillIndex: 'guns',
+                        flags: 'addSkill',           
+                    },
+                },
+                advanced: {
+
+                    1: { 
+                        name: 'Streetwise',
+                        skillIndex: 'streetwise',
+                        flags: 'addSkill'
+                    },
+                    2: { 
+                        name: 'Mechanical',
+                        skillIndex: 'mechanical',
+                        flags: 'addSkill'
+                    },
+                    3: { 
+                        name: 'Electronic',
+                        skillIndex: 'electronic',
+                        flags: 'addSkill'
+                    },
+                    4: { 
+                        name: 'Gambling',
+                        skillIndex: 'gambling',
+                        flags: 'addSkill'
+                    },
+                    5: {
+                        name: 'Brawling',
+                        skillIndex: 'brawling',
+                        flags: 'addSkill',
+            
+                    },
+                    6: { 
+                        name: 'Forgery',
+                        skillIndex: 'forgery',
+                        flags: 'addSkill'
+                    },
+
+                },
+                advanced2: {
+                    requiredEdu: 8,
+
+                    1: { 
+                        name: 'Medical',
+                        skillIndex: 'medical',
+                        flags: 'addSkill'
+                    },
+                    2: { 
+                        name: 'Forgery',
+                        skillIndex: 'forgery',
+                        flags: 'addSkill'
+                    },
+                    3: { 
+                        name: 'Electronic',
+                        skillIndex: 'electronic',
+                        flags: 'addSkill'
+                    },
+                    4: { 
+                        name: 'Computer',
+                        skillIndex: 'computer',
+                        flags: 'addSkill'
+                    },
+                    5: { 
+                        name: 'Streetwise',
+                        skillIndex: 'streetwise',
+                        flags: 'addSkill'
+                    },
+                    6: { 
+                        name: 'Jack-of-all-trades',
+                        skillIndex: 'jot',
+                        flags: 'addSkill'
+                    },
+
+                },
+            },    
             }, 
                
 
@@ -1430,6 +2010,24 @@ skillIndex: {
 
 // --------------------------------------------------------------------
 
+bribery: {
+    name: "Bribery",
+    cascadeParent: false,
+    cascadeGroup: false,
+    cascadeSpecific: false,
+}, 
+streetwise: {
+    name: "Streetwise",
+    cascadeParent: false,
+    cascadeGroup: false,
+    cascadeSpecific: false,
+}, 
+steward: {
+    name: "Steward",
+    cascadeParent: false,
+    cascadeGroup: false,
+    cascadeSpecific: false,
+}, 
 shipsboat: {
     name: "Ship's Boat",
     cascadeParent: false,
@@ -1444,6 +2042,12 @@ vaccsuit:{
 },
 forwardobs:{
     name: 'Forward Observer',
+    cascadeParent: false,
+    cascadeGroup: false,
+    cascadeSpecific: false,
+},
+forgery:{
+    name: 'Forgery',
     cascadeParent: false,
     cascadeGroup: false,
     cascadeSpecific: false,
