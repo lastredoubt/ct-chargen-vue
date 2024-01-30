@@ -109,35 +109,24 @@
 
 
 
-<div class="doneWithSkills" v-if="haveCascadeList">
-    <p>Cascade resolution Step to be added here</p>
-    
+   
     <div v-if="haveCascadeList">
-        <p>Have cascade list based in genCascade() and   >>>  cascadeList.length != 0 ? true : false </p>
-         <p>Current first cascade entry : {{ cascadeList.length != 0 ? cascadeList[0].skill : 'none'  }}</p>   
 
+        <h3>DON'T FORGET TO CLEAR THE CASCADE STATUS AND POP THE LIST ITEM , as well as reset selectedCascade to default</h3>
+   <!--       <th v-for="(service, index) in careerStart" :key="genServicekey(service, 'tableHeader')" >{{service.displayName}}</th>   -->
 
-   <!--       <th v-for="(service, index) in careerStart" :key="genServicekey(service, 'tableHeader')" >{{service.displayName}}</th>  
-
-id: creationStatus.idCounter , skill: currentSkillIndex
-
-
--->
-
-   <div class="cascadeTableSelectDrop">
+         <div class="cascadeTableSelectDrop">
             <label> Choose a cascade skill for {{ tables.skillIndex[cascadeList[0].skill].name }}</label>
             <select name="cascadeTableChoice"  id="cascadeTableChoice"  v-model="selectedCascade">
-                <option v-for="  (skillEntry, index) in genCascade(cascadeList[0])"  :key="index+skill" :value="skillEntry">{{tables.skillIndex[skillEntry]}}</option>
+                <option value="default">--select a specific skill--</option>
+                <option v-for="(skillEntry, index) in tables.skillIndex[cascadeList[0].skill].cascadeSID"  :key="index+'skill'" :value="skillEntry">{{tables.skillIndex[skillEntry].name}}</option>
             </select>
         </div>
-        <div class="pickCascadeSkill">
-            <button @click.prevent="chooseCascade(selectedCascade)">Let's See what you learn!</button>
+        <div class="pickCascadeSkill" v-if="selectedCascade != 'default'">
+            <button @click.prevent="chooseCascade(selectedCascade)">Select the specialty!</button>
         </div>
 
     </div>
-
-
-</div>
 
 
 
@@ -237,15 +226,15 @@ import{rollD6, roll2D6} from '../../../../assets/General/RollDice';
 // ----------------------------------------*/
 const myService = reactive(tables.services[character.pcData.career.currentService])
 
-let selectedCascade = ref('')
+let selectedCascade = ref('default')
 let selectedTable = ref("personal")
 let learnedNewSkill = ref('')
 
 // used to generate a list of skills that need cascade resolution
 let cascadeList = reactive([])
 
-let currentCascadeCoreID = ref('')
-let currentCascadeOptions = reactive([])
+                    // let currentCascadeCoreID = ref('')
+                    // let currentCascadeOptions = reactive([])
 
 
 
@@ -418,42 +407,42 @@ const skillsNeedRolling = computed(() => {
 
 
 
- /*-----------------------------------------------
+                            //  /*-----------------------------------------------
 
- 
-         Start the cascade skill array generation loop
-
-
- --------------------------------------------------*/
-
-// check if there are skills in the queue
-const genCascade = (nowIndex) => {
-    const specList = [ {cascadeOption: false, cascadeRoot:nowIndex, cascadeName: tables.skillIndex[nowIndex].name }]
-
-    if (tables.skillIndex[nowIndex].cascadeSpecific) {
-        tables.skillIndex[nowIndex].cascadeSID.forEach(skillID => {
-            const tableObj = { cascadeOption: true, skillID: skillID , skillName: tables.skillIndex[skillID].name}
-            specList.push(tableObj)
-        });
-    }   
+                            
+                            //          Start the cascade skill array generation loop
 
 
-    if (tables.skillIndex[nowIndex].cascadeGroup) {
+                            //  --------------------------------------------------*/
+
+                            // // check if there are skills in the queue
+                            // const genCascade = (nowIndex) => {
+                            //     const specList = { cascadeRoot:nowIndex, cascadeName: tables.skillIndex[nowIndex].name , cascadeList: []}
+
+                            //     if (tables.skillIndex[nowIndex].cascadeSpecific) {
+                            //         tables.skillIndex[nowIndex].cascadeSID.forEach(skillID => {
+                            //             const tableObj = { cascadeOption: true, skillID: skillID , skillName: tables.skillIndex[skillID].name}
+                            //             specList.cascadeList.push(tableObj)
+                            //         });
+                            //     }   
 
 
-        tables.skillIndex[nowIndex].cascadeGID.forEach(groupID => {
-            // assumes that cascade groups in a cascade skill do not have further subgroups
-            tables.skillIndex[groupID].cascadeSID.forEach(skillID => {
-                const tableObj = { cascadeOption: true, skillID: skillID , skillName: tables.skillIndex[skillID].name}
-                specList.push(tableObj)
-            });
-        
-        });
-    }
+                            //     if (tables.skillIndex[nowIndex].cascadeGroup) {
 
-    return specList
 
-}
+                            //         tables.skillIndex[nowIndex].cascadeGID.forEach(groupID => {
+                            //             // assumes that cascade groups in a cascade skill do not have further subgroups
+                            //             tables.skillIndex[groupID].cascadeSID.forEach(skillID => {
+                            //                 const tableObj = { cascadeOption: true, skillID: skillID , skillName: tables.skillIndex[skillID].name}
+                            //                 specList.cascadeList.push(tableObj)
+                            //             });
+                                    
+                            //         });
+                            //     }
+
+                            //     return specList
+
+                            // }
 
 
 

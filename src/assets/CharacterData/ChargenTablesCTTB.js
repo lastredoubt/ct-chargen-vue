@@ -2168,7 +2168,7 @@ vehicles:{
     cascadeParent: false,
     cascadeGroup: true,
     cascadeSpecific: true,
-    cascadeSID: [],
+    cascadeSID: ['propfw','jetfw','helicopter','largewater','smallwater','hovercraft','submersible','airraft','wheeledvehicle','trackedvehicle'],
     cascadeGID: ['aircraft','watercraft'],
 
 },
@@ -2189,7 +2189,7 @@ aircraft:{
     parentGroup: 'vehicles',
     cascadeGroup: false,
     cascadeSpecific: true,
-    cascadeSID: [],
+    cascadeSID: ['propfw','jetfw','helicopter'],
 
 },
 watercraft:{
@@ -2198,7 +2198,7 @@ watercraft:{
     parentGroup: 'vehicles',
     cascadeGroup: false,
     cascadeSpecific: true,
-    cascadeSID: [],
+    cascadeSID: ['largewater','smallwater','hovercraft','submersible'],
 
 },
 
