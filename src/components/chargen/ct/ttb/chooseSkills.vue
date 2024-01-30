@@ -129,8 +129,6 @@
     </div>
 
 
-
-
 <div class="doneWithSkills" v-if="!(skillsNeedRolling)">
     <p>Next Step to be added here</p>
 </div>
@@ -443,6 +441,70 @@ const skillsNeedRolling = computed(() => {
                             //     return specList
 
                             // }
+
+
+
+
+
+
+
+ /*-----------------------------------------------
+
+ 
+    Get the submitted cascade list, add it to the character
+     DON'T FORGET TO CLEAR THE CASCADE STATUS (should auto-clear when cascade list cleared)
+      AND SHIFT THE LIST ITEM zero, https://www.w3schools.com/jsref/jsref_shift.asp
+       as well as reset selectedCascade to default
+
+
+ --------------------------------------------------*/
+
+// check if there are skills in the queue
+const chooseCascade = (selectedCascade) => {
+    //push cascade to skill Queue
+
+    //gah - we already have the selected skill index
+    // we need to create a skillpackage similar to below for :learnedSkill
+    // fortunately for cascades there's no bumpstat issues
+/*
+                     {
+                        name: 'Blades',
+                        skillIndex: 'blades',
+                        flags: 'addSkill',
+            
+                    },
+                    */
+                    console.log('=======>cascade to add')
+                    console.log(' >> skillIndex: ' + selectedCascade)
+                    console.log('>> skill name: '  + tables.skillIndex[selectedCascade].name)
+
+
+
+    const learnedSkill = {
+        skillIndex: selectedCascade ,
+        name: tables.skillIndex[selectedCascade].name ,
+        flags: 'addSkill'
+    }
+
+    selectedCascade='default'
+
+    incrementCounterID()
+    creationStatus.skillQ.push(createSkillRef(learnedSkill, creationStatus.idCounter) )
+
+        //  console.log ('@@ rolled a ' + rolledValue)
+        console.log('You gain ' +  learnedSkill.name )               
+        
+        // creationStatus.incrementCounterID()
+    skillAssignLoop()
+
+                       
+
+    //remove first item in cascade list to clear it from list
+    cascadeList.shift()
+
+    //reset selected cascade for new lists in the future
+
+}
 
 
 
