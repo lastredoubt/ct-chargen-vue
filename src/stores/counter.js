@@ -27,11 +27,22 @@ export const useCounterStore = defineStore('counter', () => {
 
   })
 
-  const idCounter = ref(1)
+  let idCounter = ref(1)
+
+  // Called to clear the skill queue after we apply known pending skills
+  function clearSkillQ() {
+    skillQ.splice(0,skillQ.length);
+  }
+
+  function incrementCounterID() {
+    console.log( '>>>>  Increment counter ID <<<<<<<  ')
+    this.idCounter += 1
+  }
+
 
 
 //currentTermLog
 
-  return { currentScreen, currentStep, careerLog, skillsToChoose, skillQ, stepNamesMap, idCounter }
+  return { incrementCounterID, clearSkillQ, currentScreen, currentStep, careerLog, skillsToChoose, skillQ, stepNamesMap, idCounter }
 })
 

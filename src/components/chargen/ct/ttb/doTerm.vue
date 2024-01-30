@@ -114,6 +114,7 @@ const numOrder = NumToWords.ord
 import { useCounterStore } from '@/stores/counter'
 const creationStatus = useCounterStore()
 const {skillQ, idCounter } = storeToRefs(creationStatus)
+const {incrementCounterID} = creationStatus
 
 
 /*-------------------------------------
@@ -247,23 +248,6 @@ onActivated( () => {
 
 
 
-
- /*-------------------------------------
-
- 
-        Increment the counter for skill IDs
-
-
- ----------------------------------------*/
-
-// const genKey = (id, role) => {
-
- const incrementCounterID =  () => {
-
-    console.log('idCounter')
-    console.log(creationStatus.idCounter)
-    creationStatus.idCounter += 1
- }
 
 
 
@@ -630,6 +614,7 @@ TODO LIST
                 console.log('added skill to  the career log')
 
                 // increment the ID counter so we can give each skill a unique ID
+                //incrementCounterID()
                 incrementCounterID()
                 //push an object including the idCounter and the skill object
                 creationStatus.skillQ.push(createSkillRef(skillObject, creationStatus.idCounter) )

@@ -53,6 +53,7 @@
 
       <div id="resetButton">
         <h2>Add button here for reset/start over</h2>
+        <h2>handle character death in DoTerm</h2>
       </div>
 
      <div class="careerLog">
