@@ -554,7 +554,7 @@ Services
                         flags: 'addSkill'
                     },
                     3: { 
-                        me: 'Blades',
+                        name: 'Blades',
                         skillIndex: 'blades',
                         flags: 'addSkill'
                     },
@@ -1754,7 +1754,17 @@ Services
     retirementPay: {
         minterms: 5,
         base: 4000,
-        perAddTerm: 6000,
+        perAddTerm: 2000,
+        5: 4000,
+        6: 6000,
+        7: 8000,
+        8: 10000,
+        9: 12000,
+        10: 14000,
+        11: 16000,
+        12: 18000,
+        13: 20000,
+
     },
 
 
@@ -1764,22 +1774,24 @@ Services
 
 
     aging: {
+        agingThreshold: 4,
+        agingIntThreshold: 12,
         4: {
             age: 34,
             str: {
                 affects: 'Stren',
                 roll: 8,
-                effect: 1,
+                effect: -1,
             },
             dex: {
                 affects: 'Dext',
                 roll: 7,
-                effect: 1,
+                effect: -1,
             },
             end: {
                 affects: 'Endur',
                 roll: 8,
-                effect: 1,
+                effect: -1,
             },
             
         },
@@ -1788,17 +1800,17 @@ Services
             str: {
                 affects: 'Stren',
                 roll: 8,
-                effect: 1,
+                effect: -1,
             },
             dex: {
                 affects: 'Dext',
                 roll: 7,
-                effect: 1,
+                effect: -1,
             },
             end: {
                 affects: 'Endur',
                 roll: 8,
-                effect: 1,
+                effect: -1,
             },
             
         },
@@ -1807,17 +1819,17 @@ Services
             str: {
                 affects: 'Stren',
                 roll: 8,
-                effect: 1,
+                effect: -1,
             },
             dex: {
                 affects: 'Dext',
                 roll: 7,
-                effect: 1,
+                effect: -1,
             },
             end: {
                 affects: 'Endur',
                 roll: 8,
-                effect: 1,
+                effect: -1,
             },
             
         },
@@ -1826,17 +1838,17 @@ Services
             str: {
                 affects: 'Stren',
                 roll: 8,
-                effect: 1,
+                effect: -1,
             },
             dex: {
                 affects: 'Dext',
                 roll: 7,
-                effect: 1,
+                effect: -1,
             },
             end: {
                 affects: 'Endur',
                 roll: 8,
-                effect: 1,
+                effect: -1,
             },
             
         },
@@ -1845,17 +1857,17 @@ Services
             str: {
                 affects: 'Stren',
                 roll: 9,
-                effect: 1,
+                effect: -1,
             },
             dex: {
                 affects: 'Dext',
                 roll: 8,
-                effect: 1,
+                effect: -1,
             },
             end: {
                 affects: 'Endur',
                 roll: 9,
-                effect: 1,
+                effect: -1,
             },
             
         },
@@ -1864,17 +1876,17 @@ Services
             str: {
                 affects: 'Stren',
                 roll: 9,
-                effect: 1,
+                effect: -1,
             },
             dex: {
                 affects: 'Dext',
                 roll: 8,
-                effect: 1,
+                effect: -1,
             },
             end: {
                 affects: 'Endur',
                 roll: 9,
-                effect: 1,
+                effect: -1,
             },
             
         },
@@ -1883,17 +1895,17 @@ Services
             str: {
                 affects: 'Stren',
                 roll: 9,
-                effect: 1,
+                effect: -1,
             },
             dex: {
                 affects: 'Dext',
                 roll: 8,
-                effect: 1,
+                effect: -1,
             },
             end: {
                 affects: 'Endur',
                 roll: 9,
-                effect: 1,
+                effect: -1,
             },
             
         },
@@ -1902,17 +1914,17 @@ Services
             str: {
                 affects: 'Stren',
                 roll: 9,
-                effect: 1,
+                effect: -1,
             },
             dex: {
                 affects: 'Dext',
                 roll: 8,
-                effect: 1,
+                effect: -1,
             },
             end: {
                 affects: 'Endur',
                 roll: 9,
-                effect: 1,
+                effect: -1,
             },
             
         },       
@@ -1921,22 +1933,22 @@ Services
             str: {
                 affects: 'Stren',
                 roll: 9,
-                effect: 2,
+                effect: -2,
             },
             dex: {
                 affects: 'Dext',
                 roll: 9,
-                effect: 2,
+                effect: -2,
             },
             end: {
                 affects: 'Endur',
                 roll: 9,
-                effect: 2,
+                effect: -2,
             },
             int: {
                 affects: 'Intel',
                 roll: 9,
-                effect: 1,
+                effect: -1,
             },
             
         },      
@@ -1945,22 +1957,22 @@ Services
             str: {
                 affects: 'Stren',
                 roll: 9,
-                effect: 2,
+                effect: -2,
             },
             dex: {
                 affects: 'Dext',
                 roll: 9,
-                effect: 2,
+                effect: -2,
             },
             end: {
                 affects: 'Endur',
                 roll: 9,
-                effect: 2,
+                effect: -2,
             },
             int: {
                 affects: 'Intel',
                 roll: 9,
-                effect: 1,
+                effect: -1,
             },
             
         },      
@@ -1969,22 +1981,22 @@ Services
             str: {
                 affects: 'Stren',
                 roll: 9,
-                effect: 2,
+                effect: -2,
             },
             dex: {
                 affects: 'Dext',
                 roll: 9,
-                effect: 2,
+                effect: -2,
             },
             end: {
                 affects: 'Endur',
                 roll: 9,
-                effect: 2,
+                effect: -2,
             },
             int: {
                 affects: 'Intel',
                 roll: 9,
-                effect: 1,
+                effect: -1,
             },
             
         },
@@ -2551,21 +2563,21 @@ watercraft:{
     airraft:{
         name: 'Grav Vehicle (Air/Raft)',
         cascadeParent: true,
-        parentGroup: 'vehicle',
+        parentGroup: 'vehicles',
         cascadeGroup: false,
         cascadeSpecific: false,
     },
     wheeledvehicle:{
         name: 'Wheeled vehicle',
         cascadeParent: true,
-        parentGroup: 'vehicle',
+        parentGroup: 'vehicles',
         cascadeGroup: false,
         cascadeSpecific: false,
     },
     trackedvehicle:{
         name: 'Tracked vehicle',
         cascadeParent: true,
-        parentGroup: 'vehicle',
+        parentGroup: 'vehicles',
         cascadeGroup: false,
         cascadeSpecific: false,
     },
@@ -2601,7 +2613,6 @@ watercraft:{
     // */
     // generateUPP() {
 
-    //     let upp = this.characteristics.strength.pHexValue + this.characteristics.dexterity.pHexValue + this.characteristics.endurance.pHexValue + this.characteristics.intelligence.pHexValue + this.characteristics.education.pHexValue + this.characteristics.social.pHexValue;
 
     //     return upp;
     // },

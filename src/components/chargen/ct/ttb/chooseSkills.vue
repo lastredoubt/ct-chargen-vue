@@ -109,28 +109,126 @@
 
 
 
-   
-    <div v-if="haveCascadeList">
 
-        <h3>DON'T FORGET TO CLEAR THE CASCADE STATUS AND POP THE LIST ITEM , as well as reset selectedCascade to default</h3>
+<!--
+
+
+
+-->
+    
+
+    <div class="cascadeChooseBlades" v-if="(haveCascadeList) && (cascadeList[0].skill == 'blades') ">
    <!--       <th v-for="(service, index) in careerStart" :key="genServicekey(service, 'tableHeader')" >{{service.displayName}}</th>   -->
 
-         <div class="cascadeTableSelectDrop">
+        <div class="bladesTable">
+
+            <table>
+                <tr>
+                    <th class="firstCol">Cascade Skill</th>
+                    <th>Minimum Strength</th>
+                    <th>Bonus Strength</th>
+                    <th>Wounds</th>
+                </tr>
+                <tr v-for="(tableSkillId, index) in tables.skillIndex.blades.cascadeSID">
+                    <td class="firstCol">{{tables.skillIndex[tableSkillId].name}}</td>
+                    <td>{{ tables.skillIndex[tableSkillId].minusDM }}</td>
+                    <td>{{ tables.skillIndex[tableSkillId].plusDM }}</td>
+                    <td>{{ tables.skillIndex[tableSkillId].wounds }}</td>
+                </tr>
+            </table>
+        </div>
+
+         <div class="cascadeBladesSelectDrop">
             <label> Choose a cascade skill for {{ tables.skillIndex[cascadeList[0].skill].name }}</label>
-            <select name="cascadeTableChoice"  id="cascadeTableChoice"  v-model="selectedCascade">
-                <option value="default">--select a specific skill--</option>
+            <select name="cascadeBladesChoice"  id="cascadeBladesChoice"  v-model="selectedBlade">
+                <option value="default" selected>--select a specific skill--</option>
+                <option v-for="(skillEntry, index) in tables.skillIndex[cascadeList[0].skill].cascadeSID"  :key="index+'skill'" :value="skillEntry">{{tables.skillIndex[skillEntry].name}} </option>
+            </select>
+        </div>
+        <div class="pickCascadeSkill" v-if="selectedBlade != 'default'">
+            <button @click.prevent="chooseCascade(selectedBlade)">Select your blade skill!</button>
+        </div>
+
+    </div>
+
+<!--
+
+        CASCADE THE GUNS
+
+-->
+    
+
+
+<div class="cascadeChooseGuns" v-if="(haveCascadeList) && (cascadeList[0].skill == 'guns') ">
+   <!--       <th v-for="(service, index) in careerStart" :key="genServicekey(service, 'tableHeader')" >{{service.displayName}}</th>   -->
+
+
+   <div class="gunsTable">
+
+<table>
+    <tr>
+        <th class="firstCol">Cascade Skill</th>
+        <th>Minimum Dex</th>
+        <th>Bonus Dex</th>
+        <th>Wounds</th>
+    </tr>
+    <tr v-for="(tableSkillId, index) in tables.skillIndex.guns.cascadeSID">
+        <td class="firstCol">{{tables.skillIndex[tableSkillId].name}}</td>
+        <td>{{ tables.skillIndex[tableSkillId].minusDM }}</td>
+        <td>{{ tables.skillIndex[tableSkillId].plusDM }}</td>
+        <td>{{ tables.skillIndex[tableSkillId].wounds }}</td>
+    </tr>
+</table>
+</div>
+
+<div class="cascadeGunsSelectDrop">
+            <label> Choose a cascade skill for {{ tables.skillIndex[cascadeList[0].skill].name }}</label>
+            <select name="cascadeGunsChoice"  id="cascadeGunsChoice"  v-model="selectedGun">
+                <option value="default" selected>--select a specific skill--</option>
                 <option v-for="(skillEntry, index) in tables.skillIndex[cascadeList[0].skill].cascadeSID"  :key="index+'skill'" :value="skillEntry">{{tables.skillIndex[skillEntry].name}}</option>
             </select>
         </div>
-        <div class="pickCascadeSkill" v-if="selectedCascade != 'default'">
-            <button @click.prevent="chooseCascade(selectedCascade)">Select the specialty!</button>
+        <div class="pickCascadeSkill" v-if="selectedGun != 'default'">
+            <button @click.prevent="chooseCascade(selectedGun)">Select your gun skill!</button>
         </div>
 
     </div>
 
 
+<div class="cascadeChooseVehicles" v-if="(haveCascadeList) && (cascadeList[0].skill == 'vehicles') ">
+         <div class="cascadeVehSelectDrop">
+            <label> Choose a cascade skill for {{ tables.skillIndex[cascadeList[0].skill].name }}</label>
+            <select name="cascadeVehChoice"  id="cascadeVehChoice"  v-model="selectedVehicle">
+                <option value="default" selected>--select a specific skill--</option>
+                <option v-for="(skillEntry, index) in tables.skillIndex[cascadeList[0].skill].cascadeSID"  :key="index+'skill'" :value="skillEntry">{{tables.skillIndex[skillEntry].name}}</option>
+            </select>
+        </div>
+        <div class="pickCascadeSkill" v-if="selectedVehicle != 'default'">
+            <button @click.prevent="chooseCascade(selectedVehicle)">Select your vehicle skill!</button>
+        </div>
+
+    </div>
+
+
+
+
+
 <div class="doneWithSkills" v-if="!(skillsNeedRolling)">
-    <p>Next Step to be added here</p>
+    <!--     <button @click.prevent="endTermAndReUp">End Term</button>    -->
+    <!--    character.pcData.career.terms   -->
+    <h2> The {{  displayTermName }} term is complete </h2>
+
+    <div class="closeOutTerm">
+        <button @click.prevent="closeTheTerm">Close out the term/re-enlistment</button>
+    </div>
+
+
+    <!--  
+    <p>Renlistment roll target for {{ character.pcData.career.currentServiceName }}: {{ tables.services[character.pcData.career.currentService].reenlist.roll }} </p>
+    <p> Remember the roll is mandatory, accepting is NOT unless a 12+</p>
+    <p> So we need to factor in aging and reenlistment rolls</p>
+
+    -->
 </div>
 
 <div>
@@ -194,7 +292,7 @@ import { reactive, provide, ref, computed, onMounted } from 'vue';
 import { useCharacterStore } from '@/stores/character2'
 // creates the stub character by assiciating with the datastore
 const character = useCharacterStore()
-
+const { bumpTheStat,getPHex } = character
 
 /*-------------------------------------
         import global status datastore
@@ -215,8 +313,9 @@ const tables = reactive(cttbCharGenTables)
 /*-------------------------------------
         import tools
 ----------------------------------------*/
-import{rollD6, roll2D6} from '../../../../assets/General/RollDice';
-
+import{rollD6, roll2D6} from '../../../../assets/General/RollDice'
+import{NumToWords} from '../../../../assets/General/NumToWords'
+const numOrder = NumToWords.ord
 
 
 // /*-------------------------------------
@@ -224,7 +323,9 @@ import{rollD6, roll2D6} from '../../../../assets/General/RollDice';
 // ----------------------------------------*/
 const myService = reactive(tables.services[character.pcData.career.currentService])
 
-let selectedCascade = ref('default')
+let selectedBlade = ref('default')
+let selectedGun = ref('default')
+let selectedVehicle = ref('default')
 let selectedTable = ref("personal")
 let learnedNewSkill = ref('')
 
@@ -364,10 +465,76 @@ let cascadeList = reactive([])
  /*-----------------------------------------------
 
  
+         Close the term out
+
+
+ --------------------------------------------------*/
+
+
+
+ const closeTheTerm = () => { 
+
+// console.log('Accept stats ');
+
+creationStatus.careerLog.push('We\'ve assigned skills for term ' + character.pcData.career.terms + ', time to check reenlistment')
+
+
+creationStatus.currentStep = creationStatus.stepNamesMap.endOfTerm
+
+}
+
+
+
+
+
+
+
+
+ /*-----------------------------------------------
+
+ 
          Computed
 
 
  --------------------------------------------------*/
+
+
+
+
+//  const strP = computed( () => {
+//     const pHex = getPHex(charStats.str)
+//     return pHex
+// })
+// const dexP = computed( () => {
+//     const pHex = getPHex(charStats.dex)
+//     return pHex
+// })
+// const endP = computed( () => {
+//     const pHex = getPHex(charStats.end)
+//     return pHex
+// })
+// const intP = computed( () => {
+//     const pHex = getPHex(charStats.int)
+//     return pHex
+// })
+// const eduP = computed( () => {
+//     const pHex = getPHex(charStats.edu)
+//     return pHex
+// })
+// const socP = computed( () => {
+//     const pHex = getPHex(charStats.soc)
+//     return pHex
+// })
+// const upp = computed( () => {
+//     const tempUPP =  strP.value + dexP.value + endP.value + intP.value + eduP.value + socP.value
+//     return tempUPP
+// })
+
+
+
+
+
+
 
 
  const haveCascadeList = computed(() => {
@@ -398,6 +565,38 @@ const skillsNeedRolling = computed(() => {
     return needSkills
 
 })
+
+
+
+const displayTermName = computed(() => {
+
+    const currentEnglish = numOrder[character.pcData.career.terms] 
+
+    return currentEnglish
+
+})
+
+
+// //eligibleForPension">Able to retire with an annual pension of {{ pensionlookup }} </p>
+// //  character.pcData.career.terms
+// const eligibleForPension = computed(() => {
+
+//     const minTerms = tables.retirementPay.minterms
+//     const hadTerms = character.pcData.career.terms
+//     console.log('Minterms:' + minTerms + ', hadTerms:' + hadTerms)
+//     const isEligible = (hadTerms >= minTerms)?true : false 
+
+//     return isEligible
+
+// })
+
+// const pensionlookup = computed(() => {
+//     const hadTerms = character.pcData.career.terms
+//     const annualPension = tables.retirementPay[hadTerms]
+
+//     return annualPension
+
+// })
 
 
 
@@ -460,7 +659,7 @@ const skillsNeedRolling = computed(() => {
  --------------------------------------------------*/
 
 // check if there are skills in the queue
-const chooseCascade = (selectedCascade) => {
+const chooseCascade = (pickedCascade) => {
     //push cascade to skill Queue
 
     //gah - we already have the selected skill index
@@ -475,18 +674,17 @@ const chooseCascade = (selectedCascade) => {
                     },
                     */
                     console.log('=======>cascade to add')
-                    console.log(' >> skillIndex: ' + selectedCascade)
-                    console.log('>> skill name: '  + tables.skillIndex[selectedCascade].name)
+                    console.log(' >> skillIndex: ' + pickedCascade)
+                    console.log('>> skill name: '  + tables.skillIndex[pickedCascade].name)
 
-
+    // selectedCascade = 'default'
 
     const learnedSkill = {
-        skillIndex: selectedCascade ,
-        name: tables.skillIndex[selectedCascade].name ,
+        skillIndex: pickedCascade ,
+        name: tables.skillIndex[pickedCascade].name ,
         flags: 'addSkill'
     }
 
-    selectedCascade='default'
 
     incrementCounterID()
     creationStatus.skillQ.push(createSkillRef(learnedSkill, creationStatus.idCounter) )
@@ -502,9 +700,66 @@ const chooseCascade = (selectedCascade) => {
     //remove first item in cascade list to clear it from list
     cascadeList.shift()
 
+
     //reset selected cascade for new lists in the future
 
 }
+
+
+//fluffText(tables.skillIndex[skillEntry].parentGroup
+
+
+ /*-----------------------------------------------
+
+ 
+         Start the skill Queue assignmentloop
+
+
+ --------------------------------------------------*/
+
+// check if there are skills in the queue
+
+
+// const fluffText = (chosenEntry) => {
+//     // check parentGroup
+//     // handle blades, guns, or vehicles or aircraft or watercraft
+//     // only care about guns and blades for now
+//     // show Str (blades) or Dex (guns) and high and low DMs else ''
+
+//     let returnString = ''
+
+//     console.log('>FLUFF: chosenEntry , ' + chosenEntry.name + ' and parentGroup: ' + chosenEntry.parentGroup )
+//     console.log(chosenEntry)
+
+//     const parent = chosenEntry.parentGroup
+
+//     console.log('parentGroup '+ chosenEntry.parentGroup)
+
+
+//     if ((parent == 'guns') || (parent == 'blades') ) {
+
+//         console.log('>>>FLUFF: chosen entry again: ' + chosenEntry.parentGroup )
+//          console.log(chosenEntry)
+
+
+
+//         const minusDM = chosenEntry.minusDM
+//         const plusDM = chosenEntry.plusDM
+//         const wounds = chosenEntry.wounds
+//         // only two options assumed, so if not one....
+//         const dmType = parent == 'guns' ?  'Dext' : 'Stren'
+
+//         returnString = '[ Wounds: ' + wounds +', Penalty: ' + dmType + '<' + minusDM + ', Bonus: ' + dmType + ' ' + plusDM + ' ]'
+
+//     } 
+
+//     return returnString
+    
+
+// }
+
+
+
 
 
 
@@ -526,6 +781,46 @@ const skillAssignLoop = () => {
         console.log(' Loop skills')
 
         for (const singleSkill of creationStatus.skillQ) {
+
+            if (singleSkill.skill.flags == 'bumpStat') {
+
+                //determine which stat
+                const statBumped = singleSkill.skill.affects
+                //determine by how much
+                const statShift = singleSkill.skill.bonus
+
+                // alert( 'Affects ' + statBumped + ', adds: ' + statShift)
+
+                //bump the stat
+                bumpTheStat(statBumped,statShift)
+                creationStatus.careerLog.push( statBumped + ' changed by ' + statShift)
+
+                //update the pseudohex as well (above)
+            
+                //
+                //
+                //
+                // character.pcData.characteristics.strength.value = charStats.str
+                // character.pcData.characteristics.strength.pHexValue = strP
+
+
+
+
+                // display the updates on the screen 
+
+            } else {
+
+                // it's not a stat bump
+
+/*------------------------------------------------------------------->
+
+PENDING PENDING
+
+DONT FORGET TO PUT NEW SKILLS INTO THE LOG, AND STAT BUMPS!
+
+------------------------------------------------------------------>*/
+
+
 
             let currentSkillIndex = singleSkill.skill.skillIndex
             let currentSkillname = singleSkill.skill.name
@@ -574,6 +869,10 @@ const skillAssignLoop = () => {
                 const tempObject = { id: creationStatus.idCounter , skill: currentSkillIndex}
                 cascadeList.push(tempObject )
 
+                //TEST TEST TEST
+                // selectedCascade='default'
+
+
                 // we also need to clear that specific entry??  
                 // No, we'll finish out the loop, adding skills to cascade to resolve 
                 // separately, and then callback to skillAssignLoop()
@@ -594,6 +893,8 @@ const skillAssignLoop = () => {
                         // console.log('currentSkillIndex (in if): ' + currentSkillIndex)
 
                         character.pcData.skills[currentSkillIndex] = tempSkill
+                        creationStatus.careerLog.push( 'Learned ' + currentSkillname)
+
                         // console.log('tempSkill: ')
                         // console.log( tempSkill)
                         // console.log('character.pcData.skills: ')
@@ -611,10 +912,22 @@ const skillAssignLoop = () => {
 
                     } else {
                         character.pcData.skills[currentSkillIndex].level += 1
+                        creationStatus.careerLog.push( 'Improved ' + currentSkillname)
                     }
                     
             //close out non-cascade case
             }
+
+
+// ===============end of skill option ELSE
+
+            }
+
+
+
+
+
+
 
 
             // still inside the FOR loop here
@@ -622,10 +935,6 @@ const skillAssignLoop = () => {
 
         console.log('About to clear skill Q')
         clearSkillQ()
-
-
-
-
 
 
         // const currentSkillQueue = pop(creationStatus.skillQ)
@@ -648,6 +957,21 @@ const skillAssignLoop = () => {
  ----------------------------------------*/
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 const rollSkillLoop = (selectedTable) => {

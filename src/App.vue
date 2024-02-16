@@ -51,10 +51,11 @@
       </div>
 
 
-      <div id="resetButton">
-        <h2>Add button here for reset/start over</h2>
-        <h2>handle character death in DoTerm</h2>
-      </div>
+      <div class="resetButton" >
+        <button @click.prevent="reloadPage">Start Over</button>
+
+    </div>
+
 
      <div class="careerLog">
       <hr>
@@ -88,12 +89,12 @@
       </tr>
 
       <tr> <!-- Stats Row -->
-        <td> <div class="celllabel">{{ pcData.characteristics.strength.shortName }}:</div><p> {{pcData.characteristics.strength.pHexValue}} / ({{pcData.characteristics.strength.value}})</p></td>
-        <td> <div class="celllabel">{{ pcData.characteristics.dexterity.shortName }}:</div><p>{{pcData.characteristics.dexterity.pHexValue}} / ({{pcData.characteristics.dexterity.value}})</p></td>
-        <td> <div class="celllabel">{{ pcData.characteristics.endurance.shortName }}:</div><p>{{pcData.characteristics.endurance.pHexValue}} / ({{pcData.characteristics.endurance.value}})</p></td>
-        <td> <div class="celllabel">{{ pcData.characteristics.intelligence.shortName }}:</div><p>{{pcData.characteristics.intelligence.pHexValue}} / ({{pcData.characteristics.intelligence.value}})</p></td>
-        <td> <div class="celllabel">{{ pcData.characteristics.education.shortName }}:</div><p>{{pcData.characteristics.education.pHexValue}} / ({{pcData.characteristics.education.value}})</p></td>
-        <td> <div class="celllabel">{{ pcData.characteristics.social.shortName }}:</div><p>{{pcData.characteristics.social.pHexValue}} / ({{pcData.characteristics.social.value}})</p></td>
+        <td> <div class="celllabel">{{ pcData.characteristics.strength.shortName }}:</div><p> {{strPHex}} / ({{pcData.characteristics.strength.value}})</p></td>
+        <td> <div class="celllabel">{{ pcData.characteristics.dexterity.shortName }}:</div><p>{{dexPHex}} / ({{pcData.characteristics.dexterity.value}})</p></td>
+        <td> <div class="celllabel">{{ pcData.characteristics.endurance.shortName }}:</div><p>{{endPHex}} / ({{pcData.characteristics.endurance.value}})</p></td>
+        <td> <div class="celllabel">{{ pcData.characteristics.intelligence.shortName }}:</div><p>{{intPHex}} / ({{pcData.characteristics.intelligence.value}})</p></td>
+        <td> <div class="celllabel">{{ pcData.characteristics.education.shortName }}:</div><p>{{eduPHex}} / ({{pcData.characteristics.education.value}})</p></td>
+        <td> <div class="celllabel">{{ pcData.characteristics.social.shortName }}:</div><p>{{socPHex}} / ({{pcData.characteristics.social.value}})</p></td>
                                                  
       </tr>
 
@@ -145,9 +146,6 @@
             {{ individualSkill.name }} - {{ individualSkill.level }}
           </div>
 
-
-
-          <p>{{  }}</p>
         </td>
       </tr>
 
@@ -231,7 +229,10 @@ import SetHomeworld from './components/chargen/ct/ttb/SetHomeworld.vue';
 import chooseCareer from './components/chargen/ct/ttb/chooseCareer.vue';
 import doTerm from './components/chargen/ct/ttb/doTerm.vue';
 import chooseSkills from './components/chargen/ct/ttb/chooseSkills.vue';
+import endOfTerm from './components/chargen/ct/ttb/EndOfTerm.vue';
+import musterOut from './components/chargen/ct/ttb/MusterOut.vue';
 
+//musterOut
 
 
 
@@ -296,18 +297,54 @@ Data collection /formatting
 ------------------------------------------------------------------*/
 
 
+const strPHex = computed( () => {
+    return getPHex(charData.pcData.characteristics.strength.value)
+})
+
+const dexPHex = computed( () => {
+    return getPHex(charData.pcData.characteristics.dexterity.value)
+})
+
+const endPHex = computed( () => {
+    return getPHex(charData.pcData.characteristics.endurance.value)
+})
+
+const intPHex = computed( () => {
+    return getPHex(charData.pcData.characteristics.intelligence.value)
+})
+
+const eduPHex = computed( () => {
+    return getPHex(charData.pcData.characteristics.education.value)
+})
+
+const socPHex = computed( () => {
+    return getPHex(charData.pcData.characteristics.social.value)
+})
+
+
+
 const generateUPP = computed( () => {
 // //    let upp = this.pcData.characteristics.strength.pHexValue + this.pcData.characteristics.dexterity.pHexValue + this.pcData.characteristics.endurance.pHexValue + this.pcData.characteristics.intelligence.pHexValue + this.pcData.characteristics.education.pHexValue + this.pcData.characteristics.social.pHexValue;
-    const strV = charData.pcData.characteristics.strength.pHexValue
-    const dexV = charData.pcData.characteristics.dexterity.pHexValue
-    const endV = charData.pcData.characteristics.endurance.pHexValue
-    const intV = charData.pcData.characteristics.intelligence.pHexValue
-    const eduV = charData.pcData.characteristics.education.pHexValue
-    const socV = charData.pcData.characteristics.social.pHexValue
+    // const strV = charData.pcData.characteristics.strength.pHexValue
+    // const dexV = charData.pcData.characteristics.dexterity.pHexValue
+    // const endV = charData.pcData.characteristics.endurance.pHexValue
+    // const intV = charData.pcData.characteristics.intelligence.pHexValue
+    // const eduV = charData.pcData.characteristics.education.pHexValue
+    // const socV = charData.pcData.characteristics.social.pHexValue
 
-    const uppVal = strV+dexV+endV+intV+eduV+socV
+    const uppVal = strPHex.value+dexPHex.value+endPHex.value+intPHex.value+eduPHex.value+socPHex.value
     return uppVal;
 })
+
+//  WATCH format for property of reactive opbject
+// watch(
+//   () => obj.count,
+//   (count) => {
+//     console.log(`count is: ${count}`)
+//   }
+// )
+
+
 
 
 
@@ -336,10 +373,31 @@ watch(
     console.log( 'SWITCHING WATCHER: chooseing skills')
 
    }
-  
+  //endOfTerm
+  if ( creationStatus.currentStep ===  creationStatus.stepNamesMap.endOfTerm  ) {
+    creationStatus.currentScreen = endOfTerm
+    console.log( 'SWITCHING WATCHER: End of Term')
+
+   }
+  if ( creationStatus.currentStep ===  creationStatus.stepNamesMap.musterOut  ) {
+    creationStatus.currentScreen = musterOut
+    console.log( 'SWITCHING WATCHER: Mustering Out')
+
+   }
+ 
   }
 )
 
+
+
+const reloadPage = () => { 
+
+// console.log('Accept stats ');
+
+location.reload();
+
+
+}
 
 
 

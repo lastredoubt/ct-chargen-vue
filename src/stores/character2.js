@@ -71,37 +71,31 @@ export const useCharacterStore = defineStore('character', () => {
                 longName: 'strength',
                 shortName: 'Stren',
                 value: 0,
-                pHexValue: '0'
             },
             dexterity: {
                 longName: 'dexterity',
                 shortName: 'Dext',
                 value: 0,
-                pHexValue: '0'
             },
             endurance: {
                 longName: 'endurance',
                 shortName: 'Endur',
                 value: 0,
-                pHexValue: '0'
             },
             intelligence: {
                 longName: 'intelligence',
                 shortName: 'Intel',
                 value: 0,
-                pHexValue: '0'
             },
             education: {
                 longName: 'education',
                 shortName: 'Educ',
                 value: 0,
-                pHexValue: '0'
             },
             social: {
                 longName: 'social standing',
                 shortName: 'Soc',
                 value: 0,
-                pHexValue: '0'
             }
         },
         // noble title is a string that will be set via social standing
@@ -127,13 +121,130 @@ export const useCharacterStore = defineStore('character', () => {
     
     
 
+
+
+    function getPHex(characteristic) {
+        // console.log('Value to be converted to pseudoHex: --->' + characteristic)
+        // console.log(characteristic.value)
+
+        if (characteristic < 10 ) { 
+            const returnValue = characteristic.toString()
+            return returnValue
+        }
+
+        switch(characteristic) {
+            case 10:
+                return 'A';
+                break;
+
+            case 11:
+                return 'B';
+                break;
+            case 12:
+                return 'C';
+                break;
+            case 13:
+                return 'D';
+                break;
+            case 14:
+                return 'E';
+                break;
+            case 15: 
+                return 'F';
+                break;
+            case 16:
+                return 'G';
+                break;
+        }
+    }
+
+
+
+
+
+    // function adjustPHex (statName, pHexString) {
+    //     // alert( 'Affects ' + statName + ', adds: ' + statShift)
+    //     const numValue = pcData.characteristics[statName].value
+
+    //     alert( statName + ' value is: ' + numValue + ', setting phex to: ' + pHexString)
+
+    //     pcData.characteristics[statName].pHexValue = pHexString
+    //     alert( 'DONE! ' )
+         
+    // }
+    
   
 
 
 
 
+    function bumpTheStat(statName, statShift) {
+        // alert( 'Affects ' + statName + ', adds: ' + statShift)
+        let statIndex = ''
 
-  return {pcData}
+        switch(statName) {
+            case "Stren":
+                statIndex = 'strength'
+                break;
+            case "Dext":
+            statIndex = 'dexterity'
+                break;
+            case 'Endur':
+            statIndex = 'endurance'
+                break;
+            case 'Intel':
+            statIndex = 'intelligence'
+                break;
+            case 'Educ':
+            statIndex = 'education'
+                break;
+            default:
+                statIndex = 'social'
+        }
+
+        this.pcData.characteristics[statIndex].value += statShift
+
+        //////// const newPHex = this.getPHex(this.pcData.characteristics[statIndex].value)
+ 
+        // alert( 'Affects zee ' + statIndex + ', adds: ' + statShift + ' New phex = ' + newPHex + 'pHex value of ' +  statIndex + ' was ' + this.pcData.characteristics[statIndex].pHexValue)
+        // // this.pcData.characteristics[statIndex].pHexValue = newPHex
+
+
+         //////// adjustPHex( statIndex , newPHex  )
+        // this.pcData.characteristics[statIndex].pHexValue = newPHex
+
+
+        
+    }
+    
+  
+
+
+
+    function bumpAge(terms) {
+        // console.log('Value to be converted to pseudoHex: --->' + characteristic)
+        // console.log(characteristic.value)
+        this.pcData.age = 18 + (terms*4)
+        
+    }
+
+
+
+
+    // function addReupTerm() {
+    //     // console.log('Value to be converted to pseudoHex: --->' + characteristic)
+    //     // console.log(characteristic.value)
+    //     this.pcData.career.terms += 1
+        
+    // }
+
+
+
+
+
+
+
+  return {pcData, bumpTheStat, getPHex, bumpAge}
 
 })
 

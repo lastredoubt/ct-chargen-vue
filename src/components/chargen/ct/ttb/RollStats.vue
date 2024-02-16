@@ -204,24 +204,24 @@ const acceptStats = () => {
 creationStatus.careerLog.push('Stats are chosen. The UPP is:' + upp.value)
 creationStatus.careerLog.push('The character title is:' + currentTitle.title)
 
-
+ 
 character.pcData.characteristics.strength.value = charStats.str
-character.pcData.characteristics.strength.pHexValue = strP
+// character.pcData.characteristics.strength.pHexValue = strP
 
 character.pcData.characteristics.dexterity.value = charStats.dex
-character.pcData.characteristics.dexterity.pHexValue = dexP
+// character.pcData.characteristics.dexterity.pHexValue = dexP
 
 character.pcData.characteristics.endurance.value = charStats.end
-character.pcData.characteristics.endurance.pHexValue = endP
+// character.pcData.characteristics.endurance.pHexValue = endP
 
 character.pcData.characteristics.intelligence.value = charStats.int
-character.pcData.characteristics.intelligence.pHexValue = intP 
+// character.pcData.characteristics.intelligence.pHexValue = intP 
 
 character.pcData.characteristics.education.value = charStats.edu
-character.pcData.characteristics.education.pHexValue = eduP
+// character.pcData.characteristics.education.pHexValue = eduP
 
 character.pcData.characteristics.social.value = charStats.soc
-character.pcData.characteristics.social.pHexValue = socP
+// character.pcData.characteristics.social.pHexValue = socP
 
 character.pcData.nobleTitle = currentTitle.title
 

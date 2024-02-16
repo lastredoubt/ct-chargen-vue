@@ -64,8 +64,8 @@
     </div>
 
  -->
-    <div class="chooseSkills">
-        <button @click.prevent="chooseSkills">Choose Skills (NOT ENABLED YET)</button>
+ <div class="chooseSkills"  v-if="character.pcData.flags.alive">
+        <button @click.prevent="chooseSkills">Choose Skills</button>
 
     </div>
 
@@ -472,6 +472,8 @@ TODO LIST
                 // made office
                 termLog.commission = true
                 character.pcData.militaryRank.level = 1
+                character.pcData.militaryRank.rankName = currentService.ranks[character.pcData.militaryRank.level] 
+
                 earnedServiceSkills.push(character.pcData.militaryRank.level)
 
                 creationStatus.careerLog.push(character.pcData.name + ' becomes an officer, and is now ' + currentService.ranks[character.pcData.militaryRank.level] + ' ' + character.pcData.name + ' .')
@@ -519,6 +521,11 @@ TODO LIST
                 termLog.promotion = true
                 character.pcData.militaryRank.level += 1
                 earnedServiceSkills.push(character.pcData.militaryRank.level)
+
+                //currentService.ranks[character.pcData.militaryRank.level] 
+                //character.pcData.militaryRank.rankName
+
+                character.pcData.militaryRank.rankName = currentService.ranks[character.pcData.militaryRank.level] 
 
                 creationStatus.careerLog.push(character.pcData.name + ' is now ' + currentService.ranks[character.pcData.militaryRank.level] + ' ' + character.pcData.name + ' .')
                 character.pcData.career.termHistory.push(character.pcData.name + ' is promoted to ' + currentService.ranks[character.pcData.militaryRank.level] + '.')
@@ -752,8 +759,6 @@ creationStatus.careerLog.push('We\'ve survived the termCheck, time to get skills
 creationStatus.currentStep = creationStatus.stepNamesMap.chooseSkills
 
 }
-
-
 
 
 

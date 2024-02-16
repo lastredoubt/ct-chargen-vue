@@ -24,6 +24,8 @@ export const useCounterStore = defineStore('counter', () => {
     chooseCareer: 'chooseCareer',
     doTerm: 'doTerm',
     chooseSkills: 'chooseSkills',
+    endOfTerm: 'endOfTerm',
+    musterOut: 'musterOut'
 
   })
 
