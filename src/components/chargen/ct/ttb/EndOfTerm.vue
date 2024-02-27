@@ -473,14 +473,12 @@ onMounted( () => {
     })
 
     
-    
   endOfTermLog.push({
     li : '--'
   })
   endOfTermLog.push({
     li : 'HANDLE MUSTER OUT!'
   })
-
 
 
 
