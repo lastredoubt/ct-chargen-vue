@@ -478,12 +478,6 @@ onMounted( () => {
     li : '--'
   })
   endOfTermLog.push({
-    li : 'HANDLE AGING ROLLS'
-  })
-  endOfTermLog.push({
-    li : 'HANDLE REENLISTMENT!'
-  })
-  endOfTermLog.push({
     li : 'HANDLE MUSTER OUT!'
   })
 

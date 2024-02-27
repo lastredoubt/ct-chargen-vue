@@ -4,7 +4,7 @@
     <div>
         <h1>Muster Out</h1>
 
-        <p>You have served {{ displayTermName }} terms. </p>
+        <p>You have served {{ character.pcData.career.terms }} terms. </p>
 <!--  
         <ul>
             <li v-for="(item, index) in endOfTermLog" :key="'eotlog'+index">{{ item.li }}</li>
@@ -255,9 +255,9 @@
         // <button v-if="(reEnlistStatus.status == 'mandatory') || (reEnlistStatus.status == 'may') "  @click.prevent="goNewTerm">Reenlist</button>
     
     
-    /*-------------------------------------
-            Muster Out
-    ----------------------------------------*/
+    /*----------------------------------------------------------------------------------------------------------------------------------------------------------
+            Muster Out <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    ----------------------------------------------------------------------------------------------------------------------------------------------------------*/
     
     const goMusterOut = (target, roll) => { 
         creationStatus.careerLog.push( 'Mustered Out')
@@ -270,7 +270,7 @@
     
     
     /*-------------------------------------
-            Process reenlistment
+            Process reenlistment <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     ----------------------------------------*/
     
     const goNewTerm = (target, roll) => { 
@@ -287,7 +287,7 @@
     
     
     /*-------------------------------------
-            Aging Check
+            Aging Check <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     ----------------------------------------*/
     
     const reenlistCheck = (target, roll) => { 
@@ -315,7 +315,7 @@
     }
     
     /*-------------------------------------
-            Aging Check
+            Aging Check <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     ----------------------------------------*/
     
     const agingCheck = (rollStr, rollDex, rollEnd, rollInt) => { 
@@ -362,7 +362,7 @@
     
     
     /*-------------------------------------
-            onMounted initial roll
+            onMounted initial roll  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     ----------------------------------------*/
     onMounted( () => { 
     
